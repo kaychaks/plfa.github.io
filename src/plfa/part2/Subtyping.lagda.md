@@ -12,7 +12,7 @@ module plfa.part2.Subtyping where
 
 This chapter introduces *subtyping*, a concept that plays an important
 role in object-oriented languages. Subtyping enables code to be more
-reusable by allowing code work on objects of many different
+reusable by allowing it to work on objects of many different
 types. Thus, subtyping provides a kind of polymorphism. In general, a
 type `A` can be a subtype of another type `B`, written `A <: B`, when
 an object of type `A` has all the capabilities expected of something
@@ -35,12 +35,12 @@ can also have type `B` if `A` is a subtype of `B`.
 In this chapter we study subtyping in the relatively simple context of
 records and record types.  A *record* is a grouping of named values,
 called *fields*. For example, one could represent a point on the
-cartesian plane with the following record.
+Cartesian plane with the following record.
 
     { x = 4, y = 1 }
 
 A *record type* gives a type for each field. In the following, we
-specify that the fields `x` and `y` both have type ``ℕ`.
+specify that the fields `x` and `y` both have type `ℕ`.
 
     { x : `ℕ,  y : `ℕ }
 
@@ -51,7 +51,7 @@ three dimensions is a subtype of a point in two dimensions.
 
     { x : `ℕ,  y : `ℕ, z : `ℕ } <: { x : `ℕ,  y : `ℕ }
 
-The elimination for for records is field access (aka. projection),
+The elimination form for records is field access (aka. projection),
 written `M # l`, and whose dynamic semantics is defined by the
 following reduction rule, which says that accessing the field `lⱼ`
 returns the value stored at that field.
@@ -59,17 +59,18 @@ returns the value stored at that field.
     {l₁=v₁, ..., lⱼ=vⱼ, ..., lᵢ=vᵢ} # lⱼ —→  vⱼ 
 
 In this chapter we add records and record types to the simply typed
-lambda calculus (STLC) and prove type safety. The choice between
-extrinsic and intrinsic typing is made more interesting by the
-presense of subtyping. If we wish to include the subsumption rule,
-then we cannot use intrinsicly typed terms, as intrinsic terms only
-allow for syntax-directed rules, and subsumption is not syntax
+lambda calculus (STLC) and prove type safety. It is instructive to see
+how the proof of type safety changes to handle subtyping.  Also, the
+presence of subtyping makes the choice between extrinsic and intrinsic
+typing more interesting by. If we wish to include the subsumption
+rule, then we cannot use intrinsically typed terms, as intrinsic terms
+only allow for syntax-directed rules, and subsumption is not syntax
 directed.  A standard alternative to the subsumption rule is to
 instead use subtyping in the typing rules for the elimination forms,
 an approach called algorithmic typing. Here we choose to include the
-subsumption rule and use extrinsic typing, but we give an exercise at
-the end for the reader to explore algorithmic typing with intrinsic
-terms.
+subsumption rule and extrinsic typing, but we give an exercise at the
+end of the chapter so the reader can explore algorithmic typing with
+intrinsic terms.
 
 
 ## Imports
@@ -79,7 +80,8 @@ open import Data.Empty using (⊥; ⊥-elim)
 open import Data.Empty.Irrelevant renaming (⊥-elim to ⊥-elimi)
 open import Data.Fin using (Fin; zero; suc)
 open import Data.Nat using (ℕ; zero; suc; _≤_; z≤n; s≤s; _<_; _+_)
-open import Data.Nat.Properties using (m+n≤o⇒m≤o; m+n≤o⇒n≤o; n≤0⇒n≡0; ≤-pred; ≤-refl)
+open import Data.Nat.Properties
+    using (m+n≤o⇒m≤o; m+n≤o⇒n≤o; n≤0⇒n≡0; ≤-pred; ≤-refl; ≤-trans; m≤m+n; n≤m+n)
 open import Data.Product using (_×_; proj₁; proj₂; Σ-syntax) renaming (_,_ to ⟨_,_⟩)
 open import Data.String using (String; _≟_)
 open import Data.Unit using (⊤; tt)
@@ -99,11 +101,13 @@ The syntax includes that of the STLC with a few additions regarding
 records that we explain in the following sections.
 
 ```
+infixl 5 _,_
+infix 4 _⊆_
+infix 5 _<:_
 infix  4 _⊢_⦂_
 infix 4 _⊢*_⦂_
 infix  4 _∋_⦂_
-infixl 5 _,_
-infix 5 _[_]
+infix  4 Canonical_⦂_
 
 infixr 7 _⇒_
 
@@ -113,10 +117,11 @@ infixl 7 _·_
 infix  8 `suc_
 infix  9 `_
 infixl 7 _#_
-
-infix 4 _⊆_
 infix 5 ｛_⦂_｝
 infix 5 ｛_:=_｝
+
+infix 5 _[_]
+infix 2 _—→_
 ```
 
 ## Record Fields and their Properties
@@ -139,8 +144,8 @@ vectors (Agda's `Vec` type), one vector of fields and one vector of terms:
     l₁, ..., lᵢ
     M₁, ..., Mᵢ
     
-This representation has the advantage that the subscript notation `lᵢ`
-corresponds to indexing into a vector.
+This representation has the advantage that the traditional subscript
+notation `lᵢ` corresponds to indexing into a vector.
 
 Likewise, a record type, traditionally written as
 
@@ -174,7 +179,7 @@ distinct-lookup-inj {ls = x ∷ ls} {suc i} {suc j} ⟨ x∉ls , dls ⟩ lsij =
     cong suc (distinct-lookup-inj dls lsij)
 ```
 
-We shall need to convert from an irrelevent proof of distinctness to a
+We shall need to convert from an irrelevant proof of distinctness to a
 relevant one. In general, the laundering of irrelevant proofs into
 relevant ones is easy to do when the predicate in question is
 decidable. The following is a decision procedure for whether a vector
@@ -191,7 +196,7 @@ distinct? (x ∷ xs)
 ... | no ¬dxs = no λ x₁ → ¬dxs (proj₂ x₁)
 ```
 
-With this decision procedure in hand, the define the following
+With this decision procedure in hand, we define the following
 function for laundering irrelevant proofs of distinctness into
 relevant ones.
 ```
@@ -254,7 +259,7 @@ data Type : Set where
   ｛_⦂_｝ : {n : ℕ} (ls : Vec Name n) (As : Vec Type n) → .{d : distinct ls} → Type 
 ```
 
-In addition to function types `A ⇒ B` and natural numbers ``ℕ`, we
+In addition to function types `A ⇒ B` and natural numbers `ℕ`, we
 have the record type `｛ ls ⦂ As ｝`, where `ls` is a vector of field
 names and `As` is a vector of types, as discussed above.  We require
 that the field names be distinct, but we do not want the details of
@@ -265,9 +270,12 @@ in front of it.
 
 ## Subtyping
 
-```
-infix 5 _<:_
+The subtyping relation, written `A <: B`, defines when an implicit
+cast is allowed via the subsumption rule. The following data type
+definition specifies the subtyping rules for natural numbers,
+functions, and record types. We discuss each rule below.
 
+```
 data _<:_ : Type → Type → Set where
   <:-nat : `ℕ <: `ℕ
 
@@ -285,20 +293,20 @@ data _<:_ : Type → Type → Set where
     → ｛ ks ⦂ Ss ｝ {d1} <: ｛ ls ⦂ Ts ｝ {d2}
 ```
 
-The rule `<:-nat` simply states that ``ℕ` is a subtype of itself.
+The rule `<:-nat` says that `ℕ` is a subtype of itself.
 
 The rule `<:-fun` is the traditional rule for function types, which is
-best understood with the following diagram. It answers the question,
-when can a function of type `A ⇒ B` be used in place of a function of
-type `C ⇒ D`. It shall be called with an argument of type `C`, so
-we'll need to convert from `C` to `A`. We can then call the function
-to get the result of type `B`. Finally, we need to convert from `B` to
-`D`.
+best understood with the below diagram. It answers the question, when
+can a function of type `A ⇒ B` be used in place of a function of type
+`C ⇒ D`. It will be called with an argument of type `C`, so we need to
+convert from `C` to `A`. We then call the function to get the result
+of type `B`. Finally, we need to convert from `B` to `D`. Note that
+the direction of subtyping for the parameters is swapped (`C <: A`), a
+phenomenon named contra-variance.
 
     C <: A
     ⇓    ⇓
     D :> B
-
 
 The record subtyping rule (`<:-rcd`) characterizes when a record of
 one type can safely be used in place of another record type.  The
@@ -309,7 +317,6 @@ The second premise of the record subtyping rule (`<:-rcd`) expresses
 _depth subtyping_, that is, it allows the types of the fields to
 change according to subtyping. The following is an abbreviation for
 this premise.
-
 ```
 _⦂_<:_⦂_ : ∀ {m n} → Vec Name m → Vec Type m → Vec Name n → Vec Type n → Set
 _⦂_<:_⦂_ {m}{n} ks Ss ls Ts = (∀{i : Fin n}{j : Fin m}
@@ -330,7 +337,6 @@ vec-ty-size : ∀ {n : ℕ} → (As : Vec Type n) → ℕ
 ty-size (A ⇒ B) = suc (ty-size A + ty-size B)
 ty-size `ℕ = 1
 ty-size ｛ ls ⦂ As ｝ = suc (vec-ty-size As)
-
 vec-ty-size {n} [] = 0
 vec-ty-size {n} (x ∷ xs) = ty-size x + vec-ty-size xs
 ```
@@ -343,15 +349,12 @@ ty-size-pos {`ℕ} = s≤s z≤n
 ty-size-pos {｛ fs ⦂ As ｝ } = s≤s z≤n
 ```
 
-If a vector of types has a size smaller than `n`, then so is any type
-in the vector.
+The size of a type in a vector is less-or-equal in size to the entire vector.
 ```
-lookup-vec-ty-size : ∀{n}{k} {As : Vec Type k} {j}
-   → vec-ty-size As ≤ n
-   → ty-size (lookup As j) ≤ n
-lookup-vec-ty-size {n} {suc k} {A ∷ As} {zero} As≤n = m+n≤o⇒m≤o (ty-size A) As≤n
-lookup-vec-ty-size {n} {suc k} {A ∷ As} {suc j} As≤n =
-    lookup-vec-ty-size {n} {k} {As} (m+n≤o⇒n≤o (ty-size A) As≤n)
+lookup-vec-ty-size : ∀{k} {As : Vec Type k} {j}
+   → ty-size (lookup As j) ≤ vec-ty-size As
+lookup-vec-ty-size {suc k} {A ∷ As} {zero} = m≤m+n _ _
+lookup-vec-ty-size {suc k} {A ∷ As} {suc j} = ≤-trans (lookup-vec-ty-size {k} {As}) (n≤m+n _ _)
 ```
 
 Here is the proof of reflexivity, by induction on the size of the type.
@@ -371,7 +374,7 @@ Here is the proof of reflexivity, by induction on the size of the type.
     where
     G : ls ⦂ As <: ls ⦂ As
     G {i}{j} lij rewrite distinct-lookup-inj (distinct-relevant d) lij =
-        let As[i]≤n = lookup-vec-ty-size {As = As}{i} (≤-pred m) in 
+        let As[i]≤n = ≤-trans (lookup-vec-ty-size {As = As}{i}) (≤-pred m) in 
         <:-refl-aux {n}{lookup As i}{As[i]≤n}
 ```
 The theorem statement uses `n` as an upper bound on the size of the type `A`
@@ -381,7 +384,7 @@ and proceeds by induction on `n`.
 
 * If it is `suc n`, we proceed by cases on the type `A`.
 
-  * If it is ``ℕ`, then we have ``ℕ <: `ℕ` by rule `<:-nat`.
+  * If it is `ℕ`, then we have `ℕ <: ℕ` by rule `<:-nat`.
   * If it is `A ⇒ B`, then by induction we have `A <: A` and `B <: B`.
     We conclude that `A ⇒ B <: A ⇒ B` by rule `<:-fun`.
   * If it is `｛ ls ⦂ As ｝`, then it suffices to prove that
@@ -402,34 +405,60 @@ The following corollary packages up reflexivity for ease of use.
 
 ## Subtyping is transitive
 
-The proof of transitivity is straightforward, given that we've
-already proved the two lemmas needed in the case for `<:-rcd`:
-`⊆-trans` and `lookup-⊆`.
-
 ```
 <:-trans : ∀{A B C}
     → A <: B   →   B <: C
       -------------------
     → A <: C
-<:-trans {A₁ ⇒ A₂} {B₁ ⇒ B₂} {C₁ ⇒ C₂} (<:-fun A<:B A<:B₁) (<:-fun B<:C B<:C₁) =
-    <:-fun (<:-trans B<:C A<:B) (<:-trans A<:B₁ B<:C₁)
+<:-trans {A₁ ⇒ A₂} {B₁ ⇒ B₂} {C₁ ⇒ C₂} (<:-fun A₁<:B₁ A₂<:B₂) (<:-fun B₁<:C₁ B₂<:C₂) =
+    <:-fun (<:-trans B₁<:C₁ A₁<:B₁) (<:-trans A₂<:B₂ B₂<:C₂)
 <:-trans {.`ℕ} {`ℕ} {.`ℕ} <:-nat <:-nat = <:-nat
 <:-trans {｛ ls ⦂ As ｝{d1} } {｛ ms ⦂ Bs ｝ {d2} } {｛ ns ⦂ Cs ｝ {d3} }
     (<:-rcd ms⊆ls As<:Bs) (<:-rcd ns⊆ms Bs<:Cs) =
     <:-rcd (⊆-trans ns⊆ms ms⊆ls) As<:Cs
     where
     As<:Cs : ls ⦂ As <: ns ⦂ Cs
-    As<:Cs {i}{j} lij
+    As<:Cs {i}{j} ls[j]=ns[i]
         with lookup-⊆ {i = i} ns⊆ms 
-    ... | ⟨ k , lik ⟩
-        with lookup-⊆ {i = k} ms⊆ls
-    ... | ⟨ j' , lkj' ⟩ rewrite sym lkj' | lij | sym lik  =
-        let ab = As<:Bs {k}{j} (trans lij lik) in
-        let bc = Bs<:Cs {i}{k} (sym lik) in
-        <:-trans ab bc
+    ... | ⟨ k , ns[i]=ms[k] ⟩ =
+        let As[j]<:Bs[k] = As<:Bs {k}{j} (trans ls[j]=ns[i] ns[i]=ms[k]) in
+        let Bs[k]<:Cs[i] = Bs<:Cs {i}{k} (sym ns[i]=ms[k]) in
+        <:-trans As[j]<:Bs[k] Bs[k]<:Cs[i]
 ```
 
+The proof is by induction on the derivations of `A <: B` and `B <: C`.
+
+* If both derivations end with `<:-nat`: then we immediately conclude that `ℕ <: ℕ`.
+
+* If both derivations end with `<:-fun`:
+  we have `A₁ ⇒ A₂ <: B₁ ⇒ B₂` and  `B₁ ⇒ B₂ <: C₁ ⇒ C₂`.
+  So `A₁ <: B₁` and `B₁ <: C₁`, thus `A₁ <: C₁` by the induction hypothesis.
+  We also have `A₂ <: B₂` and `B₂ <: C₂`, so by the induction hypothesis
+  we have `A₂ <: C₂`. We conclude that `A₁ ⇒ A₂ <: C₁ ⇒ C₂` by rule `<:-fun`.
+
+* If both derivations end with `<:-rcd`, so we have
+  `｛ ls ⦂ As ｝ <: ｛ ms ⦂ Bs ｝` and `｛ ms ⦂ Bs ｝ <: ｛ ns ⦂ Cs ｝`.
+  From `ls ⊆ ms` and `ms ⊆ ns` we have `ls ⊆ ns` because `⊆` is transitive.
+  Next we need to prove that `ls ⦂ As <: ns ⦂ Cs`.
+  Suppose `lookup ls j ≡ lookup ns i` for an arbitrary `i` and `j`.
+  We need to prove that `lookup As j <: lookup Cs i`.
+  By the induction hypothesis, it suffices to show
+  that `lookup As j <: lookup Bs k` and `lookup Bs k <: lookup Cs i` for some `k`.
+  We can obtain the former from `｛ ls ⦂ As ｝ <: ｛ ms ⦂ Bs ｝`
+  if we can prove that `lookup ls j ≡ lookup ms k`.
+  We already have `lookup ls j ≡ lookup ns i` and we
+  obtain `lookup ns i ≡ lookup ms k` by use of the lemma `lookup-⊆`,
+  noting that `ns ⊆ ms`. 
+  We can obtain the later, that `lookup Bs k <: lookup Cs i`,
+  from `｛ ms ⦂ Bs ｝ <: ｛ ns ⦂ Cs ｝`.
+  It suffices to show that `lookup ms k ≡ lookup ns i`,
+  which we have by symmetry.
+
+
 ## Contexts
+
+We choose to represent variables with de Bruijn indices, so contexts
+are sequences of types.
 
 ```
 data Context : Set where
@@ -438,6 +467,9 @@ data Context : Set where
 ```
 
 ## Variables and the lookup judgment
+
+The lookup judgment is a three-place relation, with a context, a de
+Bruijn index, and a type.
 
 ```
 data _∋_⦂_ : Context → ℕ → Type → Set where
@@ -452,12 +484,26 @@ data _∋_⦂_ : Context → ℕ → Type → Set where
     → Γ , B ∋ (suc x) ⦂ A
 ```
 
+* The index `0` has the type at the front of the context.
+
+* For the index `suc x`, we recursively look up its type in the
+  remaining context `Γ`.
+
+
 ## Terms and the typing judgment
+
+As mentioned above, variables are de Bruijn indices, which we
+represent with natural numbers.
 
 ```
 Id : Set
 Id = ℕ
 ```
+
+Our terms are extrinsic, so we define a `Term` data type similar to
+the one in the [Lambda]({{ site.baseurl }}/Lambda/) chapter, but adapted for de
+Bruijn indices.  The two new term constructors are for record creation
+and field access.
 
 ```
 data Term : Set where
@@ -471,6 +517,12 @@ data Term : Set where
   ｛_:=_｝                 : {n : ℕ} (ls : Vec Name n) (Ms : Vec Term n) → Term
   _#_                     : Term → Name → Term
 ```
+
+In a record `｛ ls := Ms ｝`, we refer to the vector of terms `Ms` as
+the *field initializers*.
+
+The typing judgment takes the form `Γ ⊢ M ⦂ A` and relies on an
+auxiliary judgment `Γ ⊢* Ms ⦂ As` for typing a vector of terms.
 
 ```
 data _⊢*_⦂_ : Context → ∀ {n} → Vec Term n → Vec Type n → Set 
@@ -540,15 +592,41 @@ data _⊢*_⦂_ where
      → Γ ⊢* (M ∷ Ms) ⦂ (A ∷ As)
 ```
 
+Most of the typing rules are adapted from those in the [Lambda]({{ site.baseurl }}/Lambda/)
+chapter. Here we discuss the three new rules.
+
+* Rule `⊢rcd`: A record is well-typed if the field initializers `Ms`
+  have types `As`, to match the record type. Also, the vector of field
+  names is required to be distinct.
+
+* Rule `⊢#`: A field access is well-typed if the term `M` has record type,
+  the field `l` is at some index `i` in the record type's vector of field names,
+  and the result type `A` is at index `i` in the vector of field types.
+
+* Rule `⊢<:`: (Subsumption) If a term `M` has type `A`, and `A <: B`,
+  then term `M` also has type `B`.
+  
 
 ## Renaming and Substitution
 
+In preparation of defining the reduction rules for this language, we
+define simultaneous substitution using the same recipe as in the
+[DeBruijn]({{ site.baseurl }}/DeBruijn/) chapter, but adapted to extrinsic
+terms. Thus, the `subst` function is split into two parts: a raw
+`subst` function that operators on terms and a `subst-pres` lemma that
+proves that substitution preserves types. We define `subst` in this
+section and postpone `subst-pres` to the
+[Preservation](#subtyping-preservation) section.  Likewise for `rename`.
+
+We begin by defining the `ext` function on renamings.
 ```
 ext : (Id → Id) → (Id → Id)
 ext ρ 0      =  0
 ext ρ (suc x)  =  suc (ρ x)
 ```
 
+The `rename` function is defined mutually with the auxiliary
+`rename-vec` function, which is needed in the case for records.
 ```
 rename-vec : (Id → Id) → ∀{n} → Vec Term n → Vec Term n
 
@@ -568,12 +646,16 @@ rename-vec ρ [] = []
 rename-vec ρ (M ∷ Ms) = rename ρ M ∷ rename-vec ρ Ms
 ```
 
+With the `rename` function in hand, we can define the `exts` function
+on substitutions.
 ```
 exts : (Id → Term) → (Id → Term)
 exts σ 0      =  ` 0
 exts σ (suc x)  =  rename suc (σ x)
 ```
 
+We define `subst` mutually with the auxiliary `subst-vec` function,
+which is needed in the case for records.
 ```
 subst-vec : (Id → Term) → ∀{n} → Vec Term n → Vec Term n
 
@@ -593,6 +675,8 @@ subst-vec σ [] = []
 subst-vec σ (M ∷ Ms) = (subst σ M) ∷ (subst-vec σ Ms)
 ```
 
+As usual, we implement single substitution using simultaneous
+substitution.
 ```
 subst-zero : Term → Id → Term
 subst-zero M 0       =  M
@@ -604,6 +688,11 @@ _[_] N M =  subst (subst-zero M) N
 
 ## Values
 
+We extend the definition of `Value` to include a clause for records.
+In a call-by-value language, a record is usually only considered a
+value if all its field initializers are values. Here we instead treat
+records in a lazy fashion, declaring any record to be a value, to save
+on some extra bookkeeping.
 ```
 data Value : Term → Set where
 
@@ -626,9 +715,11 @@ data Value : Term → Set where
 
 ## Reduction
 
-```
-infix 2 _—→_
+The following datatype `_—→_` defines the reduction relation for the
+STLC with records. We discuss the two new rules for records in the
+following paragraph.
 
+```
 data _—→_ : Term → Term → Set where
 
   ξ-·₁ : ∀ {L L′ M : Term}
@@ -674,19 +765,28 @@ data _—→_ : Term → Term → Set where
     → M —→ M′
     → M # l —→ M′ # l
 
-  β-# : ∀ {n}{ls : Vec Name n}{vs : Vec Term n} {lⱼ}{j : Fin n}
-    → lookup ls j ≡ lⱼ
+  β-# : ∀ {n}{ls : Vec Name n}{Ms : Vec Term n} {l}{j : Fin n}
+    → lookup ls j ≡ l
       ---------------------------------
-    → ｛ ls := vs ｝ # lⱼ —→  lookup vs j
-
-
+    → ｛ ls := Ms ｝ # l —→  lookup Ms j
 ```
+
+We have just two new reduction rules:
+* Rule `ξ-#`: A field access expression `M # l` reduces to `M′ # l`
+   provided that `M` reduces to `M′`.
+
+* Rule `β-#`: When field access is applied to a record,
+   and if the label `l` is at position `j` in the vector of field names,
+   then result is the term at position `j` in the field initializers.
+
 
 ## Canonical Forms
 
+As in the [Properties]({{ site.baseurl }}/Properties/) chapter, we
+define a `Canonical V ⦂ A` relation that characterizes the well-typed
+values.  The presence of the subsumption rule impacts its definition
+because we must allow the type of the value `V` to be a subtype of `A`.
 ```
-infix  4 Canonical_⦂_
-
 data Canonical_⦂_ : Term → Type → Set where
 
   C-ƛ : ∀ {N A B C D}
@@ -726,16 +826,34 @@ canonical (⊢suc ⊢V)        (V-suc VV)  =  C-suc (canonical ⊢V VV)
 canonical (⊢case ⊢L ⊢M ⊢N) ()
 canonical (⊢μ ⊢M)          ()
 canonical (⊢rcd ⊢Ms d) VV = C-rcd {dls = d} ⊢Ms d <:-refl 
-canonical (⊢<: ⊢M <:-nat) VV = canonical ⊢M VV
-canonical (⊢<: ⊢M (<:-fun A<:B A<:B₁)) VV 
-    with canonical ⊢M VV 
-... | C-ƛ ⊢N  AB<:CD = C-ƛ ⊢N (<:-trans AB<:CD (<:-fun A<:B A<:B₁))
-canonical (⊢<: ⊢M (<:-rcd {d2 = dls} ls⊆ks ls⦂Ss<:ks⦂Ts)) VV
-    with canonical ⊢M VV
-... | C-rcd {dls = d} ⊢Ms dks As<:Ss =
-      C-rcd {dls = distinct-relevant dls} ⊢Ms dks (<:-trans As<:Ss (<:-rcd ls⊆ks ls⦂Ss<:ks⦂Ts))
+canonical (⊢<: ⊢V <:-nat) VV = canonical ⊢V VV
+canonical (⊢<: ⊢V (<:-fun {A}{B}{C}{D} C<:A B<:D)) VV 
+    with canonical ⊢V VV 
+... | C-ƛ {N}{A′}{B′}{A}{B} ⊢N  AB′<:AB = C-ƛ ⊢N (<:-trans AB′<:AB (<:-fun C<:A B<:D))
+canonical (⊢<: ⊢V (<:-rcd {ks = ks}{ls = ls}{d2 = dls} ls⊆ks ls⦂Ss<:ks⦂Ts)) VV
+    with canonical ⊢V VV
+... | C-rcd {ks = ks′} ⊢Ms dks′ As<:Ss =
+      C-rcd {dls = distinct-relevant dls} ⊢Ms dks′ (<:-trans As<:Ss (<:-rcd ls⊆ks ls⦂Ss<:ks⦂Ts))
 ```
+The case for subsumption (`⊢<:`) is interesting. We proceed by
+cases on the derivation of subtyping.
 
+* If the last rule is `<:-nat`, then we have `∅ ⊢ V ⦂ ℕ`
+  and the induction hypothesis gives us `Canonical V ⦂ ℕ`.
+
+* If the last rule is `<:-fun`, then we have `A ⇒ B <: C ⇒ D`
+  and `∅ ⊢ ƛ N ⦂ A ⇒ B`. By the induction hypothesis,
+  we have `∅ , A′ ⊢ N ⦂ B′` and `A′ ⇒ B′ <: A ⇒ B` for some `A′` and `B′`.
+  We conclude that `Canonical (ƛ N) ⦂ C ⇒ D` by rule `C-ƛ` and the transitivity of subtyping.
+
+* If the last rule is `<:-rcd`, then we have `｛ ls ⦂ Ss ｝ <: ｛ ks ⦂ Ts ｝`
+  and `∅ ⊢ ｛ ks′ := Ms ｝ ⦂ ｛ ks ⦂ Ss ｝`. By the induction hypothesis,
+  we have `∅ ⊢* Ms ⦂ As`, `distinct ks′`, and `｛ ks′ ⦂ As ｝ <: ｛ ks ⦂ Ss ｝`.
+  We conclude that `Canonical ｛ ks′ := Ms ｝ ⦂ ｛ ks ⦂ Ts ｝`
+  by rule `C-rcd` and the transitivity of subtyping.
+
+
+If a term is canonical, then it is also a value.
 ```
 value : ∀ {M A}
   → Canonical M ⦂ A
@@ -747,18 +865,26 @@ value (C-suc CM)    = V-suc (value CM)
 value (C-rcd _ _ _) = V-rcd
 ```
 
+A canonical value is a well-typed value.
 ```
-typed : ∀ {M A}
-  → Canonical M ⦂ A
+typed : ∀ {V A}
+  → Canonical V ⦂ A
     ---------------
-  → ∅ ⊢ M ⦂ A
+  → ∅ ⊢ V ⦂ A
 typed (C-ƛ ⊢N AB<:CD) = ⊢<: (⊢ƛ ⊢N) AB<:CD
 typed C-zero = ⊢zero
 typed (C-suc c) = ⊢suc (typed c)
 typed (C-rcd ⊢Ms dks As<:Bs) = ⊢<: (⊢rcd ⊢Ms dks) As<:Bs
 ```
 
-## Progress
+## Progress <a name="subtyping-progress"></a>
+
+The Progress theorem states that a well-typed term may either take a
+reduction step or it is already a value. The proof of Progress is like
+the one in the [Properties]({{ site.baseurl }}/Properties/); it
+proceeds by induction on the typing derivation and most of the cases
+remain the same. Below we discuss the new cases for records and
+subsumption.
 
 ```
 data Progress (M : Term) : Set where
@@ -799,28 +925,52 @@ progress (⊢case ⊢L ⊢M ⊢N) with progress ⊢L
 ... | done VL with canonical ⊢L VL
 ...   | C-zero                              =  step β-zero
 ...   | C-suc CL                            =  step (β-suc (value CL))
-progress (⊢μ ⊢M)                          = step β-μ
-progress (⊢# {Γ}{A}{M}{n}{ls}{As}{d}{i}{f} ⊢R lif liA)
-    with progress ⊢R
-... | step R—→R′                          = step (ξ-# R—→R′)
-... | done VR
-    with canonical ⊢R VR
-... | C-rcd ⊢Ms dks (<:-rcd ls⊆ls' _)
-    with lookup-⊆ {i = i} ls⊆ls'
-... | ⟨ k , eq ⟩ rewrite eq = step (β-# {j = k} lif)
-progress (⊢rcd x d)                       = done V-rcd
-progress (⊢<: {A = A}{B} ⊢M A<:B)         = progress ⊢M
+progress (⊢μ ⊢M)                            =  step β-μ
+progress (⊢# {n}{Γ}{A}{M}{l}{ls}{As}{i}{d} ⊢M ls[i]=l As[i]=A)
+    with progress ⊢M
+... | step M—→M′                            =  step (ξ-# M—→M′)
+... | done VM
+    with canonical ⊢M VM
+... | C-rcd {ks = ms}{As = Bs} ⊢Ms _ (<:-rcd ls⊆ms _)
+    with lookup-⊆ {i = i} ls⊆ms
+... | ⟨ k , ls[i]=ms[k] ⟩                   =  step (β-# {j = k}(trans (sym ls[i]=ms[k]) ls[i]=l))
+progress (⊢rcd x d)                         =  done V-rcd
+progress (⊢<: {A = A}{B} ⊢M A<:B)           =  progress ⊢M
 ```
+* Case `⊢#`: We have `Γ ⊢ M ⦂ ｛ ls ⦂ As ｝`, `lookup ls i ≡ l`, and `lookup As i ≡ A`.
+  By the induction hypothesis, either `M —→ M′` or `M` is a value. In the later case we
+  conclude that `M # l —→ M′ # l` by rule `ξ-#`. On the other hand, if `M` is a value,
+  we invoke the canonical forms lemma to show that `M` has the form `｛ ms := Ms ｝`
+  where `∅ ⊢* Ms ⦂ Bs` and `ls ⊆ ms`. By lemma `lookup-⊆`, we have
+  `lookup ls i ≡ lookup ms k` for some `k`. Thus, we have `lookup ms k ≡ l`
+  and we conclude `｛ ms := Ms ｝ # l —→ lookup Ms k` by rule `β-#`.
 
+* Case `⊢rcd`: we immediately characterize the record as a value.
 
-## Preservation
+* Case `⊢<:`: we invoke the induction hypothesis on sub-derivation of `Γ ⊢ M ⦂ A`.
+  
 
+## Preservation <a name="subtyping-preservation"></a>
 
+In this section we prove that when a well-typed term takes a reduction
+step, the result is another well-typed term with the same type.
+
+As mentioned earlier, we need to prove that substitution preserve
+types, which in turn requires that renaming preserves types.  The
+proofs of these lemmas are adapted from the intrinsic versions of the
+`ext`, `rename`, `exts`, and `subst` functions in the
+[DeBruijn]({{ site.baseurl }}/DeBruijn/) chapter.
+
+We define the following abbreviation for a *well-typed renaming* from Γ
+to Δ, that is, a renaming that sends variables in Γ to variables in Δ
+with the same type.
 ```
 _⦂ᵣ_⇒_ : (Id → Id) → Context → Context → Set
 ρ ⦂ᵣ Γ ⇒ Δ = ∀ {x A} → Γ ∋ x ⦂ A → Δ ∋ ρ x ⦂ A
 ```
 
+The `ext` function takes a well-typed renaming from Γ to Δ
+and extends it to become a renaming from (Γ , B) to (Δ , B).
 ```
 ext-pres : ∀ {Γ Δ ρ B}
   → ρ ⦂ᵣ Γ ⇒ Δ
@@ -830,12 +980,12 @@ ext-pres {ρ = ρ } ρ⦂ Z = Z
 ext-pres {ρ = ρ } ρ⦂ (S {x = x} ∋x) =  S (ρ⦂ ∋x)
 ```
 
+Next we prove that both `rename` and `rename-vec` preserve types.  We
+use the `ext-pres` lemma in each of the cases with a variable binding: `⊢ƛ`,
+`⊢μ`, and `⊢case`.
 ```
 ren-vec-pres : ∀ {Γ Δ ρ}{n}{Ms : Vec Term n}{As : Vec Type n}
-  → ρ ⦂ᵣ Γ ⇒ Δ
-  → Γ ⊢* Ms ⦂ As
-    ---------------------
-  → Δ ⊢* rename-vec ρ Ms ⦂ As
+  → ρ ⦂ᵣ Γ ⇒ Δ  →  Γ ⊢* Ms ⦂ As  →  Δ ⊢* rename-vec ρ Ms ⦂ As
 
 rename-pres : ∀ {Γ Δ ρ M A}
   → ρ ⦂ᵣ Γ ⇒ Δ
@@ -847,7 +997,7 @@ rename-pres {ρ = ρ} ρ⦂ (⊢ƛ ⊢N)   =  ⊢ƛ (rename-pres {ρ = ext ρ} (
 rename-pres {ρ = ρ} ρ⦂ (⊢· ⊢L ⊢M)=  ⊢· (rename-pres {ρ = ρ} ρ⦂ ⊢L) (rename-pres {ρ = ρ} ρ⦂ ⊢M)
 rename-pres {ρ = ρ} ρ⦂ (⊢μ ⊢M)   =  ⊢μ (rename-pres {ρ = ext ρ} (ext-pres {ρ = ρ} ρ⦂) ⊢M)
 rename-pres ρ⦂ (⊢rcd ⊢Ms dls)    = ⊢rcd (ren-vec-pres ρ⦂ ⊢Ms ) dls
-rename-pres {ρ = ρ} ρ⦂ (⊢# {d = d} ⊢R lif liA) = ⊢# {d = d}(rename-pres {ρ = ρ} ρ⦂ ⊢R) lif liA
+rename-pres {ρ = ρ} ρ⦂ (⊢# {d = d} ⊢M lif liA) = ⊢# {d = d}(rename-pres {ρ = ρ} ρ⦂ ⊢M) lif liA
 rename-pres {ρ = ρ} ρ⦂ (⊢<: ⊢M lt) = ⊢<: (rename-pres {ρ = ρ} ρ⦂ ⊢M) lt
 rename-pres ρ⦂ ⊢zero               = ⊢zero
 rename-pres ρ⦂ (⊢suc ⊢M)           = ⊢suc (rename-pres ρ⦂ ⊢M)
@@ -860,10 +1010,18 @@ ren-vec-pres {ρ = ρ} ρ⦂ (⊢*-∷ ⊢M ⊢Ms) =
   ⊢*-∷ (rename-pres {ρ = ρ} ρ⦂ ⊢M) IH
 ```
 
+A *well-typed substitution* from Γ to Δ sends variables in Γ to terms
+of the same type in the context Δ.
 ```
 _⦂_⇒_ : (Id → Term) → Context → Context → Set
 σ ⦂ Γ ⇒ Δ = ∀ {A x} → Γ ∋ x ⦂ A → Δ ⊢ subst σ (` x) ⦂ A
 ```
+
+The `exts` function sends well-typed substitutions from Γ to Δ to
+well-typed substitutions from (Γ , B) to (Δ , B). In the case for `S`,
+we note that `exts σ (suc x) ≡ rename sub (σ x)`, so we need to prove
+`Δ , B ⊢ rename suc (σ x) ⦂ A`, which we obtain by the `rename-pres`
+lemma.
 
 ```
 exts-pres : ∀ {Γ Δ σ B}
@@ -874,13 +1032,12 @@ exts-pres {σ = σ} σ⦂ Z = ⊢` Z
 exts-pres {σ = σ} σ⦂ (S {x = x} ∋x) = rename-pres {ρ = suc} S (σ⦂ ∋x)
 ```
 
-
+Now we prove that both `subst` and `subst-vec` preserve types.  We use
+the `exts-pres` lemma in each of the cases with a variable binding:
+`⊢ƛ`, `⊢μ`, and `⊢case`.
 ```
 subst-vec-pres : ∀ {Γ Δ σ}{n}{Ms : Vec Term n}{A}
-  → σ ⦂ Γ ⇒ Δ
-  → Γ ⊢* Ms ⦂ A
-    -----------------
-  → Δ ⊢* subst-vec σ Ms ⦂ A
+  → σ ⦂ Γ ⇒ Δ  →  Γ ⊢* Ms ⦂ A  →  Δ ⊢* subst-vec σ Ms ⦂ A
 
 subst-pres : ∀ {Γ Δ σ N A}
   → σ ⦂ Γ ⇒ Δ
@@ -892,8 +1049,8 @@ subst-pres {σ = σ} σ⦂ (⊢ƛ ⊢N)    = ⊢ƛ (subst-pres{σ = exts σ}(ext
 subst-pres {σ = σ} σ⦂ (⊢· ⊢L ⊢M) = ⊢· (subst-pres{σ = σ} σ⦂ ⊢L) (subst-pres{σ = σ} σ⦂ ⊢M) 
 subst-pres {σ = σ} σ⦂ (⊢μ ⊢M)    = ⊢μ (subst-pres{σ = exts σ} (exts-pres{σ = σ} σ⦂) ⊢M) 
 subst-pres σ⦂ (⊢rcd ⊢Ms dls) = ⊢rcd (subst-vec-pres σ⦂ ⊢Ms ) dls
-subst-pres {σ = σ} σ⦂ (⊢# {d = d} ⊢R lif liA) =
-    ⊢# {d = d} (subst-pres {σ = σ} σ⦂ ⊢R) lif liA
+subst-pres {σ = σ} σ⦂ (⊢# {d = d} ⊢M lif liA) =
+    ⊢# {d = d} (subst-pres {σ = σ} σ⦂ ⊢M) lif liA
 subst-pres {σ = σ} σ⦂ (⊢<: ⊢N lt) = ⊢<: (subst-pres {σ = σ} σ⦂ ⊢N) lt
 subst-pres σ⦂ ⊢zero = ⊢zero
 subst-pres σ⦂ (⊢suc ⊢M) = ⊢suc (subst-pres σ⦂ ⊢M)
@@ -905,6 +1062,8 @@ subst-vec-pres {σ = σ} σ⦂ (⊢*-∷ ⊢M ⊢Ms) =
     ⊢*-∷ (subst-pres {σ = σ} σ⦂ ⊢M) (subst-vec-pres σ⦂ ⊢Ms)
 ```
 
+The fact that single substitution preserves types is a corollary
+of `subst-pres`.
 ```
 substitution : ∀{Γ A B M N}
    → Γ ⊢ M ⦂ A
@@ -919,6 +1078,8 @@ substitution {Γ}{A}{B}{M}{N} ⊢M ⊢N = subst-pres {σ = subst-zero M} G ⊢N
     G {C} {suc x} (S ∋x) = ⊢` ∋x
 ```
 
+We require just one last lemma before we get to the proof of preservation.
+The following lemma establishes that field access preserves types.
 ```
 field-pres : ∀{n}{As : Vec Type n}{A}{Ms : Vec Term n}{i : Fin n}
          → ∅ ⊢* Ms ⦂ As
@@ -926,9 +1087,21 @@ field-pres : ∀{n}{As : Vec Type n}{A}{Ms : Vec Term n}{i : Fin n}
          → ∅ ⊢ lookup Ms i ⦂ A
 field-pres {i = zero} (⊢*-∷ ⊢M ⊢Ms) refl = ⊢M
 field-pres {i = suc i} (⊢*-∷ ⊢M ⊢Ms) As[i]=A = field-pres ⊢Ms As[i]=A
-
 ```
+The proof is by induction on the typing derivation.
 
+* Case `⊢-*-[]`: This case yields a contradiction because `Fin 0` is uninhabitable.
+
+* Case `⊢-*-∷`: So we have `∅ ⊢ M ⦂ B` and `∅ ⊢* Ms ⦂ As`. We proceed by cases on `i`.
+
+    * If it is `0`, then lookup yields term `M` and `A ≡ B`, so we conclude that `∅ ⊢ M ⦂ A`.
+    
+    * If it is `suc i`, then we conclude by the induction hypothesis.
+
+
+We conclude this chapter with the proof of preservation. We discuss
+the cases particular to records and subtyping in the paragraph
+following the Agda proof.
 ```
 preserve : ∀ {M N A}
   → ∅ ⊢ M ⦂ A
@@ -948,25 +1121,47 @@ preserve (⊢case ⊢L ⊢M ⊢N)        (ξ-case L—→L′)   =  ⊢case (pre
 preserve (⊢case ⊢L ⊢M ⊢N)        (β-zero)         =  ⊢M
 preserve (⊢case ⊢L ⊢M ⊢N)        (β-suc VV)
     with canonical ⊢L (V-suc VV)
-... | C-suc CV                                    = substitution (typed CV) ⊢N
+... | C-suc CV                                    =  substitution (typed CV) ⊢N
 preserve (⊢μ ⊢M)                 (β-μ)            =  substitution (⊢μ ⊢M) ⊢M
-preserve (⊢# {d = d} ⊢M lsi Asi) (ξ-# M—→M′)      = ⊢# {d = d} (preserve ⊢M M—→M′) lsi Asi
-preserve (⊢# {ls = ls′}{i = i} ⊢M refl refl) (β-# {ls = ks}{Ms}{j = j} ks[j]=l)
+preserve (⊢# {d = d} ⊢M lsi Asi) (ξ-# M—→M′)      =  ⊢# {d = d} (preserve ⊢M M—→M′) lsi Asi
+preserve (⊢# {ls = ls}{i = i} ⊢M refl refl) (β-# {ls = ks}{Ms}{j = j} ks[j]=l)
     with canonical ⊢M V-rcd
-... | C-rcd ⊢Ms dks (<:-rcd {ks = ks}{ls} ls⊆ks As<:Bs)
+... | C-rcd {As = Bs} ⊢Ms dks (<:-rcd {ks = ks} ls⊆ks Bs<:As)
     with lookup-⊆ {i = i} ls⊆ks
-... | ⟨ k , ls′[i]=ks[k] ⟩
+... | ⟨ k , ls[i]=ks[k] ⟩
     with field-pres {i = k} ⊢Ms refl
-... | ⊢Ms[k]
-    rewrite distinct-lookup-inj dks (trans ks[j]=l ls′[i]=ks[k]) =
-    ⊢<: ⊢Ms[k] (As<:Bs (sym ls′[i]=ks[k]))
-preserve (⊢<: ⊢M A<:B) M—→N                       =  ⊢<: (preserve ⊢M M—→N) A<:B
+... | ⊢Ms[k]⦂Bs[k]
+    rewrite distinct-lookup-inj dks (trans ks[j]=l ls[i]=ks[k]) =
+    let Ms[k]⦂As[i] = ⊢<: ⊢Ms[k]⦂Bs[k] (Bs<:As (sym ls[i]=ks[k])) in
+    Ms[k]⦂As[i]
+preserve (⊢<: ⊢M B<:A) M—→N                       =  ⊢<: (preserve ⊢M M—→N) B<:A
 ```
+Recall that the proof is by induction on the derivation of `∅ ⊢ M ⦂ A`
+with cases on `M —→ N`.
+
+* Case `⊢#` and `ξ-#`: So `∅ ⊢ M ⦂ ｛ ls ⦂ As ｝`, `lookup ls i ≡ l`, `lookup As i ≡ A`,
+  and `M —→ M′`. We apply the induction hypothesis to obtain `∅ ⊢ M′ ⦂ ｛ ls ⦂ As ｝`
+  and then conclude by rule `⊢#`.
+  
+* Case `⊢#` and `β-#`. We have `∅ ⊢ ｛ ks := Ms ｝ ⦂ ｛ ls ⦂ As ｝`, `lookup ls i ≡ l`,
+  `lookup As i ≡ A`, `lookup ks j ≡ l`, and `｛ ks := Ms ｝ # l —→ lookup Ms j`.
+  By the canonical forms lemma, we have `∅ ⊢* Ms ⦂ Bs`, `ls ⊆ ks` and `ks ⦂ Bs <: ls ⦂ As`.
+  By lemma `lookup-⊆` we have `lookup ls i ≡ lookup ks k` for some `k`.
+  Also, we have `∅ ⊢ lookup Ms k ⦂ lookup Bs k` by lemma `field-pres`.
+  Then because `ks ⦂ Bs <: ls ⦂ As` and `lookup ks k ≡ lookup ls i`, we have
+  `lookup Bs k <: lookup As i`. So by rule `⊢<:` we have
+  `∅ ⊢ lookup Ms k ⦂ lookup As i`.
+  Finally, because `lookup` is injective and `lookup ks j ≡ lookup ks k`,
+  we have `j ≡ k` and conclude that `∅ ⊢ lookup Ms j ⦂ lookup As i`.
+
+* Case `⊢<:`. We have `∅ ⊢ M ⦂ B`, `B <: A`, and `M —→ N`. We apply the induction hypothesis
+  to obtain `∅ ⊢ N ⦂ B` and then subsumption to conclude that `∅ ⊢ N ⦂ A`.
+
 
 #### Exercise `intrinsic-records` (stretch)
 
 Formulate the language of this chapter, STLC with records, using
-intrinsicaly typed terms. This requires taking an algorithmic approach
+intrinsically typed terms. This requires taking an algorithmic approach
 to the type system, which means that there is no subsumption rule and
 instead subtyping is used in the elimination rules. For example,
 the rule for function application would be:
@@ -985,12 +1180,12 @@ is a typing derivation for that term, if one exists.
 
     type-check : (M : Term) → (Γ : Context) → Maybe (Σ[ A ∈ Type ] Γ ⊢ M ⦂ A)
 
-### Exercise `variants` (recommended)
+#### Exercise `variants` (recommended)
 
-Add variants to the language of this Chapter and update the proofs of
+Add variants to the language of this chapter and update the proofs of
 progress and preservation. The variant type is a generalization of a
 sum type, similar to the way the record type is a generalization of
-product. The following summarizes the treatement of variants in the
+product. The following summarizes the treatment of variants in the
 book Types and Programming Languages. A variant type is traditionally
 written:
 
@@ -1036,11 +1231,11 @@ The non-algorithmic subtyping rules for variants are
     
 Come up with an algorithmic subtyping rule for variant types.
 
-### Exercise `<:-alternative` (stretch)
+#### Exercise `<:-alternative` (stretch)
 
 Revise this formalization of records with subtyping (including proofs
 of progress and preservation) to use the non-algorithmic subtyping
-rules for Chapter 15 of TAPL, which we list here:
+rules for Chapter 15 of Types and Programming Languages, which we list here:
 
     (S-RcdWidth)
     --------------------------------------------------------------
@@ -1067,10 +1262,16 @@ of the form:
 
 ## References
 
-* Reynolds 1980
+* John C. Reynolds. Using Category Theory to Design Implicit
+  Conversions and Generic Operators.
+  In Semantics-Directed Compiler Generation, 1980.
+  LNCS Volume 94.
 
-* Cardelli 1984
+* Luca Cardelli. A semantics of multiple inheritance.  In Semantics of
+  Data Types, 1984. Springer.
 
-* Liskov
-
+* Barbara H. Liskov and Jeannette M. Wing.  A Behavioral Notion of
+  Subtyping. In ACM Trans. Program. Lang. Syst.  Volume 16, 1994.
+  
 * Types and Programming Languages. Benjamin C. Pierce. The MIT Press. 2002.
+

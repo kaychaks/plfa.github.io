@@ -68,8 +68,8 @@
 <!-- Status & Version Badges -->
 <p><a href="https://github.com/plfa/plfa.github.io/releases/latest"><img src="https://img.shields.io/badge/calver-20.07-22bfda" alt="Calendar Version" /></a>
 <a href="https://travis-ci.org/plfa/plfa.github.io"><img src="https://travis-ci.org/plfa/plfa.github.io.svg?branch=dev" alt="Build Status" /></a>
-<a href="https://github.com/agda/agda/releases/tag/v2.6.0.1"><img src="https://img.shields.io/badge/agda-v2.6.0.1-blue.svg" alt="Agda" /></a>
-<a href="https://github.com/agda/agda-stdlib/releases/tag/v1.1"><img src="https://img.shields.io/badge/agda--stdlib-v1.1-blue.svg" alt="agda-stdlib" /></a></p>
+<a href="https://github.com/agda/agda/releases/tag/v2.6.1"><img src="https://img.shields.io/badge/agda-v2.6.1-blue.svg" alt="Agda" /></a>
+<a href="https://github.com/agda/agda-stdlib/releases/tag/v1.3"><img src="https://img.shields.io/badge/agda--stdlib-v1.3-blue.svg" alt="agda-stdlib" /></a></p>
 
 <h1 id="getting-started-with-plfa">Getting Started with PLFA</h1>
 
@@ -79,8 +79,8 @@
 However, if you wish to interact with the code or complete the exercises, you need several things:</p>
 
 <ul>
-  <li><a href="https://github.com/agda/agda/releases/tag/v2.6.0.1">Agda</a></li>
-  <li><a href="https://github.com/agda/agda-stdlib/releases/tag/v1.1">Agda standard library</a></li>
+  <li><a href="https://github.com/agda/agda/releases/tag/v2.6.1">Agda</a></li>
+  <li><a href="https://github.com/agda/agda-stdlib/releases/tag/v1.3">Agda standard library</a></li>
   <li><a href="https://github.com/plfa/plfa.github.io/archive/dev.zip">PLFA</a></li>
 </ul>
 
@@ -88,13 +88,13 @@ However, if you wish to interact with the code or complete the exercises, you ne
 
 <h3 id="installing-agda-using-stack">Installing Agda using Stack</h3>
 
-<p>The easiest way to install any specific version of Agda is using <a href="https://docs.haskellstack.org/en/stable/README/">Stack</a>. You can get the required version of Agda from GitHub, either by cloning the repository and switching to the correct branch, or by downloading <a href="https://github.com/agda/agda/releases/tag/v2.6.0.1">the zip archive</a>:</p>
+<p>The easiest way to install any specific version of Agda is using <a href="https://docs.haskellstack.org/en/stable/README/">Stack</a>. You can get the required version of Agda from GitHub, either by cloning the repository and switching to the correct branch, or by downloading <a href="https://github.com/agda/agda/releases/tag/v2.6.1">the zip archive</a>:</p>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/agda/agda.git
 <span class="nb">cd </span>agda
-git checkout v2.6.0.1
+git checkout v2.6.1
 </code></pre></div></div>
 <p>To install Agda, run Stack from the Agda source directory:</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>stack <span class="nb">install</span> <span class="nt">--stack-yaml</span> stack-8.6.5.yaml
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>stack <span class="nb">install</span> <span class="nt">--stack-yaml</span> stack-8.8.3.yaml
 </code></pre></div></div>
 <p>If you want Stack to use you system installation of GHC, you can pass the <code class="language-plaintext highlighter-rouge">--system-ghc</code> flag and select the appropriate <code class="language-plaintext highlighter-rouge">stack-*.yaml</code> file. For instance, if you have GHC 8.2.2 installed, run:</p>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>stack <span class="nb">install</span> <span class="nt">--system-ghc</span> <span class="nt">--stack-yaml</span> stack-8.2.2.yaml
@@ -102,15 +102,15 @@ git checkout v2.6.0.1
 
 <h3 id="installing-the-standard-library-and-plfa">Installing the Standard Library and PLFA</h3>
 
-<p>You can get the required version of the Agda standard library from GitHub, either by cloning the repository and switching to the correct branch, or by downloading <a href="https://github.com/agda/agda-stdlib/releases/tag/v1.1">the zip archive</a>:</p>
+<p>You can get the required version of the Agda standard library from GitHub, either by cloning the repository and switching to the correct branch, or by downloading <a href="https://github.com/agda/agda-stdlib/releases/tag/v1.3">the zip archive</a>:</p>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/agda/agda-stdlib.git
 <span class="nb">cd </span>agda-stdlib
-git checkout v1.1
+git checkout v1.3
 </code></pre></div></div>
 <p>You can get the latest version of Programming Language Foundations in Agda from GitHub, either by cloning the repository, or by downloading <a href="https://github.com/plfa/plfa.github.io/archive/dev.zip">the zip archive</a>:</p>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/plfa/plfa.github.io
 </code></pre></div></div>
-<p>Finally, we need to let Agda know where to find the standard library. For this, you can follow the instructions <a href="https://agda.readthedocs.io/en/v2.6.0.1/tools/package-system.html#example-using-the-standard-library">here</a>.</p>
+<p>Finally, we need to let Agda know where to find the standard library. For this, you can follow the instructions <a href="https://agda.readthedocs.io/en/v2.6.1/tools/package-system.html#example-using-the-standard-library">here</a>.</p>
 
 <p>It is possible to set up PLFA as an Agda library as well.  If you want to complete the exercises found in the <code class="language-plaintext highlighter-rouge">courses</code> folder, or to import modules from the book, you need to do this.  To do so, add the path to <code class="language-plaintext highlighter-rouge">plfa.agda-lib</code> to <code class="language-plaintext highlighter-rouge">~/.agda/libraries</code> and add <code class="language-plaintext highlighter-rouge">plfa</code> to <code class="language-plaintext highlighter-rouge">~/.agda/defaults</code>, both on lines of their own.</p>
 
@@ -120,7 +120,7 @@ git checkout v1.1
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>agda-mode setup
 </code></pre></div></div>
 
-<p>To load and type-check the file, use <a href="https://agda.readthedocs.io/en/v2.6.0.1/tools/emacs-mode.html#notation-for-key-combinations"><code class="language-plaintext highlighter-rouge">C-c C-l</code></a>.</p>
+<p>To load and type-check the file, use <a href="https://agda.readthedocs.io/en/v2.6.1/tools/emacs-mode.html#notation-for-key-combinations"><code class="language-plaintext highlighter-rouge">C-c C-l</code></a>.</p>
 
 <p>Agda is edited “interactively, which means that one can type check code which is not yet complete: if a question mark (?) is used as a placeholder for an expression, and the buffer is then checked, Agda will replace the question mark with a “hole” which can be filled in later. One can also do various other things in the context of a hole: listing the context, inferring the type of an expression, and even evaluating an open term which mentions variables bound in the surrounding context.”</p>
 
@@ -134,7 +134,7 @@ C-c C-,      goal type and context
 C-c C-.      goal type, context, and inferred type
 </code></pre></div></div>
 
-<p>See <a href="https://agda.readthedocs.io/en/v2.6.0.1/tools/emacs-mode.html">the emacs-mode docs</a> for more details.</p>
+<p>See <a href="https://agda.readthedocs.io/en/v2.6.1/tools/emacs-mode.html">the emacs-mode docs</a> for more details.</p>
 
 <p>If you want to see messages beside rather than below your Agda code, you can do the following:</p>
 
@@ -247,7 +247,7 @@ make clobber              <span class="c"># removes all generated files</span>
 
 <h3 id="building-the-epub">Building the EPUB</h3>
 
-<p>The EPUB version of the book is built using Pandoc. Here’s how to build the EPUB:</p>
+<p>The <a href="https://plfa.github.io/out/epub/plfa.epub">EPUB version</a> of the book is built using Pandoc. Here’s how to build the EPUB:</p>
 
 <ol>
   <li>

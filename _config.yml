@@ -128,6 +128,8 @@ contributors:
   name: Alexandre Moreno
 - github_username: iblech
   name: Ingo Blechschmidt
+- github_username: L-TChen
+  name: Liang-Ting Chen
 - github_username: MatthiasGabriel
   name: Matthias Gabriel
 - github_username: AD1024
@@ -156,8 +158,6 @@ contributors:
   name: Kenneth MacKenzie
 - github_username: chikeabuah
   name: Chike Abuah
-- github_username: L-TChen
-  name: Liang-Ting Chen
 - github_username: mgttlinger
   name: Merlin Göttlinger
 - github_username: laMudri
@@ -176,4 +176,6 @@ contributors:
   name: Deniz Alp
 - github_username: potato4444
   name: Nathaniel Carroll
+- github_username: purchan
+  name: purchan
 

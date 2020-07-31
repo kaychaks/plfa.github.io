@@ -610,8 +610,8 @@ fill in an implicit of an <em>empty</em> record type, since there aren’t any f
 after all. This is why <code class="language-plaintext highlighter-rouge">⊤</code> is defined as an empty record.</p>
 
 <p>The trick is to have an implicit argument of the type <code class="language-plaintext highlighter-rouge">T ⌊ n ≤? m ⌋</code>. Let’s go
-through what this means step-by-step. First, we run the decision procedure, <code class="language-plaintext highlighter-rouge">n
-≤? m</code>. This provides us with evidence whether <code class="language-plaintext highlighter-rouge">n ≤ m</code> holds or not. We erase the
+through what this means step-by-step. First, we run the decision procedure,
+<code class="language-plaintext highlighter-rouge">n ≤? m</code>. This provides us with evidence whether <code class="language-plaintext highlighter-rouge">n ≤ m</code> holds or not. We erase the
 evidence to a boolean. Finally, we apply <code class="language-plaintext highlighter-rouge">T</code>. Recall that <code class="language-plaintext highlighter-rouge">T</code> maps booleans into
 the world of evidence: <code class="language-plaintext highlighter-rouge">true</code> becomes the unit type <code class="language-plaintext highlighter-rouge">⊤</code>, and <code class="language-plaintext highlighter-rouge">false</code> becomes the
 empty type <code class="language-plaintext highlighter-rouge">⊥</code>. Operationally, an implicit argument of this type works as a

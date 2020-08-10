@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Notes | Programming Language Foundations in Agda
 </title><!-- Begin Jekyll SEO tag v2.6.1 -->
-<meta name="generator" content="Jekyll v3.8.7" />
+<meta name="generator" content="Jekyll v3.9.0" />
 <meta property="og:title" content="Notes" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Programming Language Foundations in Agda" />
@@ -14,7 +14,7 @@
 <meta property="og:url" content="https://plfa.github.io/20.07/Notes/" />
 <meta property="og:site_name" content="Programming Language Foundations in Agda" />
 <script type="application/ld+json">
-{"@type":"WebPage","url":"https://plfa.github.io/20.07/Notes/","headline":"Notes","description":"Programming Language Foundations in Agda","@context":"https://schema.org"}</script>
+{"description":"Programming Language Foundations in Agda","headline":"Notes","@type":"WebPage","url":"https://plfa.github.io/20.07/Notes/","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/20.07/assets/main.css"></head>
 <body><header class="site-header" role="banner">
@@ -67,10 +67,10 @@
 
 <p>Changes I would like to make to the book:</p>
 <ul>
-  <li>Relations, exercise <code class="highlighter-rouge">o+o≡e</code> –&gt; (recommended)</li>
-  <li>Relations, exercise <code class="highlighter-rouge">≤-iff-&lt;</code> –&gt; <code class="highlighter-rouge">≤→&lt;</code>, <code class="highlighter-rouge">&lt;→≤</code></li>
-  <li>Relations, exercise <code class="highlighter-rouge">Bin-predicates</code> –&gt; <code class="highlighter-rouge">Bin-predicate</code>
-change canonical form of zero to be empty string, <code class="highlighter-rouge">&lt;&gt;</code>.
+  <li>Relations, exercise <code class="language-plaintext highlighter-rouge">o+o≡e</code> –&gt; (recommended)</li>
+  <li>Relations, exercise <code class="language-plaintext highlighter-rouge">≤-iff-&lt;</code> –&gt; <code class="language-plaintext highlighter-rouge">≤→&lt;</code>, <code class="language-plaintext highlighter-rouge">&lt;→≤</code></li>
+  <li>Relations, exercise <code class="language-plaintext highlighter-rouge">Bin-predicates</code> –&gt; <code class="language-plaintext highlighter-rouge">Bin-predicate</code>
+change canonical form of zero to be empty string, <code class="language-plaintext highlighter-rouge">&lt;&gt;</code>.
 Similar change to subsequent exercise.</li>
 </ul>
 
@@ -86,7 +86,7 @@ Similar change to subsequent exercise.</li>
 
 <p>Git commands to create a branch and pull request</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git help &lt;command&gt;          -- get help on &lt;command&gt;
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git help &lt;command&gt;          -- get help on &lt;command&gt;
 git branch                  -- list all branches
 git branch &lt;name&gt;           -- create new local branch &lt;name&gt;
 git checkout &lt;name&gt;         -- make &lt;name&gt; the current branch
@@ -107,7 +107,7 @@ click “new pull request” button.</p>
 
 <p>In a rush, but…</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>data Tag : Set where
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>data Tag : Set where
   tag-ℕ : Tag
   tag-⇒ : Tag
 </code></pre></div></div>
@@ -116,7 +116,7 @@ click “new pull request” button.</p>
 
 <p>Get evidence!</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>-- yer types
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>-- yer types
 data Type : Set where
   nat : Type
   _=&gt;_ : Type -&gt; Type -&gt; Type
@@ -161,7 +161,7 @@ dom T | not=&gt; () | q =&gt; q₁
 <blockquote>
   <p>We want to alert you that you’ve been granted the following access:
      Manage Users and Edit
-to the Google Analytics account <code class="highlighter-rouge">plfa (UA-125055580)</code> by <code class="highlighter-rouge">wen.kokke@gmail.com</code>.</p>
+to the Google Analytics account <code class="language-plaintext highlighter-rouge">plfa (UA-125055580)</code> by <code class="language-plaintext highlighter-rouge">wen.kokke@gmail.com</code>.</p>
 </blockquote>
 
 <blockquote>
@@ -470,12 +470,12 @@ I think we’ve finally gone through the whole book now up through chapter Prope
 
 <p>In the to∘from case, we want to show that:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>⟨ to (from x) , toCan {from x} ⟩ ≡ ⟨ x , canX ⟩
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>⟨ to (from x) , toCan {from x} ⟩ ≡ ⟨ x , canX ⟩
 </code></pre></div></div>
 
 <p>I found myself wanting to use a general lemma like:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>exEq :
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>exEq :
 ∀ {A : Set} {x y : A} {p : A → Set} {px : p x} {py : p y} →
 x ≡ y →
 px ≡ py →
@@ -493,7 +493,7 @@ exEq refl refl = refl
 
 <p>I assume the intended solution looks something like:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>∀-× : ∀ {B : Tri → Set} → ((x : Tri) → B x) ≃ (B aa × B bb × B cc)
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>∀-× : ∀ {B : Tri → Set} → ((x : Tri) → B x) ≃ (B aa × B bb × B cc)
 ∀-× = record {
 to = λ f → ⟨ f aa , ⟨ f bb , f cc ⟩ ⟩ ;
 from = λ{ ⟨ baa , ⟨ bbb , bcc ⟩ ⟩ → λ{ aa → baa ; bb → bbb ; cc → bcc } } ;
@@ -503,7 +503,7 @@ to∘from = λ{ y → refl } }
 
 <p>but it doesn’t typecheck; in the extensionality presented earlier (in chapter Isomorphism), type B is not dependent on type A, but it needs to be here. Agda’s error message is sufficiently baffling here that you might want to warn people that they need a dependent version of extensionality, something like:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Extensionality : (a b : Level) → Set _
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Extensionality : (a b : Level) → Set _
 Extensionality a b =
 {A : Set a} {B : A → Set b} {f g : (x : A) → B x} →
 (∀ x → f x ≡ g x) → f ≡ g
@@ -518,13 +518,13 @@ exten : ∀ {a b} → Extensionality a b
 
 <p>I made use here of the inspect idiom, in Aaron Stump’s variant, which is syntactically more convenient:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>keep : ∀ {ℓa} → {a : Set ℓa} → (x : a) → Σ a (λ y → y ≡ x)
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>keep : ∀ {ℓa} → {a : Set ℓa} → (x : a) → Σ a (λ y → y ≡ x)
 keep x = x , refl
 </code></pre></div></div>
 
 <p>Pattern matching on keep m, where m is some complicated term, lets you keep around an equality between the original term and the pattern matched, which is often convenient, as in:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>roundTripTwice {x} onex with keep (from x)
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>roundTripTwice {x} onex with keep (from x)
 roundTripTwice {x} onex | zero , eq with oneIsMoreThanZero onex
 roundTripTwice {x} onex | zero , eq | 0&lt;fromx rewrite sym eq =
 ⊥-elim (not0&lt;0 0&lt;fromx)

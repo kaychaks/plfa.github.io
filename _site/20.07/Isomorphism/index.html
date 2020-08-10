@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Isomorphism: Isomorphism and Embedding | Programming Language Foundations in Agda
 </title><!-- Begin Jekyll SEO tag v2.6.1 -->
-<meta name="generator" content="Jekyll v3.8.7" />
+<meta name="generator" content="Jekyll v3.9.0" />
 <meta property="og:title" content="Isomorphism: Isomorphism and Embedding" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Programming Language Foundations in Agda" />
@@ -14,7 +14,7 @@
 <meta property="og:url" content="https://plfa.github.io/20.07/Isomorphism/" />
 <meta property="og:site_name" content="Programming Language Foundations in Agda" />
 <script type="application/ld+json">
-{"@type":"WebPage","url":"https://plfa.github.io/20.07/Isomorphism/","headline":"Isomorphism: Isomorphism and Embedding","description":"Programming Language Foundations in Agda","@context":"https://schema.org"}</script>
+{"description":"Programming Language Foundations in Agda","headline":"Isomorphism: Isomorphism and Embedding","@type":"WebPage","url":"https://plfa.github.io/20.07/Isomorphism/","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/20.07/assets/main.css"></head>
 <body><header class="site-header" role="banner">
@@ -100,31 +100,31 @@ extensionality.</p>
 <p><em>Lambda expressions</em> provide a compact way to define functions without
 naming them.  A term of the form</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>λ{ P₁ → N₁; ⋯ ; Pₙ → Nₙ }
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>λ{ P₁ → N₁; ⋯ ; Pₙ → Nₙ }
 </code></pre></div></div>
 
-<p>is equivalent to a function <code class="highlighter-rouge">f</code> defined by the equations</p>
+<p>is equivalent to a function <code class="language-plaintext highlighter-rouge">f</code> defined by the equations</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>f P₁ = N₁
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>f P₁ = N₁
 ⋯
 f Pₙ = Nₙ
 </code></pre></div></div>
 
-<p>where the <code class="highlighter-rouge">Pₙ</code> are patterns (left-hand sides of an equation) and the
-<code class="highlighter-rouge">Nₙ</code> are expressions (right-hand side of an equation).</p>
+<p>where the <code class="language-plaintext highlighter-rouge">Pₙ</code> are patterns (left-hand sides of an equation) and the
+<code class="language-plaintext highlighter-rouge">Nₙ</code> are expressions (right-hand side of an equation).</p>
 
 <p>In the case that there is one equation and the pattern is a variable,
 we may also use the syntax</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>λ x → N
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>λ x → N
 </code></pre></div></div>
 
 <p>or</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>λ (x : A) → N
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>λ (x : A) → N
 </code></pre></div></div>
 
-<p>both of which are equivalent to <code class="highlighter-rouge">λ{x → N}</code>. The latter allows one to
+<p>both of which are equivalent to <code class="language-plaintext highlighter-rouge">λ{x → N}</code>. The latter allows one to
 specify the domain of the function.</p>
 
 <p>Often using an anonymous lambda expression is more convenient than
@@ -139,8 +139,8 @@ reader to search for the definition in the code.</p>
 <pre class="Agda"><a id="_∘_"></a><a id="1952" href="/20.07/Isomorphism/#1952" class="Function Operator">_∘_</a> <a id="1956" class="Symbol">:</a> <a id="1958" class="Symbol">∀</a> <a id="1960" class="Symbol">{</a><a id="1961" href="/20.07/Isomorphism/#1961" class="Bound">A</a> <a id="1963" href="/20.07/Isomorphism/#1963" class="Bound">B</a> <a id="1965" href="/20.07/Isomorphism/#1965" class="Bound">C</a> <a id="1967" class="Symbol">:</a> <a id="1969" class="PrimitiveType">Set</a><a id="1972" class="Symbol">}</a> <a id="1974" class="Symbol">→</a> <a id="1976" class="Symbol">(</a><a id="1977" href="/20.07/Isomorphism/#1963" class="Bound">B</a> <a id="1979" class="Symbol">→</a> <a id="1981" href="/20.07/Isomorphism/#1965" class="Bound">C</a><a id="1982" class="Symbol">)</a> <a id="1984" class="Symbol">→</a> <a id="1986" class="Symbol">(</a><a id="1987" href="/20.07/Isomorphism/#1961" class="Bound">A</a> <a id="1989" class="Symbol">→</a> <a id="1991" href="/20.07/Isomorphism/#1963" class="Bound">B</a><a id="1992" class="Symbol">)</a> <a id="1994" class="Symbol">→</a> <a id="1996" class="Symbol">(</a><a id="1997" href="/20.07/Isomorphism/#1961" class="Bound">A</a> <a id="1999" class="Symbol">→</a> <a id="2001" href="/20.07/Isomorphism/#1965" class="Bound">C</a><a id="2002" class="Symbol">)</a>
 <a id="2004" class="Symbol">(</a><a id="2005" href="/20.07/Isomorphism/#2005" class="Bound">g</a> <a id="2007" href="/20.07/Isomorphism/#1952" class="Function Operator">∘</a> <a id="2009" href="/20.07/Isomorphism/#2009" class="Bound">f</a><a id="2010" class="Symbol">)</a> <a id="2012" href="/20.07/Isomorphism/#2012" class="Bound">x</a>  <a id="2015" class="Symbol">=</a> <a id="2017" href="/20.07/Isomorphism/#2005" class="Bound">g</a> <a id="2019" class="Symbol">(</a><a id="2020" href="/20.07/Isomorphism/#2009" class="Bound">f</a> <a id="2022" href="/20.07/Isomorphism/#2012" class="Bound">x</a><a id="2023" class="Symbol">)</a>
 </pre>
-<p>Thus, <code class="highlighter-rouge">g ∘ f</code> is the function that first applies <code class="highlighter-rouge">f</code> and
-then applies <code class="highlighter-rouge">g</code>.  An equivalent definition, exploiting lambda
+<p>Thus, <code class="language-plaintext highlighter-rouge">g ∘ f</code> is the function that first applies <code class="language-plaintext highlighter-rouge">f</code> and
+then applies <code class="language-plaintext highlighter-rouge">g</code>.  An equivalent definition, exploiting lambda
 expressions, is as follows:</p>
 <pre class="Agda"><a id="_∘′_"></a><a id="2181" href="/20.07/Isomorphism/#2181" class="Function Operator">_∘′_</a> <a id="2186" class="Symbol">:</a> <a id="2188" class="Symbol">∀</a> <a id="2190" class="Symbol">{</a><a id="2191" href="/20.07/Isomorphism/#2191" class="Bound">A</a> <a id="2193" href="/20.07/Isomorphism/#2193" class="Bound">B</a> <a id="2195" href="/20.07/Isomorphism/#2195" class="Bound">C</a> <a id="2197" class="Symbol">:</a> <a id="2199" class="PrimitiveType">Set</a><a id="2202" class="Symbol">}</a> <a id="2204" class="Symbol">→</a> <a id="2206" class="Symbol">(</a><a id="2207" href="/20.07/Isomorphism/#2193" class="Bound">B</a> <a id="2209" class="Symbol">→</a> <a id="2211" href="/20.07/Isomorphism/#2195" class="Bound">C</a><a id="2212" class="Symbol">)</a> <a id="2214" class="Symbol">→</a> <a id="2216" class="Symbol">(</a><a id="2217" href="/20.07/Isomorphism/#2191" class="Bound">A</a> <a id="2219" class="Symbol">→</a> <a id="2221" href="/20.07/Isomorphism/#2193" class="Bound">B</a><a id="2222" class="Symbol">)</a> <a id="2224" class="Symbol">→</a> <a id="2226" class="Symbol">(</a><a id="2227" href="/20.07/Isomorphism/#2191" class="Bound">A</a> <a id="2229" class="Symbol">→</a> <a id="2231" href="/20.07/Isomorphism/#2195" class="Bound">C</a><a id="2232" class="Symbol">)</a>
 <a id="2234" href="/20.07/Isomorphism/#2234" class="Bound">g</a> <a id="2236" href="/20.07/Isomorphism/#2181" class="Function Operator">∘′</a> <a id="2239" href="/20.07/Isomorphism/#2239" class="Bound">f</a>  <a id="2242" class="Symbol">=</a>  <a id="2245" class="Symbol">λ</a> <a id="2247" href="/20.07/Isomorphism/#2247" class="Bound">x</a> <a id="2249" class="Symbol">→</a> <a id="2251" href="/20.07/Isomorphism/#2234" class="Bound">g</a> <a id="2253" class="Symbol">(</a><a id="2254" href="/20.07/Isomorphism/#2239" class="Bound">f</a> <a id="2256" href="/20.07/Isomorphism/#2247" class="Bound">x</a><a id="2257" class="Symbol">)</a>
@@ -151,7 +151,7 @@ expressions, is as follows:</p>
 <p>Extensionality asserts that the only way to distinguish functions is
 by applying them; if two functions applied to the same argument always
 yield the same result, then they are the same function.  It is the
-converse of <code class="highlighter-rouge">cong-app</code>, as introduced
+converse of <code class="language-plaintext highlighter-rouge">cong-app</code>, as introduced
 <a href="/20.07/Equality/#cong">earlier</a>.</p>
 
 <p>Agda does not presume extensionality, but we can postulate that it holds:</p>
@@ -197,8 +197,8 @@ dependent functions.</p>
       <a id="4042" class="Comment">-----------------------</a>
     <a id="4070" class="Symbol">→</a> <a id="4072" href="/20.07/Isomorphism/#3984" class="Bound">f</a> <a id="4074" href="Agda.Builtin.Equality.html#125" class="Datatype Operator">≡</a> <a id="4076" href="/20.07/Isomorphism/#3986" class="Bound">g</a>
 </pre>
-<p>Here the type of <code class="highlighter-rouge">f</code> and <code class="highlighter-rouge">g</code> has changed from <code class="highlighter-rouge">A → B</code> to
-<code class="highlighter-rouge">∀ (x : A) → B x</code>, generalising ordinary functions to
+<p>Here the type of <code class="language-plaintext highlighter-rouge">f</code> and <code class="language-plaintext highlighter-rouge">g</code> has changed from <code class="language-plaintext highlighter-rouge">A → B</code> to
+<code class="language-plaintext highlighter-rouge">∀ (x : A) → B x</code>, generalising ordinary functions to
 dependent functions.</p>
 
 <h2 id="isomorphism">Isomorphism</h2>
@@ -214,19 +214,19 @@ Here is a formal definition of isomorphism:</p>
     <a id="_≃_.to∘from"></a><a id="4481" href="/20.07/Isomorphism/#4481" class="Field">to∘from</a> <a id="4489" class="Symbol">:</a> <a id="4491" class="Symbol">∀</a> <a id="4493" class="Symbol">(</a><a id="4494" href="/20.07/Isomorphism/#4494" class="Bound">y</a> <a id="4496" class="Symbol">:</a> <a id="4498" href="/20.07/Isomorphism/#4372" class="Bound">B</a><a id="4499" class="Symbol">)</a> <a id="4501" class="Symbol">→</a> <a id="4503" href="/20.07/Isomorphism/#4405" class="Field">to</a> <a id="4506" class="Symbol">(</a><a id="4507" href="/20.07/Isomorphism/#4422" class="Field">from</a> <a id="4512" href="/20.07/Isomorphism/#4494" class="Bound">y</a><a id="4513" class="Symbol">)</a> <a id="4515" href="Agda.Builtin.Equality.html#125" class="Datatype Operator">≡</a> <a id="4517" href="/20.07/Isomorphism/#4494" class="Bound">y</a>
 <a id="4519" class="Keyword">open</a> <a id="4524" href="/20.07/Isomorphism/#4365" class="Module Operator">_≃_</a>
 </pre>
-<p>Let’s unpack the definition. An isomorphism between sets <code class="highlighter-rouge">A</code> and <code class="highlighter-rouge">B</code> consists
+<p>Let’s unpack the definition. An isomorphism between sets <code class="language-plaintext highlighter-rouge">A</code> and <code class="language-plaintext highlighter-rouge">B</code> consists
 of four things:</p>
 <ul>
-  <li>A function <code class="highlighter-rouge">to</code> from <code class="highlighter-rouge">A</code> to <code class="highlighter-rouge">B</code>,</li>
-  <li>A function <code class="highlighter-rouge">from</code> from <code class="highlighter-rouge">B</code> back to <code class="highlighter-rouge">A</code>,</li>
-  <li>Evidence <code class="highlighter-rouge">from∘to</code> asserting that <code class="highlighter-rouge">from</code> is a <em>left-inverse</em> for <code class="highlighter-rouge">to</code>,</li>
-  <li>Evidence <code class="highlighter-rouge">to∘from</code> asserting that <code class="highlighter-rouge">from</code> is a <em>right-inverse</em> for <code class="highlighter-rouge">to</code>.</li>
+  <li>A function <code class="language-plaintext highlighter-rouge">to</code> from <code class="language-plaintext highlighter-rouge">A</code> to <code class="language-plaintext highlighter-rouge">B</code>,</li>
+  <li>A function <code class="language-plaintext highlighter-rouge">from</code> from <code class="language-plaintext highlighter-rouge">B</code> back to <code class="language-plaintext highlighter-rouge">A</code>,</li>
+  <li>Evidence <code class="language-plaintext highlighter-rouge">from∘to</code> asserting that <code class="language-plaintext highlighter-rouge">from</code> is a <em>left-inverse</em> for <code class="language-plaintext highlighter-rouge">to</code>,</li>
+  <li>Evidence <code class="language-plaintext highlighter-rouge">to∘from</code> asserting that <code class="language-plaintext highlighter-rouge">from</code> is a <em>right-inverse</em> for <code class="language-plaintext highlighter-rouge">to</code>.</li>
 </ul>
 
-<p>In particular, the third asserts that <code class="highlighter-rouge">from ∘ to</code> is the identity, and
-the fourth that <code class="highlighter-rouge">to ∘ from</code> is the identity, hence the names.
-The declaration <code class="highlighter-rouge">open _≃_</code> makes available the names <code class="highlighter-rouge">to</code>, <code class="highlighter-rouge">from</code>,
-<code class="highlighter-rouge">from∘to</code>, and <code class="highlighter-rouge">to∘from</code>, otherwise we would need to write <code class="highlighter-rouge">_≃_.to</code> and so on.</p>
+<p>In particular, the third asserts that <code class="language-plaintext highlighter-rouge">from ∘ to</code> is the identity, and
+the fourth that <code class="language-plaintext highlighter-rouge">to ∘ from</code> is the identity, hence the names.
+The declaration <code class="language-plaintext highlighter-rouge">open _≃_</code> makes available the names <code class="language-plaintext highlighter-rouge">to</code>, <code class="language-plaintext highlighter-rouge">from</code>,
+<code class="language-plaintext highlighter-rouge">from∘to</code>, and <code class="language-plaintext highlighter-rouge">to∘from</code>, otherwise we would need to write <code class="language-plaintext highlighter-rouge">_≃_.to</code> and so on.</p>
 
 <p>The above is our first use of records. A record declaration behaves similar to a single-constructor data declaration (there are minor differences, which we discuss in <a href="/20.07/Connectives/">Connectives</a>):</p>
 <pre class="Agda"><a id="5351" class="Keyword">data</a> <a id="_≃′_"></a><a id="5356" href="/20.07/Isomorphism/#5356" class="Datatype Operator">_≃′_</a> <a id="5361" class="Symbol">(</a><a id="5362" href="/20.07/Isomorphism/#5362" class="Bound">A</a> <a id="5364" href="/20.07/Isomorphism/#5364" class="Bound">B</a> <a id="5366" class="Symbol">:</a> <a id="5368" class="PrimitiveType">Set</a><a id="5371" class="Symbol">):</a> <a id="5374" class="PrimitiveType">Set</a> <a id="5378" class="Keyword">where</a>
@@ -250,7 +250,7 @@ The declaration <code class="highlighter-rouge">open _≃_</code> makes availabl
 </pre>
 <p>We construct values of the record type with the syntax</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>record
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>record
   { to    = f
   ; from  = g
   ; from∘to = g∘f
@@ -261,16 +261,16 @@ The declaration <code class="highlighter-rouge">open _≃_</code> makes availabl
 <p>which corresponds to using the constructor of the corresponding
 inductive type</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mk-≃′ f g g∘f f∘g
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mk-≃′ f g g∘f f∘g
 </code></pre></div></div>
 
-<p>where <code class="highlighter-rouge">f</code>, <code class="highlighter-rouge">g</code>, <code class="highlighter-rouge">g∘f</code>, and <code class="highlighter-rouge">f∘g</code> are values of suitable types.</p>
+<p>where <code class="language-plaintext highlighter-rouge">f</code>, <code class="language-plaintext highlighter-rouge">g</code>, <code class="language-plaintext highlighter-rouge">g∘f</code>, and <code class="language-plaintext highlighter-rouge">f∘g</code> are values of suitable types.</p>
 
 <h2 id="isomorphism-is-an-equivalence">Isomorphism is an equivalence</h2>
 
 <p>Isomorphism is an equivalence, meaning that it is reflexive, symmetric,
-and transitive.  To show isomorphism is reflexive, we take both <code class="highlighter-rouge">to</code>
-and <code class="highlighter-rouge">from</code> to be the identity function:</p>
+and transitive.  To show isomorphism is reflexive, we take both <code class="language-plaintext highlighter-rouge">to</code>
+and <code class="language-plaintext highlighter-rouge">from</code> to be the identity function:</p>
 <pre class="Agda"><a id="≃-refl"></a><a id="6501" href="/20.07/Isomorphism/#6501" class="Function">≃-refl</a> <a id="6508" class="Symbol">:</a> <a id="6510" class="Symbol">∀</a> <a id="6512" class="Symbol">{</a><a id="6513" href="/20.07/Isomorphism/#6513" class="Bound">A</a> <a id="6515" class="Symbol">:</a> <a id="6517" class="PrimitiveType">Set</a><a id="6520" class="Symbol">}</a>
     <a id="6526" class="Comment">-----</a>
   <a id="6534" class="Symbol">→</a> <a id="6536" href="/20.07/Isomorphism/#6513" class="Bound">A</a> <a id="6538" href="/20.07/Isomorphism/#4365" class="Record Operator">≃</a> <a id="6540" href="/20.07/Isomorphism/#6513" class="Bound">A</a>
@@ -282,14 +282,14 @@ and <code class="highlighter-rouge">from</code> to be the identity function:</p>
     <a id="6642" class="Symbol">;</a> <a id="6644" href="/20.07/Isomorphism/#4481" class="Field">to∘from</a> <a id="6652" class="Symbol">=</a> <a id="6654" class="Symbol">λ{</a><a id="6656" href="/20.07/Isomorphism/#6656" class="Bound">y</a> <a id="6658" class="Symbol">→</a> <a id="6660" href="Agda.Builtin.Equality.html#182" class="InductiveConstructor">refl</a><a id="6664" class="Symbol">}</a>
     <a id="6670" class="Symbol">}</a>
 </pre>
-<p>In the above, <code class="highlighter-rouge">to</code> and <code class="highlighter-rouge">from</code> are both bound to identity functions,
-and <code class="highlighter-rouge">from∘to</code> and <code class="highlighter-rouge">to∘from</code> are both bound to functions that discard
-their argument and return <code class="highlighter-rouge">refl</code>.  In this case, <code class="highlighter-rouge">refl</code> alone is an
-adequate proof since for the left inverse, <code class="highlighter-rouge">from (to x)</code>
-simplifies to <code class="highlighter-rouge">x</code>, and similarly for the right inverse.</p>
+<p>In the above, <code class="language-plaintext highlighter-rouge">to</code> and <code class="language-plaintext highlighter-rouge">from</code> are both bound to identity functions,
+and <code class="language-plaintext highlighter-rouge">from∘to</code> and <code class="language-plaintext highlighter-rouge">to∘from</code> are both bound to functions that discard
+their argument and return <code class="language-plaintext highlighter-rouge">refl</code>.  In this case, <code class="language-plaintext highlighter-rouge">refl</code> alone is an
+adequate proof since for the left inverse, <code class="language-plaintext highlighter-rouge">from (to x)</code>
+simplifies to <code class="language-plaintext highlighter-rouge">x</code>, and similarly for the right inverse.</p>
 
-<p>To show isomorphism is symmetric, we simply swap the roles of <code class="highlighter-rouge">to</code>
-and <code class="highlighter-rouge">from</code>, and <code class="highlighter-rouge">from∘to</code> and <code class="highlighter-rouge">to∘from</code>:</p>
+<p>To show isomorphism is symmetric, we simply swap the roles of <code class="language-plaintext highlighter-rouge">to</code>
+and <code class="language-plaintext highlighter-rouge">from</code>, and <code class="language-plaintext highlighter-rouge">from∘to</code> and <code class="language-plaintext highlighter-rouge">to∘from</code>:</p>
 <pre class="Agda"><a id="≃-sym"></a><a id="7107" href="/20.07/Isomorphism/#7107" class="Function">≃-sym</a> <a id="7113" class="Symbol">:</a> <a id="7115" class="Symbol">∀</a> <a id="7117" class="Symbol">{</a><a id="7118" href="/20.07/Isomorphism/#7118" class="Bound">A</a> <a id="7120" href="/20.07/Isomorphism/#7120" class="Bound">B</a> <a id="7122" class="Symbol">:</a> <a id="7124" class="PrimitiveType">Set</a><a id="7127" class="Symbol">}</a>
   <a id="7131" class="Symbol">→</a> <a id="7133" href="/20.07/Isomorphism/#7118" class="Bound">A</a> <a id="7135" href="/20.07/Isomorphism/#4365" class="Record Operator">≃</a> <a id="7137" href="/20.07/Isomorphism/#7120" class="Bound">B</a>
     <a id="7143" class="Comment">-----</a>
@@ -302,7 +302,7 @@ and <code class="highlighter-rouge">from</code>, and <code class="highlighter-ro
     <a id="7262" class="Symbol">;</a> <a id="7264" href="/20.07/Isomorphism/#4481" class="Field">to∘from</a> <a id="7272" class="Symbol">=</a> <a id="7274" href="/20.07/Isomorphism/#4439" class="Field">from∘to</a> <a id="7282" href="/20.07/Isomorphism/#7165" class="Bound">A≃B</a>
     <a id="7290" class="Symbol">}</a>
 </pre>
-<p>To show isomorphism is transitive, we compose the <code class="highlighter-rouge">to</code> and <code class="highlighter-rouge">from</code>
+<p>To show isomorphism is transitive, we compose the <code class="language-plaintext highlighter-rouge">to</code> and <code class="language-plaintext highlighter-rouge">from</code>
 functions, and use equational reasoning to combine the inverses:</p>
 <pre class="Agda"><a id="≃-trans"></a><a id="7432" href="/20.07/Isomorphism/#7432" class="Function">≃-trans</a> <a id="7440" class="Symbol">:</a> <a id="7442" class="Symbol">∀</a> <a id="7444" class="Symbol">{</a><a id="7445" href="/20.07/Isomorphism/#7445" class="Bound">A</a> <a id="7447" href="/20.07/Isomorphism/#7447" class="Bound">B</a> <a id="7449" href="/20.07/Isomorphism/#7449" class="Bound">C</a> <a id="7451" class="Symbol">:</a> <a id="7453" class="PrimitiveType">Set</a><a id="7456" class="Symbol">}</a>
   <a id="7460" class="Symbol">→</a> <a id="7462" href="/20.07/Isomorphism/#7445" class="Bound">A</a> <a id="7464" href="/20.07/Isomorphism/#4365" class="Record Operator">≃</a> <a id="7466" href="/20.07/Isomorphism/#7447" class="Bound">B</a>
@@ -340,7 +340,7 @@ functions, and use equational reasoning to combine the inverses:</p>
 
 <p>It is straightforward to support a variant of equational reasoning for
 isomorphism.  We essentially copy the previous definition
-of equality for isomorphism.  We omit the form that corresponds to <code class="highlighter-rouge">_≡⟨⟩_</code>, since
+of equality for isomorphism.  We omit the form that corresponds to <code class="language-plaintext highlighter-rouge">_≡⟨⟩_</code>, since
 trivial isomorphisms arise far less often than trivial equalities:</p>
 
 <pre class="Agda"><a id="8509" class="Keyword">module</a> <a id="≃-Reasoning"></a><a id="8516" href="/20.07/Isomorphism/#8516" class="Module">≃-Reasoning</a> <a id="8528" class="Keyword">where</a>
@@ -387,9 +387,9 @@ correspondence between the second type and the first.</p>
     <a id="_≲_.from∘to"></a><a id="9361" href="/20.07/Isomorphism/#9361" class="Field">from∘to</a> <a id="9369" class="Symbol">:</a> <a id="9371" class="Symbol">∀</a> <a id="9373" class="Symbol">(</a><a id="9374" href="/20.07/Isomorphism/#9374" class="Bound">x</a> <a id="9376" class="Symbol">:</a> <a id="9378" href="/20.07/Isomorphism/#9286" class="Bound">A</a><a id="9379" class="Symbol">)</a> <a id="9381" class="Symbol">→</a> <a id="9383" class="Field">from</a> <a id="9388" class="Symbol">(</a><a id="9389" class="Field">to</a> <a id="9392" href="/20.07/Isomorphism/#9374" class="Bound">x</a><a id="9393" class="Symbol">)</a> <a id="9395" href="Agda.Builtin.Equality.html#125" class="Datatype Operator">≡</a> <a id="9397" href="/20.07/Isomorphism/#9374" class="Bound">x</a>
 <a id="9399" class="Keyword">open</a> <a id="9404" href="/20.07/Isomorphism/#9281" class="Module Operator">_≲_</a>
 </pre>
-<p>It is the same as an isomorphism, save that it lacks the <code class="highlighter-rouge">to∘from</code> field.
-Hence, we know that <code class="highlighter-rouge">from</code> is left-inverse to <code class="highlighter-rouge">to</code>, but not that <code class="highlighter-rouge">from</code>
-is right-inverse to <code class="highlighter-rouge">to</code>.</p>
+<p>It is the same as an isomorphism, save that it lacks the <code class="language-plaintext highlighter-rouge">to∘from</code> field.
+Hence, we know that <code class="language-plaintext highlighter-rouge">from</code> is left-inverse to <code class="language-plaintext highlighter-rouge">to</code>, but not that <code class="language-plaintext highlighter-rouge">from</code>
+is right-inverse to <code class="language-plaintext highlighter-rouge">to</code>.</p>
 
 <p>Embedding is reflexive and transitive, but not symmetric.  The proofs
 are cut down versions of the similar proofs for isomorphism:</p>
@@ -444,8 +444,8 @@ weak form of anti-symmetry:</p>
     <a id="10954" class="Symbol">}</a>
 </pre>
 <p>The first three components are copied from the embedding, while the
-last combines the left inverse of <code class="highlighter-rouge">B ≲ A</code> with the equivalences of
-the <code class="highlighter-rouge">to</code> and <code class="highlighter-rouge">from</code> components from the two embeddings to obtain
+last combines the left inverse of <code class="language-plaintext highlighter-rouge">B ≲ A</code> with the equivalences of
+the <code class="language-plaintext highlighter-rouge">to</code> and <code class="language-plaintext highlighter-rouge">from</code> components from the two embeddings to obtain
 the right inverse of the isomorphism.</p>
 
 <h2 id="equational-reasoning-for-embedding">Equational reasoning for embedding</h2>
@@ -479,7 +479,7 @@ analogous to that used for isomorphism:</p>
 
 <a id="11683" class="Keyword">open</a> <a id="11688" href="/20.07/Isomorphism/#11343" class="Module">≲-Reasoning</a>
 </pre>
-<h4 id="exercise--implies--practice">Exercise <code class="highlighter-rouge">≃-implies-≲</code> (practice)</h4>
+<h4 id="exercise--implies--practice">Exercise <code class="language-plaintext highlighter-rouge">≃-implies-≲</code> (practice)</h4>
 
 <p>Show that every isomorphism implies an embedding.</p>
 <pre class="Agda"><a id="11799" class="Keyword">postulate</a>
@@ -490,7 +490,7 @@ analogous to that used for isomorphism:</p>
 </pre>
 <pre class="Agda"><a id="11884" class="Comment">-- Your code goes here</a>
 </pre>
-<h4 id="iff">Exercise <code class="highlighter-rouge">_⇔_</code> (practice)</h4>
+<h4 id="iff">Exercise <code class="language-plaintext highlighter-rouge">_⇔_</code> (practice)</h4>
 
 <p>Define equivalence of propositions (also known as “if and only if”) as follows:</p>
 <pre class="Agda"><a id="12035" class="Keyword">record</a> <a id="_⇔_"></a><a id="12042" href="/20.07/Isomorphism/#12042" class="Record Operator">_⇔_</a> <a id="12046" class="Symbol">(</a><a id="12047" href="/20.07/Isomorphism/#12047" class="Bound">A</a> <a id="12049" href="/20.07/Isomorphism/#12049" class="Bound">B</a> <a id="12051" class="Symbol">:</a> <a id="12053" class="PrimitiveType">Set</a><a id="12056" class="Symbol">)</a> <a id="12058" class="Symbol">:</a> <a id="12060" class="PrimitiveType">Set</a> <a id="12064" class="Keyword">where</a>
@@ -502,27 +502,27 @@ analogous to that used for isomorphism:</p>
 
 <pre class="Agda"><a id="12184" class="Comment">-- Your code goes here</a>
 </pre>
-<h4 id="Bin-embedding">Exercise <code class="highlighter-rouge">Bin-embedding</code> (stretch)</h4>
+<h4 id="Bin-embedding">Exercise <code class="language-plaintext highlighter-rouge">Bin-embedding</code> (stretch)</h4>
 
 <p>Recall that Exercises
 <a href="/20.07/Naturals/#Bin">Bin</a> and
 <a href="/20.07/Induction/#Bin-laws">Bin-laws</a>
-define a datatype <code class="highlighter-rouge">Bin</code> of bitstrings representing natural numbers,
+define a datatype <code class="language-plaintext highlighter-rouge">Bin</code> of bitstrings representing natural numbers,
 and asks you to define the following functions and predicates:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>to : ℕ → Bin
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>to : ℕ → Bin
 from : Bin → ℕ
 </code></pre></div></div>
 
 <p>which satisfy the following property:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from (to n) ≡ n
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from (to n) ≡ n
 </code></pre></div></div>
 
-<p>Using the above, establish that there is an embedding of <code class="highlighter-rouge">ℕ</code> into <code class="highlighter-rouge">Bin</code>.</p>
+<p>Using the above, establish that there is an embedding of <code class="language-plaintext highlighter-rouge">ℕ</code> into <code class="language-plaintext highlighter-rouge">Bin</code>.</p>
 <pre class="Agda"><a id="12693" class="Comment">-- Your code goes here</a>
 </pre>
-<p>Why do <code class="highlighter-rouge">to</code> and <code class="highlighter-rouge">from</code> not form an isomorphism?</p>
+<p>Why do <code class="language-plaintext highlighter-rouge">to</code> and <code class="language-plaintext highlighter-rouge">from</code> not form an isomorphism?</p>
 
 <h2 id="standard-library">Standard library</h2>
 
@@ -531,8 +531,8 @@ from : Bin → ℕ
 <a id="12906" class="Keyword">import</a> <a id="12913" href="https://agda.github.io/agda-stdlib/v1.1/Function.Inverse.html" class="Module">Function.Inverse</a> <a id="12930" class="Keyword">using</a> <a id="12936" class="Symbol">(</a><a id="12937" href="https://agda.github.io/agda-stdlib/v1.1/Function.Inverse.html#2229" class="Function Operator">_↔_</a><a id="12940" class="Symbol">)</a>
 <a id="12942" class="Keyword">import</a> <a id="12949" href="https://agda.github.io/agda-stdlib/v1.1/Function.LeftInverse.html" class="Module">Function.LeftInverse</a> <a id="12970" class="Keyword">using</a> <a id="12976" class="Symbol">(</a><a id="12977" href="https://agda.github.io/agda-stdlib/v1.1/Function.LeftInverse.html#2682" class="Function Operator">_↞_</a><a id="12980" class="Symbol">)</a>
 </pre>
-<p>The standard library <code class="highlighter-rouge">_↔_</code> and <code class="highlighter-rouge">_↞_</code> correspond to our <code class="highlighter-rouge">_≃_</code> and
-<code class="highlighter-rouge">_≲_</code>, respectively, but those in the standard library are less
+<p>The standard library <code class="language-plaintext highlighter-rouge">_↔_</code> and <code class="language-plaintext highlighter-rouge">_↞_</code> correspond to our <code class="language-plaintext highlighter-rouge">_≃_</code> and
+<code class="language-plaintext highlighter-rouge">_≲_</code>, respectively, but those in the standard library are less
 convenient, since they depend on a nested record structure and are
 parameterised with regard to an arbitrary notion of equivalence.</p>
 
@@ -540,7 +540,7 @@ parameterised with regard to an arbitrary notion of equivalence.</p>
 
 <p>This chapter uses the following unicode:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>∘  U+2218  RING OPERATOR (\o, \circ, \comp)
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>∘  U+2218  RING OPERATOR (\o, \circ, \comp)
 λ  U+03BB  GREEK SMALL LETTER LAMBDA (\lambda, \Gl)
 ≃  U+2243  ASYMPTOTICALLY EQUAL TO (\~-)
 ≲  U+2272  LESS-THAN OR EQUIVALENT TO (\&lt;~)

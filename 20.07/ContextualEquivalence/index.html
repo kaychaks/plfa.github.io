@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>ContextualEquivalence: Denotational equality implies contextual equivalence 🚧 | Programming Language Foundations in Agda
 </title><!-- Begin Jekyll SEO tag v2.6.1 -->
-<meta name="generator" content="Jekyll v3.8.7" />
+<meta name="generator" content="Jekyll v3.9.0" />
 <meta property="og:title" content="ContextualEquivalence: Denotational equality implies contextual equivalence 🚧" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Programming Language Foundations in Agda" />
@@ -14,7 +14,7 @@
 <meta property="og:url" content="https://plfa.github.io/20.07/ContextualEquivalence/" />
 <meta property="og:site_name" content="Programming Language Foundations in Agda" />
 <script type="application/ld+json">
-{"@type":"WebPage","url":"https://plfa.github.io/20.07/ContextualEquivalence/","headline":"ContextualEquivalence: Denotational equality implies contextual equivalence 🚧","description":"Programming Language Foundations in Agda","@context":"https://schema.org"}</script>
+{"description":"Programming Language Foundations in Agda","headline":"ContextualEquivalence: Denotational equality implies contextual equivalence 🚧","@type":"WebPage","url":"https://plfa.github.io/20.07/ContextualEquivalence/","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/20.07/assets/main.css"></head>
 <body><header class="site-header" role="banner">
@@ -91,8 +91,8 @@
 <p>The notion of <em>contextual equivalence</em> is an important one for
 programming languages because it is the sufficient condition for
 changing a subterm of a program while maintaining the program’s
-overall behavior. Two terms <code class="highlighter-rouge">M</code> and <code class="highlighter-rouge">N</code> are contextually equivalent
-if they can plugged into any context <code class="highlighter-rouge">C</code> and produce equivalent
+overall behavior. Two terms <code class="language-plaintext highlighter-rouge">M</code> and <code class="language-plaintext highlighter-rouge">N</code> are contextually equivalent
+if they can plugged into any context <code class="language-plaintext highlighter-rouge">C</code> and produce equivalent
 results. As discuss in the Denotational chapter, the result of
 a program in the lambda calculus is to terminate or not.
 We characterize termination with the reduction semantics as follows.</p>
@@ -110,7 +110,7 @@ together.</p>
 </pre>
 <p>The contextual equivalence of two terms is difficult to prove directly
 based on the above definition because of the universal quantification
-of the context <code class="highlighter-rouge">C</code>. One of the main motivations for developing
+of the context <code class="language-plaintext highlighter-rouge">C</code>. One of the main motivations for developing
 denotational semantics is to have an alternative way to prove
 contextual equivalence that instead only requires reasoning about the
 two terms.</p>
@@ -123,9 +123,9 @@ established. Furthermore, the two directions of the if-and-only-if are
 symmetric, so we can prove one lemma and then use it twice in the
 theorem.</p>
 
-<p>The lemma states that if <code class="highlighter-rouge">M</code> and <code class="highlighter-rouge">N</code> are denotationally equal
-and if <code class="highlighter-rouge">M</code> plugged into <code class="highlighter-rouge">C</code> terminates, then so does
-<code class="highlighter-rouge">N</code> plugged into <code class="highlighter-rouge">C</code>.</p>
+<p>The lemma states that if <code class="language-plaintext highlighter-rouge">M</code> and <code class="language-plaintext highlighter-rouge">N</code> are denotationally equal
+and if <code class="language-plaintext highlighter-rouge">M</code> plugged into <code class="language-plaintext highlighter-rouge">C</code> terminates, then so does
+<code class="language-plaintext highlighter-rouge">N</code> plugged into <code class="language-plaintext highlighter-rouge">C</code>.</p>
 
 <pre class="Agda"><a id="denot-equal-terminates"></a><a id="2514" href="/20.07/ContextualEquivalence/#2514" class="Function">denot-equal-terminates</a> <a id="2537" class="Symbol">:</a> <a id="2539" class="Symbol">∀{</a><a id="2541" href="/20.07/ContextualEquivalence/#2541" class="Bound">Γ</a><a id="2542" class="Symbol">}</a> <a id="2544" class="Symbol">{</a><a id="2545" href="/20.07/ContextualEquivalence/#2545" class="Bound">M</a> <a id="2547" href="/20.07/ContextualEquivalence/#2547" class="Bound">N</a> <a id="2549" class="Symbol">:</a> <a id="2551" href="/20.07/ContextualEquivalence/#2541" class="Bound">Γ</a> <a id="2553" href="/20.07/Untyped/#4294" class="Datatype Operator">⊢</a> <a id="2555" href="/20.07/Untyped/#2888" class="InductiveConstructor">★</a><a id="2556" class="Symbol">}</a> <a id="2558" class="Symbol">{</a><a id="2559" href="/20.07/ContextualEquivalence/#2559" class="Bound">C</a> <a id="2561" class="Symbol">:</a> <a id="2563" href="/20.07/Compositional/#13895" class="Datatype">Ctx</a> <a id="2567" href="/20.07/ContextualEquivalence/#2541" class="Bound">Γ</a> <a id="2569" href="/20.07/Untyped/#3175" class="InductiveConstructor">∅</a><a id="2570" class="Symbol">}</a>
   <a id="2574" class="Symbol">→</a> <a id="2576" href="/20.07/Denotational/#17486" class="Function">ℰ</a> <a id="2578" href="/20.07/ContextualEquivalence/#2545" class="Bound">M</a> <a id="2580" href="/20.07/Denotational/#17668" class="Function Operator">≃</a> <a id="2582" href="/20.07/Denotational/#17486" class="Function">ℰ</a> <a id="2584" href="/20.07/ContextualEquivalence/#2547" class="Bound">N</a>  <a id="2587" class="Symbol">→</a>  <a id="2590" href="/20.07/ContextualEquivalence/#1295" class="Function">terminates</a> <a id="2601" class="Symbol">(</a><a id="2602" href="/20.07/Compositional/#14979" class="Function">plug</a> <a id="2607" href="/20.07/ContextualEquivalence/#2559" class="Bound">C</a> <a id="2609" href="/20.07/ContextualEquivalence/#2545" class="Bound">M</a><a id="2610" class="Symbol">)</a>
@@ -137,31 +137,31 @@ and if <code class="highlighter-rouge">M</code> plugged into <code class="highli
   <a id="2842" class="Keyword">let</a> <a id="2846" href="/20.07/ContextualEquivalence/#2846" class="Bound">ℰCN≃ℰƛN′</a> <a id="2855" class="Symbol">=</a> <a id="2857" href="/20.07/Denotational/#18073" class="Function">≃-trans</a> <a id="2865" class="Symbol">(</a><a id="2866" href="/20.07/Denotational/#17940" class="Function">≃-sym</a> <a id="2872" href="/20.07/ContextualEquivalence/#2783" class="Bound">ℰCM≃ℰCN</a><a id="2879" class="Symbol">)</a> <a id="2881" href="/20.07/ContextualEquivalence/#2745" class="Bound">ℰCM≃ℰƛN′</a> <a id="2890" class="Keyword">in</a>
     <a id="2897" href="/20.07/BigStep/#12205" class="Function">cbn→reduce</a> <a id="2908" class="Symbol">(</a><a id="2909" href="Agda.Builtin.Sigma.html#237" class="Field">proj₂</a> <a id="2915" class="Symbol">(</a><a id="2916" href="Agda.Builtin.Sigma.html#237" class="Field">proj₂</a> <a id="2922" class="Symbol">(</a><a id="2923" href="Agda.Builtin.Sigma.html#237" class="Field">proj₂</a> <a id="2929" class="Symbol">(</a><a id="2930" href="/20.07/Adequacy/#21083" class="Function">↓→⇓</a> <a id="2934" href="/20.07/ContextualEquivalence/#2846" class="Bound">ℰCN≃ℰƛN′</a><a id="2942" class="Symbol">))))</a>
 </pre>
-<p>The proof is direct. Because <code class="highlighter-rouge">plug C —↠ plug C (ƛN′)</code>,
+<p>The proof is direct. Because <code class="language-plaintext highlighter-rouge">plug C —↠ plug C (ƛN′)</code>,
 we can apply soundness to obtain</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ℰ (plug C M) ≃ ℰ (ƛN′)
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ℰ (plug C M) ≃ ℰ (ƛN′)
 </code></pre></div></div>
 
-<p>From <code class="highlighter-rouge">ℰ M ≃ ℰ N</code>, compositionality gives us</p>
+<p>From <code class="language-plaintext highlighter-rouge">ℰ M ≃ ℰ N</code>, compositionality gives us</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ℰ (plug C M) ≃ ℰ (plug C N).
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ℰ (plug C M) ≃ ℰ (plug C N).
 </code></pre></div></div>
 
 <p>Putting these two facts together gives us</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ℰ (plug C N) ≃ ℰ (ƛN′).
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ℰ (plug C N) ≃ ℰ (ƛN′).
 </code></pre></div></div>
 
-<p>We then apply <code class="highlighter-rouge">↓→⇓</code> from Chapter <a href="/20.07/Adequacy/">Adequacy</a> to deduce</p>
+<p>We then apply <code class="language-plaintext highlighter-rouge">↓→⇓</code> from Chapter <a href="/20.07/Adequacy/">Adequacy</a> to deduce</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>∅' ⊢ plug C N ⇓ clos (ƛ N′′) δ).
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>∅' ⊢ plug C N ⇓ clos (ƛ N′′) δ).
 </code></pre></div></div>
 
 <p>Call-by-name evaluation implies reduction to a lambda abstraction,
 so we conclude that</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>terminates (plug C N).
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>terminates (plug C N).
 </code></pre></div></div>
 
 <p>The main theorem follows by two applications of the lemma.</p>
@@ -179,7 +179,7 @@ so we conclude that</p>
 
 <p>This chapter uses the following unicode:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>≅  U+2245  APPROXIMATELY EQUAL TO (\~= or \cong)
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>≅  U+2245  APPROXIMATELY EQUAL TO (\~= or \cong)
 </code></pre></div></div>
 
   </div>

@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Assignment4: TSPL Assignment 4 | Programming Language Foundations in Agda
 </title><!-- Begin Jekyll SEO tag v2.6.1 -->
-<meta name="generator" content="Jekyll v3.8.7" />
+<meta name="generator" content="Jekyll v3.9.0" />
 <meta property="og:title" content="Assignment4: TSPL Assignment 4" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Programming Language Foundations in Agda" />
@@ -14,7 +14,7 @@
 <meta property="og:url" content="https://plfa.github.io/20.07/TSPL/2019/Assignment4/" />
 <meta property="og:site_name" content="Programming Language Foundations in Agda" />
 <script type="application/ld+json">
-{"@type":"WebPage","url":"https://plfa.github.io/20.07/TSPL/2019/Assignment4/","headline":"Assignment4: TSPL Assignment 4","description":"Programming Language Foundations in Agda","@context":"https://schema.org"}</script>
+{"description":"Programming Language Foundations in Agda","headline":"Assignment4: TSPL Assignment 4","@type":"WebPage","url":"https://plfa.github.io/20.07/TSPL/2019/Assignment4/","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/20.07/assets/main.css"></head>
 <body><header class="site-header" role="banner">
@@ -86,7 +86,7 @@ some extra practice.</p>
 
 <p><strong>IMPORTANT</strong> For ease of marking, when modifying the given code please write</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>-- begin
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>-- begin
 -- end
 </code></pre></div></div>
 
@@ -127,19 +127,19 @@ yourself, or your group in the case of group practicals).</p>
 <pre class="Agda">  <a id="1924" class="Keyword">open</a> <a id="1929" class="Keyword">import</a> <a id="1936" href="/20.07/DeBruijn/" class="Module">plfa.part2.DeBruijn</a>
 </pre>
 
-<h4 id="exercise-mul-recommended">Exercise (<code class="highlighter-rouge">mul</code>) (recommended)</h4>
+<h4 id="exercise-mul-recommended">Exercise (<code class="language-plaintext highlighter-rouge">mul</code>) (recommended)</h4>
 
 <p>Write out the definition of a lambda term that multiplies
 two natural numbers, now adapted to the inherently typed
 DeBruijn representation.</p>
 
-<h4 id="exercise-v">Exercise <code class="highlighter-rouge">V¬—→</code></h4>
+<h4 id="exercise-v">Exercise <code class="language-plaintext highlighter-rouge">V¬—→</code></h4>
 
 <p>Following the previous development, show values do
 not reduce, and its corollary, terms that reduce are not
 values.</p>
 
-<h4 id="exercise-mul-eval-recommended">Exercise <code class="highlighter-rouge">mul-eval</code> (recommended)</h4>
+<h4 id="exercise-mul-eval-recommended">Exercise <code class="language-plaintext highlighter-rouge">mul-eval</code> (recommended)</h4>
 
 <p>Using the evaluator, confirm that two times two is four.</p>
 
@@ -756,7 +756,7 @@ not fixed by the given arguments.</p>
      <a id="16938" href="/20.07/TSPL/2019/Assignment4/#11266" class="InductiveConstructor Operator">∎</a>
 </pre>
 
-<h4 id="exercise-more-recommended-in-part">Exercise <code class="highlighter-rouge">More</code> (recommended in part)</h4>
+<h4 id="exercise-more-recommended-in-part">Exercise <code class="language-plaintext highlighter-rouge">More</code> (recommended in part)</h4>
 
 <p>Formalise the remaining constructs defined in this chapter.
 Evaluate each example, applied to data as needed,
@@ -774,12 +774,12 @@ to confirm it returns the expected answer.</p>
 
 <p>(No recommended exercises for this chapter.)</p>
 
-<h4 id="exercise-sim">Exercise <code class="highlighter-rouge">sim⁻¹</code></h4>
+<h4 id="exercise-sim">Exercise <code class="language-plaintext highlighter-rouge">sim⁻¹</code></h4>
 
 <p>Show that we also have a simulation in the other direction, and hence that we have
 a bisimulation.</p>
 
-<h4 id="exercise-products">Exercise <code class="highlighter-rouge">products</code></h4>
+<h4 id="exercise-products">Exercise <code class="language-plaintext highlighter-rouge">products</code></h4>
 
 <p>Show that the two formulations of products in
 Chapter [More][plfa.More]
@@ -1081,74 +1081,74 @@ In this case, the simulation is <em>not</em> lock-step.</p>
   <a id="25676" href="/20.07/TSPL/2019/Assignment4/#25326" class="Function Operator">∥</a> <a id="25678" href="/20.07/TSPL/2019/Assignment4/#20254" class="InductiveConstructor">⊢μ</a> <a id="25681" href="/20.07/TSPL/2019/Assignment4/#25681" class="Bound">⊢M</a> <a id="25684" href="/20.07/TSPL/2019/Assignment4/#25326" class="Function Operator">∥⁻</a>           <a id="25697" class="Symbol">=</a>  <a id="25700" href="/20.07/More/#15391" class="InductiveConstructor Operator">DB.μ</a> <a id="25705" href="/20.07/TSPL/2019/Assignment4/#25326" class="Function Operator">∥</a> <a id="25707" href="/20.07/TSPL/2019/Assignment4/#25681" class="Bound">⊢M</a> <a id="25710" href="/20.07/TSPL/2019/Assignment4/#25326" class="Function Operator">∥⁻</a>
   <a id="25715" href="/20.07/TSPL/2019/Assignment4/#25326" class="Function Operator">∥</a> <a id="25717" href="/20.07/TSPL/2019/Assignment4/#20352" class="InductiveConstructor">⊢↑</a> <a id="25720" href="/20.07/TSPL/2019/Assignment4/#25720" class="Bound">⊢M</a> <a id="25723" href="Agda.Builtin.Equality.html#182" class="InductiveConstructor">refl</a> <a id="25728" href="/20.07/TSPL/2019/Assignment4/#25326" class="Function Operator">∥⁻</a>      <a id="25736" class="Symbol">=</a>  <a id="25739" href="/20.07/TSPL/2019/Assignment4/#25272" class="Function Operator">∥</a> <a id="25741" href="/20.07/TSPL/2019/Assignment4/#25720" class="Bound">⊢M</a> <a id="25744" href="/20.07/TSPL/2019/Assignment4/#25272" class="Function Operator">∥⁺</a>
 </pre>
-<h4 id="bidirectional-mul">Exercise <code class="highlighter-rouge">bidirectional-mul</code> (recommended)</h4>
+<h4 id="bidirectional-mul">Exercise <code class="language-plaintext highlighter-rouge">bidirectional-mul</code> (recommended)</h4>
 
 <p>Rewrite your definition of multiplication from
 Chapter [Lambda][plfa.Lambda], decorated to support inference.</p>
 
-<h4 id="bidirectional-products">Exercise <code class="highlighter-rouge">bidirectional-products</code> (recommended)</h4>
+<h4 id="bidirectional-products">Exercise <code class="language-plaintext highlighter-rouge">bidirectional-products</code> (recommended)</h4>
 
 <p>Extend the bidirectional type rules to include products from
 Chapter [More][plfa.More].</p>
 
-<h4 id="exercise-bidirectional-rest-stretch">Exercise <code class="highlighter-rouge">bidirectional-rest</code> (stretch)</h4>
+<h4 id="exercise-bidirectional-rest-stretch">Exercise <code class="language-plaintext highlighter-rouge">bidirectional-rest</code> (stretch)</h4>
 
 <p>Extend the bidirectional type rules to include the rest of the constructs from
 Chapter [More][plfa.More].</p>
 
-<h4 id="exercise-inference-mul-recommended">Exercise <code class="highlighter-rouge">inference-mul</code> (recommended)</h4>
+<h4 id="exercise-inference-mul-recommended">Exercise <code class="language-plaintext highlighter-rouge">inference-mul</code> (recommended)</h4>
 
 <p>Rewrite your definition of multiplication from
 Chapter [Lambda][plfa.Lambda] decorated to support inference, and show
 that erasure of the inferred typing yields your definition of
 multiplication from Chapter [DeBruijn][plfa.DeBruijn].</p>
 
-<h4 id="exercise-inference-products-recommended">Exercise <code class="highlighter-rouge">inference-products</code> (recommended)</h4>
+<h4 id="exercise-inference-products-recommended">Exercise <code class="language-plaintext highlighter-rouge">inference-products</code> (recommended)</h4>
 
 <p>Extend bidirectional inference to include products from
 Chapter [More][plfa.More].</p>
 
-<h4 id="exercise-inference-rest-stretch">Exercise <code class="highlighter-rouge">inference-rest</code> (stretch)</h4>
+<h4 id="exercise-inference-rest-stretch">Exercise <code class="language-plaintext highlighter-rouge">inference-rest</code> (stretch)</h4>
 
 <p>Extend bidirectional inference to include the rest of the constructs from
 Chapter [More][plfa.More].</p>
 
 <h2 id="untyped">Untyped</h2>
 
-<h4 id="exercise-type">Exercise (<code class="highlighter-rouge">Type≃⊤</code>)</h4>
+<h4 id="exercise-type">Exercise (<code class="language-plaintext highlighter-rouge">Type≃⊤</code>)</h4>
 
-<p>Show that <code class="highlighter-rouge">Type</code> is isomorphic to <code class="highlighter-rouge">⊤</code>, the unit type.</p>
+<p>Show that <code class="language-plaintext highlighter-rouge">Type</code> is isomorphic to <code class="language-plaintext highlighter-rouge">⊤</code>, the unit type.</p>
 
-<h4 id="exercise-contextℕ">Exercise (<code class="highlighter-rouge">Context≃ℕ</code>)</h4>
+<h4 id="exercise-contextℕ">Exercise (<code class="language-plaintext highlighter-rouge">Context≃ℕ</code>)</h4>
 
-<p>Show that <code class="highlighter-rouge">Context</code> is isomorphic to <code class="highlighter-rouge">ℕ</code>.</p>
+<p>Show that <code class="language-plaintext highlighter-rouge">Context</code> is isomorphic to <code class="language-plaintext highlighter-rouge">ℕ</code>.</p>
 
-<h4 id="exercise-variant-1">Exercise (<code class="highlighter-rouge">variant-1</code>)</h4>
+<h4 id="exercise-variant-1">Exercise (<code class="language-plaintext highlighter-rouge">variant-1</code>)</h4>
 
 <p>How would the rules change if we want call-by-value where terms
-normalise completely?  Assume that <code class="highlighter-rouge">β</code> should not permit reduction
+normalise completely?  Assume that <code class="language-plaintext highlighter-rouge">β</code> should not permit reduction
 unless both terms are in normal form.</p>
 
-<h4 id="exercise-variant-2">Exercise (<code class="highlighter-rouge">variant-2</code>)</h4>
+<h4 id="exercise-variant-2">Exercise (<code class="language-plaintext highlighter-rouge">variant-2</code>)</h4>
 
 <p>How would the rules change if we want call-by-value where terms
-do not reduce underneath lambda?  Assume that <code class="highlighter-rouge">β</code>
+do not reduce underneath lambda?  Assume that <code class="language-plaintext highlighter-rouge">β</code>
 permits reduction when both terms are values (that is, lambda
-abstractions).  What would <code class="highlighter-rouge">plusᶜ · twoᶜ · twoᶜ</code> reduce to in this case?</p>
+abstractions).  What would <code class="language-plaintext highlighter-rouge">plusᶜ · twoᶜ · twoᶜ</code> reduce to in this case?</p>
 
-<h4 id="exercise-plus-eval">Exercise <code class="highlighter-rouge">plus-eval</code></h4>
+<h4 id="exercise-plus-eval">Exercise <code class="language-plaintext highlighter-rouge">plus-eval</code></h4>
 
-<p>Use the evaluator to confirm that <code class="highlighter-rouge">plus · two · two</code> and <code class="highlighter-rouge">four</code>
+<p>Use the evaluator to confirm that <code class="language-plaintext highlighter-rouge">plus · two · two</code> and <code class="language-plaintext highlighter-rouge">four</code>
 normalise to the same term.</p>
 
-<h4 id="exercise-multiplication-untyped-recommended">Exercise <code class="highlighter-rouge">multiplication-untyped</code> (recommended)</h4>
+<h4 id="exercise-multiplication-untyped-recommended">Exercise <code class="language-plaintext highlighter-rouge">multiplication-untyped</code> (recommended)</h4>
 
 <p>Use the encodings above to translate your definition of
 multiplication from previous chapters with the Scott
 representation and the encoding of the fixpoint operator.
 Confirm that two times two is four.</p>
 
-<h4 id="exercise-encode-more-stretch">Exercise <code class="highlighter-rouge">encode-more</code> (stretch)</h4>
+<h4 id="exercise-encode-more-stretch">Exercise <code class="language-plaintext highlighter-rouge">encode-more</code> (stretch)</h4>
 
 <p>Along the lines above, encode all of the constructs of
 Chapter [More][plfa.More],

@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Connectives: Conjunction, disjunction, and implication | Programming Language Foundations in Agda
 </title><!-- Begin Jekyll SEO tag v2.6.1 -->
-<meta name="generator" content="Jekyll v3.8.7" />
+<meta name="generator" content="Jekyll v3.9.0" />
 <meta property="og:title" content="Connectives: Conjunction, disjunction, and implication" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Programming Language Foundations in Agda" />
@@ -14,7 +14,7 @@
 <meta property="og:url" content="https://plfa.github.io/latest/Connectives/" />
 <meta property="og:site_name" content="Programming Language Foundations in Agda" />
 <script type="application/ld+json">
-{"@type":"WebPage","url":"https://plfa.github.io/latest/Connectives/","headline":"Connectives: Conjunction, disjunction, and implication","description":"Programming Language Foundations in Agda","@context":"https://schema.org"}</script>
+{"description":"Programming Language Foundations in Agda","headline":"Connectives: Conjunction, disjunction, and implication","@type":"WebPage","url":"https://plfa.github.io/latest/Connectives/","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/latest/assets/main.css"></head>
 <body><header class="site-header" role="banner">
@@ -106,8 +106,8 @@ principle known as <em>Propositions as Types</em>:</p>
 
 <h2 id="conjunction-is-product">Conjunction is product</h2>
 
-<p>Given two propositions <code class="highlighter-rouge">A</code> and <code class="highlighter-rouge">B</code>, the conjunction <code class="highlighter-rouge">A × B</code> holds
-if both <code class="highlighter-rouge">A</code> holds and <code class="highlighter-rouge">B</code> holds.  We formalise this idea by
+<p>Given two propositions <code class="language-plaintext highlighter-rouge">A</code> and <code class="language-plaintext highlighter-rouge">B</code>, the conjunction <code class="language-plaintext highlighter-rouge">A × B</code> holds
+if both <code class="language-plaintext highlighter-rouge">A</code> holds and <code class="language-plaintext highlighter-rouge">B</code> holds.  We formalise this idea by
 declaring a suitable record type:</p>
 <pre class="Agda"><a id="1287" class="Keyword">data</a> <a id="_×_"></a><a id="1292" href="/latest/Connectives/#1292" class="Datatype Operator">_×_</a> <a id="1296" class="Symbol">(</a><a id="1297" href="/latest/Connectives/#1297" class="Bound">A</a> <a id="1299" href="/latest/Connectives/#1299" class="Bound">B</a> <a id="1301" class="Symbol">:</a> <a id="1303" class="PrimitiveType">Set</a><a id="1306" class="Symbol">)</a> <a id="1308" class="Symbol">:</a> <a id="1310" class="PrimitiveType">Set</a> <a id="1314" class="Keyword">where</a>
 
@@ -117,12 +117,12 @@ declaring a suitable record type:</p>
       <a id="1353" class="Comment">-----</a>
     <a id="1363" class="Symbol">→</a> <a id="1365" href="/latest/Connectives/#1297" class="Bound">A</a> <a id="1367" href="/latest/Connectives/#1292" class="Datatype Operator">×</a> <a id="1369" href="/latest/Connectives/#1299" class="Bound">B</a>
 </pre>
-<p>Evidence that <code class="highlighter-rouge">A × B</code> holds is of the form <code class="highlighter-rouge">⟨ M , N ⟩</code>, where <code class="highlighter-rouge">M</code>
-provides evidence that <code class="highlighter-rouge">A</code> holds and <code class="highlighter-rouge">N</code> provides evidence that <code class="highlighter-rouge">B</code>
+<p>Evidence that <code class="language-plaintext highlighter-rouge">A × B</code> holds is of the form <code class="language-plaintext highlighter-rouge">⟨ M , N ⟩</code>, where <code class="language-plaintext highlighter-rouge">M</code>
+provides evidence that <code class="language-plaintext highlighter-rouge">A</code> holds and <code class="language-plaintext highlighter-rouge">N</code> provides evidence that <code class="language-plaintext highlighter-rouge">B</code>
 holds.</p>
 
-<p>Given evidence that <code class="highlighter-rouge">A × B</code> holds, we can conclude that either
-<code class="highlighter-rouge">A</code> holds or <code class="highlighter-rouge">B</code> holds:</p>
+<p>Given evidence that <code class="language-plaintext highlighter-rouge">A × B</code> holds, we can conclude that either
+<code class="language-plaintext highlighter-rouge">A</code> holds or <code class="language-plaintext highlighter-rouge">B</code> holds:</p>
 <pre class="Agda"><a id="proj₁"></a><a id="1608" href="/latest/Connectives/#1608" class="Function">proj₁</a> <a id="1614" class="Symbol">:</a> <a id="1616" class="Symbol">∀</a> <a id="1618" class="Symbol">{</a><a id="1619" href="/latest/Connectives/#1619" class="Bound">A</a> <a id="1621" href="/latest/Connectives/#1621" class="Bound">B</a> <a id="1623" class="Symbol">:</a> <a id="1625" class="PrimitiveType">Set</a><a id="1628" class="Symbol">}</a>
   <a id="1632" class="Symbol">→</a> <a id="1634" href="/latest/Connectives/#1619" class="Bound">A</a> <a id="1636" href="/latest/Connectives/#1292" class="Datatype Operator">×</a> <a id="1638" href="/latest/Connectives/#1621" class="Bound">B</a>
     <a id="1644" class="Comment">-----</a>
@@ -135,19 +135,19 @@ holds.</p>
   <a id="1721" class="Symbol">→</a> <a id="1723" href="/latest/Connectives/#1690" class="Bound">B</a>
 <a id="1725" href="/latest/Connectives/#1677" class="Function">proj₂</a> <a id="1731" href="/latest/Connectives/#1323" class="InductiveConstructor Operator">⟨</a> <a id="1733" href="/latest/Connectives/#1733" class="Bound">x</a> <a id="1735" href="/latest/Connectives/#1323" class="InductiveConstructor Operator">,</a> <a id="1737" href="/latest/Connectives/#1737" class="Bound">y</a> <a id="1739" href="/latest/Connectives/#1323" class="InductiveConstructor Operator">⟩</a> <a id="1741" class="Symbol">=</a> <a id="1743" href="/latest/Connectives/#1737" class="Bound">y</a>
 </pre>
-<p>If <code class="highlighter-rouge">L</code> provides evidence that <code class="highlighter-rouge">A × B</code> holds, then <code class="highlighter-rouge">proj₁ L</code> provides evidence
-that <code class="highlighter-rouge">A</code> holds, and <code class="highlighter-rouge">proj₂ L</code> provides evidence that <code class="highlighter-rouge">B</code> holds.</p>
+<p>If <code class="language-plaintext highlighter-rouge">L</code> provides evidence that <code class="language-plaintext highlighter-rouge">A × B</code> holds, then <code class="language-plaintext highlighter-rouge">proj₁ L</code> provides evidence
+that <code class="language-plaintext highlighter-rouge">A</code> holds, and <code class="language-plaintext highlighter-rouge">proj₂ L</code> provides evidence that <code class="language-plaintext highlighter-rouge">B</code> holds.</p>
 
-<p>When <code class="highlighter-rouge">⟨_,_⟩</code> appears in a term on the right-hand side of an equation
+<p>When <code class="language-plaintext highlighter-rouge">⟨_,_⟩</code> appears in a term on the right-hand side of an equation
 we refer to it as a <em>constructor</em>, and when it appears in a pattern on
 the left-hand side of an equation we refer to it as a <em>destructor</em>.
-We may also refer to <code class="highlighter-rouge">proj₁</code> and <code class="highlighter-rouge">proj₂</code> as destructors, since they
+We may also refer to <code class="language-plaintext highlighter-rouge">proj₁</code> and <code class="language-plaintext highlighter-rouge">proj₂</code> as destructors, since they
 play a similar role.</p>
 
-<p>Other terminology refers to <code class="highlighter-rouge">⟨_,_⟩</code> as <em>introducing</em> a conjunction, and
-to <code class="highlighter-rouge">proj₁</code> and <code class="highlighter-rouge">proj₂</code> as <em>eliminating</em> a conjunction; indeed, the
-former is sometimes given the name <code class="highlighter-rouge">×-I</code> and the latter two the names
-<code class="highlighter-rouge">×-E₁</code> and <code class="highlighter-rouge">×-E₂</code>.  As we read the rules from top to bottom,
+<p>Other terminology refers to <code class="language-plaintext highlighter-rouge">⟨_,_⟩</code> as <em>introducing</em> a conjunction, and
+to <code class="language-plaintext highlighter-rouge">proj₁</code> and <code class="language-plaintext highlighter-rouge">proj₂</code> as <em>eliminating</em> a conjunction; indeed, the
+former is sometimes given the name <code class="language-plaintext highlighter-rouge">×-I</code> and the latter two the names
+<code class="language-plaintext highlighter-rouge">×-E₁</code> and <code class="language-plaintext highlighter-rouge">×-E₂</code>.  As we read the rules from top to bottom,
 introduction and elimination do what they say on the tin: the first
 <em>introduces</em> a formula for the connective, which appears in the
 conclusion but not in the hypotheses; the second <em>eliminates</em> a
@@ -155,7 +155,7 @@ formula for the connective, which appears in a hypothesis but not in
 the conclusion. An introduction rule describes under what conditions
 we say the connective holds—how to <em>define</em> the connective. An
 elimination rule describes what we may conclude when the connective
-holds—how to <em>use</em> the connective.<sup id="fnref:from-wadler-2015"><a href="#fn:from-wadler-2015" class="footnote">1</a></sup></p>
+holds—how to <em>use</em> the connective.<sup id="fnref:from-wadler-2015" role="doc-noteref"><a href="#fn:from-wadler-2015" class="footnote">1</a></sup></p>
 
 <p>In this case, applying each destructor and reassembling the results with the
 constructor is the identity over products:</p>
@@ -163,14 +163,14 @@ constructor is the identity over products:</p>
 <a id="3168" href="/latest/Connectives/#3108" class="Function">η-×</a> <a id="3172" href="/latest/Connectives/#1323" class="InductiveConstructor Operator">⟨</a> <a id="3174" href="/latest/Connectives/#3174" class="Bound">x</a> <a id="3176" href="/latest/Connectives/#1323" class="InductiveConstructor Operator">,</a> <a id="3178" href="/latest/Connectives/#3178" class="Bound">y</a> <a id="3180" href="/latest/Connectives/#1323" class="InductiveConstructor Operator">⟩</a> <a id="3182" class="Symbol">=</a> <a id="3184" href="Agda.Builtin.Equality.html#182" class="InductiveConstructor">refl</a>
 </pre>
 <p>The pattern matching on the left-hand side is essential, since
-replacing <code class="highlighter-rouge">w</code> by <code class="highlighter-rouge">⟨ x , y ⟩</code> allows both sides of the
+replacing <code class="language-plaintext highlighter-rouge">w</code> by <code class="language-plaintext highlighter-rouge">⟨ x , y ⟩</code> allows both sides of the
 propositional equality to simplify to the same term.</p>
 
 <p>We set the precedence of conjunction so that it binds less
 tightly than anything save disjunction:</p>
 <pre class="Agda"><a id="3467" class="Keyword">infixr</a> <a id="3474" class="Number">2</a> <a id="3476" href="/latest/Connectives/#1292" class="Datatype Operator">_×_</a>
 </pre>
-<p>Thus, <code class="highlighter-rouge">m ≤ n × n ≤ p</code> parses as <code class="highlighter-rouge">(m ≤ n) × (n ≤ p)</code>.</p>
+<p>Thus, <code class="language-plaintext highlighter-rouge">m ≤ n × n ≤ p</code> parses as <code class="language-plaintext highlighter-rouge">(m ≤ n) × (n ≤ p)</code>.</p>
 
 <p>Alternatively, we can declare conjunction as a record type:</p>
 <pre class="Agda"><a id="3602" class="Keyword">record</a> <a id="_×′_"></a><a id="3609" href="/latest/Connectives/#3609" class="Record Operator">_×′_</a> <a id="3614" class="Symbol">(</a><a id="3615" href="/latest/Connectives/#3615" class="Bound">A</a> <a id="3617" href="/latest/Connectives/#3617" class="Bound">B</a> <a id="3619" class="Symbol">:</a> <a id="3621" class="PrimitiveType">Set</a><a id="3624" class="Symbol">)</a> <a id="3626" class="Symbol">:</a> <a id="3628" class="PrimitiveType">Set</a> <a id="3632" class="Keyword">where</a>
@@ -180,31 +180,31 @@ tightly than anything save disjunction:</p>
     <a id="_×′_.proj₂′"></a><a id="3686" href="/latest/Connectives/#3686" class="Field">proj₂′</a> <a id="3693" class="Symbol">:</a> <a id="3695" href="/latest/Connectives/#3617" class="Bound">B</a>
 <a id="3697" class="Keyword">open</a> <a id="3702" href="/latest/Connectives/#3609" class="Module Operator">_×′_</a>
 </pre>
-<p>The record construction <code class="highlighter-rouge">record { proj₁′ = M ; proj₂′ = N }</code> corresponds to the
-term <code class="highlighter-rouge">⟨ M , N ⟩</code> where <code class="highlighter-rouge">M</code> is a term of type <code class="highlighter-rouge">A</code> and <code class="highlighter-rouge">N</code> is a term of type <code class="highlighter-rouge">B</code>.
-The constructor declaration allows us to write <code class="highlighter-rouge">⟨ M , N ⟩′</code> in place of the
+<p>The record construction <code class="language-plaintext highlighter-rouge">record { proj₁′ = M ; proj₂′ = N }</code> corresponds to the
+term <code class="language-plaintext highlighter-rouge">⟨ M , N ⟩</code> where <code class="language-plaintext highlighter-rouge">M</code> is a term of type <code class="language-plaintext highlighter-rouge">A</code> and <code class="language-plaintext highlighter-rouge">N</code> is a term of type <code class="language-plaintext highlighter-rouge">B</code>.
+The constructor declaration allows us to write <code class="language-plaintext highlighter-rouge">⟨ M , N ⟩′</code> in place of the
 record construction.</p>
 
-<p>The data type <code class="highlighter-rouge">_x_</code> and the record type <code class="highlighter-rouge">_×′_</code> behave similarly. One
+<p>The data type <code class="language-plaintext highlighter-rouge">_x_</code> and the record type <code class="language-plaintext highlighter-rouge">_×′_</code> behave similarly. One
 difference is that for data types we have to prove η-equality, but for record
-types, η-equality holds <em>by definition</em>. While proving <code class="highlighter-rouge">η-×′</code>, we do not have to
-pattern match on <code class="highlighter-rouge">w</code> to know that η-equality holds:</p>
+types, η-equality holds <em>by definition</em>. While proving <code class="language-plaintext highlighter-rouge">η-×′</code>, we do not have to
+pattern match on <code class="language-plaintext highlighter-rouge">w</code> to know that η-equality holds:</p>
 <pre class="Agda"><a id="η-×′"></a><a id="4253" href="/latest/Connectives/#4253" class="Function">η-×′</a> <a id="4258" class="Symbol">:</a> <a id="4260" class="Symbol">∀</a> <a id="4262" class="Symbol">{</a><a id="4263" href="/latest/Connectives/#4263" class="Bound">A</a> <a id="4265" href="/latest/Connectives/#4265" class="Bound">B</a> <a id="4267" class="Symbol">:</a> <a id="4269" class="PrimitiveType">Set</a><a id="4272" class="Symbol">}</a> <a id="4274" class="Symbol">(</a><a id="4275" href="/latest/Connectives/#4275" class="Bound">w</a> <a id="4277" class="Symbol">:</a> <a id="4279" href="/latest/Connectives/#4263" class="Bound">A</a> <a id="4281" href="/latest/Connectives/#3609" class="Record Operator">×′</a> <a id="4284" href="/latest/Connectives/#4265" class="Bound">B</a><a id="4285" class="Symbol">)</a> <a id="4287" class="Symbol">→</a> <a id="4289" href="/latest/Connectives/#3652" class="InductiveConstructor Operator">⟨</a> <a id="4291" href="/latest/Connectives/#3671" class="Field">proj₁′</a> <a id="4298" href="/latest/Connectives/#4275" class="Bound">w</a> <a id="4300" href="/latest/Connectives/#3652" class="InductiveConstructor Operator">,</a> <a id="4302" href="/latest/Connectives/#3686" class="Field">proj₂′</a> <a id="4309" href="/latest/Connectives/#4275" class="Bound">w</a> <a id="4311" href="/latest/Connectives/#3652" class="InductiveConstructor Operator">⟩′</a> <a id="4314" href="Agda.Builtin.Equality.html#125" class="Datatype Operator">≡</a> <a id="4316" href="/latest/Connectives/#4275" class="Bound">w</a>
 <a id="4318" href="/latest/Connectives/#4253" class="Function">η-×′</a> <a id="4323" href="/latest/Connectives/#4323" class="Bound">w</a> <a id="4325" class="Symbol">=</a> <a id="4327" href="Agda.Builtin.Equality.html#182" class="InductiveConstructor">refl</a>
 </pre>
 <p>It can be very convenient to have η-equality <em>definitionally</em>, and so the
-standard library defines <code class="highlighter-rouge">_×_</code> as a record type. We use the definition from the
+standard library defines <code class="language-plaintext highlighter-rouge">_×_</code> as a record type. We use the definition from the
 standard library in later chapters.</p>
 
-<p>Given two types <code class="highlighter-rouge">A</code> and <code class="highlighter-rouge">B</code>, we refer to <code class="highlighter-rouge">A × B</code> as the
-<em>product</em> of <code class="highlighter-rouge">A</code> and <code class="highlighter-rouge">B</code>.  In set theory, it is also sometimes
+<p>Given two types <code class="language-plaintext highlighter-rouge">A</code> and <code class="language-plaintext highlighter-rouge">B</code>, we refer to <code class="language-plaintext highlighter-rouge">A × B</code> as the
+<em>product</em> of <code class="language-plaintext highlighter-rouge">A</code> and <code class="language-plaintext highlighter-rouge">B</code>.  In set theory, it is also sometimes
 called the <em>Cartesian product</em>, and in computing it corresponds
 to a <em>record</em> type. Among other reasons for
-calling it the product, note that if type <code class="highlighter-rouge">A</code> has <code class="highlighter-rouge">m</code>
-distinct members, and type <code class="highlighter-rouge">B</code> has <code class="highlighter-rouge">n</code> distinct members,
-then the type <code class="highlighter-rouge">A × B</code> has <code class="highlighter-rouge">m * n</code> distinct members.
-For instance, consider a type <code class="highlighter-rouge">Bool</code> with two members, and
-a type <code class="highlighter-rouge">Tri</code> with three members:</p>
+calling it the product, note that if type <code class="language-plaintext highlighter-rouge">A</code> has <code class="language-plaintext highlighter-rouge">m</code>
+distinct members, and type <code class="language-plaintext highlighter-rouge">B</code> has <code class="language-plaintext highlighter-rouge">n</code> distinct members,
+then the type <code class="language-plaintext highlighter-rouge">A × B</code> has <code class="language-plaintext highlighter-rouge">m * n</code> distinct members.
+For instance, consider a type <code class="language-plaintext highlighter-rouge">Bool</code> with two members, and
+a type <code class="language-plaintext highlighter-rouge">Tri</code> with three members:</p>
 <pre class="Agda"><a id="5014" class="Keyword">data</a> <a id="Bool"></a><a id="5019" href="/latest/Connectives/#5019" class="Datatype">Bool</a> <a id="5024" class="Symbol">:</a> <a id="5026" class="PrimitiveType">Set</a> <a id="5030" class="Keyword">where</a>
   <a id="Bool.true"></a><a id="5038" href="/latest/Connectives/#5038" class="InductiveConstructor">true</a>  <a id="5044" class="Symbol">:</a> <a id="5046" href="/latest/Connectives/#5019" class="Datatype">Bool</a>
   <a id="Bool.false"></a><a id="5053" href="/latest/Connectives/#5053" class="InductiveConstructor">false</a> <a id="5059" class="Symbol">:</a> <a id="5061" href="/latest/Connectives/#5019" class="Datatype">Bool</a>
@@ -214,14 +214,14 @@ a type <code class="highlighter-rouge">Tri</code> with three members:</p>
   <a id="Tri.bb"></a><a id="5101" href="/latest/Connectives/#5101" class="InductiveConstructor">bb</a> <a id="5104" class="Symbol">:</a> <a id="5106" href="/latest/Connectives/#5072" class="Datatype">Tri</a>
   <a id="Tri.cc"></a><a id="5112" href="/latest/Connectives/#5112" class="InductiveConstructor">cc</a> <a id="5115" class="Symbol">:</a> <a id="5117" href="/latest/Connectives/#5072" class="Datatype">Tri</a>
 </pre>
-<p>Then the type <code class="highlighter-rouge">Bool × Tri</code> has six members:</p>
+<p>Then the type <code class="language-plaintext highlighter-rouge">Bool × Tri</code> has six members:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>⟨ true  , aa ⟩    ⟨ true  , bb ⟩    ⟨ true ,  cc ⟩
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>⟨ true  , aa ⟩    ⟨ true  , bb ⟩    ⟨ true ,  cc ⟩
 ⟨ false , aa ⟩    ⟨ false , bb ⟩    ⟨ false , cc ⟩
 </code></pre></div></div>
 
 <p>For example, the following function enumerates all
-possible arguments of type <code class="highlighter-rouge">Bool × Tri</code>:</p>
+possible arguments of type <code class="language-plaintext highlighter-rouge">Bool × Tri</code>:</p>
 <pre class="Agda"><a id="×-count"></a><a id="5377" href="/latest/Connectives/#5377" class="Function">×-count</a> <a id="5385" class="Symbol">:</a> <a id="5387" href="/latest/Connectives/#5019" class="Datatype">Bool</a> <a id="5392" href="/latest/Connectives/#1292" class="Datatype Operator">×</a> <a id="5394" href="/latest/Connectives/#5072" class="Datatype">Tri</a> <a id="5398" class="Symbol">→</a> <a id="5400" href="Agda.Builtin.Nat.html#165" class="Datatype">ℕ</a>
 <a id="5402" href="/latest/Connectives/#5377" class="Function">×-count</a> <a id="5410" href="/latest/Connectives/#1323" class="InductiveConstructor Operator">⟨</a> <a id="5412" href="/latest/Connectives/#5038" class="InductiveConstructor">true</a>  <a id="5418" href="/latest/Connectives/#1323" class="InductiveConstructor Operator">,</a> <a id="5420" href="/latest/Connectives/#5090" class="InductiveConstructor">aa</a> <a id="5423" href="/latest/Connectives/#1323" class="InductiveConstructor Operator">⟩</a>  <a id="5426" class="Symbol">=</a>  <a id="5429" class="Number">1</a>
 <a id="5431" href="/latest/Connectives/#5377" class="Function">×-count</a> <a id="5439" href="/latest/Connectives/#1323" class="InductiveConstructor Operator">⟨</a> <a id="5441" href="/latest/Connectives/#5038" class="InductiveConstructor">true</a>  <a id="5447" href="/latest/Connectives/#1323" class="InductiveConstructor Operator">,</a> <a id="5449" href="/latest/Connectives/#5101" class="InductiveConstructor">bb</a> <a id="5452" href="/latest/Connectives/#1323" class="InductiveConstructor Operator">⟩</a>  <a id="5455" class="Symbol">=</a>  <a id="5458" class="Number">2</a>
@@ -235,11 +235,11 @@ that there is a sense in which it is commutative and associative.  In
 particular, product is commutative and associative <em>up to
 isomorphism</em>.</p>
 
-<p>For commutativity, the <code class="highlighter-rouge">to</code> function swaps a pair, taking <code class="highlighter-rouge">⟨ x , y ⟩</code> to
-<code class="highlighter-rouge">⟨ y , x ⟩</code>, and the <code class="highlighter-rouge">from</code> function does the same (up to renaming).
-Instantiating the patterns correctly in <code class="highlighter-rouge">from∘to</code> and <code class="highlighter-rouge">to∘from</code> is essential.
-Replacing the definition of <code class="highlighter-rouge">from∘to</code> by <code class="highlighter-rouge">λ w → refl</code> will not work;
-and similarly for <code class="highlighter-rouge">to∘from</code>:</p>
+<p>For commutativity, the <code class="language-plaintext highlighter-rouge">to</code> function swaps a pair, taking <code class="language-plaintext highlighter-rouge">⟨ x , y ⟩</code> to
+<code class="language-plaintext highlighter-rouge">⟨ y , x ⟩</code>, and the <code class="language-plaintext highlighter-rouge">from</code> function does the same (up to renaming).
+Instantiating the patterns correctly in <code class="language-plaintext highlighter-rouge">from∘to</code> and <code class="language-plaintext highlighter-rouge">to∘from</code> is essential.
+Replacing the definition of <code class="language-plaintext highlighter-rouge">from∘to</code> by <code class="language-plaintext highlighter-rouge">λ w → refl</code> will not work;
+and similarly for <code class="language-plaintext highlighter-rouge">to∘from</code>:</p>
 <pre class="Agda"><a id="×-comm"></a><a id="6113" href="/latest/Connectives/#6113" class="Function">×-comm</a> <a id="6120" class="Symbol">:</a> <a id="6122" class="Symbol">∀</a> <a id="6124" class="Symbol">{</a><a id="6125" href="/latest/Connectives/#6125" class="Bound">A</a> <a id="6127" href="/latest/Connectives/#6127" class="Bound">B</a> <a id="6129" class="Symbol">:</a> <a id="6131" class="PrimitiveType">Set</a><a id="6134" class="Symbol">}</a> <a id="6136" class="Symbol">→</a> <a id="6138" href="/latest/Connectives/#6125" class="Bound">A</a> <a id="6140" href="/latest/Connectives/#1292" class="Datatype Operator">×</a> <a id="6142" href="/latest/Connectives/#6127" class="Bound">B</a> <a id="6144" href="/latest/Isomorphism/#4365" class="Record Operator">≃</a> <a id="6146" href="/latest/Connectives/#6127" class="Bound">B</a> <a id="6148" href="/latest/Connectives/#1292" class="Datatype Operator">×</a> <a id="6150" href="/latest/Connectives/#6125" class="Bound">A</a>
 <a id="6152" href="/latest/Connectives/#6113" class="Function">×-comm</a> <a id="6159" class="Symbol">=</a>
   <a id="6163" class="Keyword">record</a>
@@ -252,19 +252,19 @@ and similarly for <code class="highlighter-rouge">to∘from</code>:</p>
 <p>Being <em>commutative</em> is different from being <em>commutative up to
 isomorphism</em>.  Compare the two statements:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>m * n ≡ n * m
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>m * n ≡ n * m
 A × B ≃ B × A
 </code></pre></div></div>
 
-<p>In the first case, we might have that <code class="highlighter-rouge">m</code> is <code class="highlighter-rouge">2</code> and <code class="highlighter-rouge">n</code> is <code class="highlighter-rouge">3</code>, and
-both <code class="highlighter-rouge">m * n</code> and <code class="highlighter-rouge">n * m</code> are equal to <code class="highlighter-rouge">6</code>.  In the second case, we
-might have that <code class="highlighter-rouge">A</code> is <code class="highlighter-rouge">Bool</code> and <code class="highlighter-rouge">B</code> is <code class="highlighter-rouge">Tri</code>, and <code class="highlighter-rouge">Bool × Tri</code> is
-<em>not</em> the same as <code class="highlighter-rouge">Tri × Bool</code>.  But there is an isomorphism between
-the two types.  For instance, <code class="highlighter-rouge">⟨ true , aa ⟩</code>, which is a member of the
-former, corresponds to <code class="highlighter-rouge">⟨ aa , true ⟩</code>, which is a member of the latter.</p>
+<p>In the first case, we might have that <code class="language-plaintext highlighter-rouge">m</code> is <code class="language-plaintext highlighter-rouge">2</code> and <code class="language-plaintext highlighter-rouge">n</code> is <code class="language-plaintext highlighter-rouge">3</code>, and
+both <code class="language-plaintext highlighter-rouge">m * n</code> and <code class="language-plaintext highlighter-rouge">n * m</code> are equal to <code class="language-plaintext highlighter-rouge">6</code>.  In the second case, we
+might have that <code class="language-plaintext highlighter-rouge">A</code> is <code class="language-plaintext highlighter-rouge">Bool</code> and <code class="language-plaintext highlighter-rouge">B</code> is <code class="language-plaintext highlighter-rouge">Tri</code>, and <code class="language-plaintext highlighter-rouge">Bool × Tri</code> is
+<em>not</em> the same as <code class="language-plaintext highlighter-rouge">Tri × Bool</code>.  But there is an isomorphism between
+the two types.  For instance, <code class="language-plaintext highlighter-rouge">⟨ true , aa ⟩</code>, which is a member of the
+former, corresponds to <code class="language-plaintext highlighter-rouge">⟨ aa , true ⟩</code>, which is a member of the latter.</p>
 
-<p>For associativity, the <code class="highlighter-rouge">to</code> function reassociates two uses of pairing,
-taking <code class="highlighter-rouge">⟨ ⟨ x , y ⟩ , z ⟩</code> to <code class="highlighter-rouge">⟨ x , ⟨ y , z ⟩ ⟩</code>, and the <code class="highlighter-rouge">from</code> function does
+<p>For associativity, the <code class="language-plaintext highlighter-rouge">to</code> function reassociates two uses of pairing,
+taking <code class="language-plaintext highlighter-rouge">⟨ ⟨ x , y ⟩ , z ⟩</code> to <code class="language-plaintext highlighter-rouge">⟨ x , ⟨ y , z ⟩ ⟩</code>, and the <code class="language-plaintext highlighter-rouge">from</code> function does
 the inverse.  Again, the evidence of left and right inverse requires
 matching against a suitable pattern to enable simplification:</p>
 <pre class="Agda"><a id="×-assoc"></a><a id="7200" href="/latest/Connectives/#7200" class="Function">×-assoc</a> <a id="7208" class="Symbol">:</a> <a id="7210" class="Symbol">∀</a> <a id="7212" class="Symbol">{</a><a id="7213" href="/latest/Connectives/#7213" class="Bound">A</a> <a id="7215" href="/latest/Connectives/#7215" class="Bound">B</a> <a id="7217" href="/latest/Connectives/#7217" class="Bound">C</a> <a id="7219" class="Symbol">:</a> <a id="7221" class="PrimitiveType">Set</a><a id="7224" class="Symbol">}</a> <a id="7226" class="Symbol">→</a> <a id="7228" class="Symbol">(</a><a id="7229" href="/latest/Connectives/#7213" class="Bound">A</a> <a id="7231" href="/latest/Connectives/#1292" class="Datatype Operator">×</a> <a id="7233" href="/latest/Connectives/#7215" class="Bound">B</a><a id="7234" class="Symbol">)</a> <a id="7236" href="/latest/Connectives/#1292" class="Datatype Operator">×</a> <a id="7238" href="/latest/Connectives/#7217" class="Bound">C</a> <a id="7240" href="/latest/Isomorphism/#4365" class="Record Operator">≃</a> <a id="7242" href="/latest/Connectives/#7213" class="Bound">A</a> <a id="7244" href="/latest/Connectives/#1292" class="Datatype Operator">×</a> <a id="7246" class="Symbol">(</a><a id="7247" href="/latest/Connectives/#7215" class="Bound">B</a> <a id="7249" href="/latest/Connectives/#1292" class="Datatype Operator">×</a> <a id="7251" href="/latest/Connectives/#7217" class="Bound">C</a><a id="7252" class="Symbol">)</a>
@@ -279,26 +279,26 @@ matching against a suitable pattern to enable simplification:</p>
 <p>Being <em>associative</em> is not the same as being <em>associative
 up to isomorphism</em>.  Compare the two statements:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(m * n) * p ≡ m * (n * p)
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(m * n) * p ≡ m * (n * p)
 (A × B) × C ≃ A × (B × C)
 </code></pre></div></div>
 
-<p>For example, the type <code class="highlighter-rouge">(ℕ × Bool) × Tri</code> is <em>not</em> the same as <code class="highlighter-rouge">ℕ ×
+<p>For example, the type <code class="language-plaintext highlighter-rouge">(ℕ × Bool) × Tri</code> is <em>not</em> the same as <code class="language-plaintext highlighter-rouge">ℕ ×
 (Bool × Tri)</code>. But there is an isomorphism between the two types. For
-instance <code class="highlighter-rouge">⟨ ⟨ 1 , true ⟩ , aa ⟩</code>, which is a member of the former,
-corresponds to <code class="highlighter-rouge">⟨ 1 , ⟨ true , aa ⟩ ⟩</code>, which is a member of the latter.</p>
+instance <code class="language-plaintext highlighter-rouge">⟨ ⟨ 1 , true ⟩ , aa ⟩</code>, which is a member of the former,
+corresponds to <code class="language-plaintext highlighter-rouge">⟨ 1 , ⟨ true , aa ⟩ ⟩</code>, which is a member of the latter.</p>
 
-<h4 id="exercise--recommended">Exercise <code class="highlighter-rouge">⇔≃×</code> (recommended)</h4>
+<h4 id="exercise--recommended">Exercise <code class="language-plaintext highlighter-rouge">⇔≃×</code> (recommended)</h4>
 
-<p>Show that <code class="highlighter-rouge">A ⇔ B</code> as defined <a href="/latest/Isomorphism/#iff">earlier</a>
-is isomorphic to <code class="highlighter-rouge">(A → B) × (B → A)</code>.</p>
+<p>Show that <code class="language-plaintext highlighter-rouge">A ⇔ B</code> as defined <a href="/latest/Isomorphism/#iff">earlier</a>
+is isomorphic to <code class="language-plaintext highlighter-rouge">(A → B) × (B → A)</code>.</p>
 
 <pre class="Agda"><a id="8095" class="Comment">-- Your code goes here</a>
 </pre>
 
 <h2 id="truth-is-unit">Truth is unit</h2>
 
-<p>Truth <code class="highlighter-rouge">⊤</code> always holds. We formalise this idea by
+<p>Truth <code class="language-plaintext highlighter-rouge">⊤</code> always holds. We formalise this idea by
 declaring a suitable record type:</p>
 <pre class="Agda"><a id="8230" class="Keyword">data</a> <a id="⊤"></a><a id="8235" href="/latest/Connectives/#8235" class="Datatype">⊤</a> <a id="8237" class="Symbol">:</a> <a id="8239" class="PrimitiveType">Set</a> <a id="8243" class="Keyword">where</a>
 
@@ -306,50 +306,50 @@ declaring a suitable record type:</p>
     <a id="8261" class="Comment">--</a>
     <a id="8268" href="/latest/Connectives/#8235" class="Datatype">⊤</a>
 </pre>
-<p>Evidence that <code class="highlighter-rouge">⊤</code> holds is of the form <code class="highlighter-rouge">tt</code>.</p>
+<p>Evidence that <code class="language-plaintext highlighter-rouge">⊤</code> holds is of the form <code class="language-plaintext highlighter-rouge">tt</code>.</p>
 
 <p>There is an introduction rule, but no elimination rule.
-Given evidence that <code class="highlighter-rouge">⊤</code> holds, there is nothing more of interest we
+Given evidence that <code class="language-plaintext highlighter-rouge">⊤</code> holds, there is nothing more of interest we
 can conclude.  Since truth always holds, knowing that it holds tells
 us nothing new.</p>
 
-<p>The nullary case of <code class="highlighter-rouge">η-×</code> is <code class="highlighter-rouge">η-⊤</code>, which asserts that any
-value of type <code class="highlighter-rouge">⊤</code> must be equal to <code class="highlighter-rouge">tt</code>:</p>
+<p>The nullary case of <code class="language-plaintext highlighter-rouge">η-×</code> is <code class="language-plaintext highlighter-rouge">η-⊤</code>, which asserts that any
+value of type <code class="language-plaintext highlighter-rouge">⊤</code> must be equal to <code class="language-plaintext highlighter-rouge">tt</code>:</p>
 <pre class="Agda"><a id="η-⊤"></a><a id="8634" href="/latest/Connectives/#8634" class="Function">η-⊤</a> <a id="8638" class="Symbol">:</a> <a id="8640" class="Symbol">∀</a> <a id="8642" class="Symbol">(</a><a id="8643" href="/latest/Connectives/#8643" class="Bound">w</a> <a id="8645" class="Symbol">:</a> <a id="8647" href="/latest/Connectives/#8235" class="Datatype">⊤</a><a id="8648" class="Symbol">)</a> <a id="8650" class="Symbol">→</a> <a id="8652" href="/latest/Connectives/#8252" class="InductiveConstructor">tt</a> <a id="8655" href="Agda.Builtin.Equality.html#125" class="Datatype Operator">≡</a> <a id="8657" href="/latest/Connectives/#8643" class="Bound">w</a>
 <a id="8659" href="/latest/Connectives/#8634" class="Function">η-⊤</a> <a id="8663" href="/latest/Connectives/#8252" class="InductiveConstructor">tt</a> <a id="8666" class="Symbol">=</a> <a id="8668" href="Agda.Builtin.Equality.html#182" class="InductiveConstructor">refl</a>
 </pre>
 <p>The pattern matching on the left-hand side is essential. Replacing
-<code class="highlighter-rouge">w</code> by <code class="highlighter-rouge">tt</code> allows both sides of the propositional equality to
+<code class="language-plaintext highlighter-rouge">w</code> by <code class="language-plaintext highlighter-rouge">tt</code> allows both sides of the propositional equality to
 simplify to the same term.</p>
 
 <p>Alternatively, we can declare truth as an empty record:</p>
 <pre class="Agda"><a id="8895" class="Keyword">record</a> <a id="⊤′"></a><a id="8902" href="/latest/Connectives/#8902" class="Record">⊤′</a> <a id="8905" class="Symbol">:</a> <a id="8907" class="PrimitiveType">Set</a> <a id="8911" class="Keyword">where</a>
   <a id="8919" class="Keyword">constructor</a> <a id="⊤′.tt′"></a><a id="8931" href="/latest/Connectives/#8931" class="InductiveConstructor">tt′</a>
 </pre>
-<p>The record construction <code class="highlighter-rouge">record {}</code> corresponds to the term <code class="highlighter-rouge">tt</code>. The
-constructor declaration allows us to write <code class="highlighter-rouge">tt′</code>.</p>
+<p>The record construction <code class="language-plaintext highlighter-rouge">record {}</code> corresponds to the term <code class="language-plaintext highlighter-rouge">tt</code>. The
+constructor declaration allows us to write <code class="language-plaintext highlighter-rouge">tt′</code>.</p>
 
-<p>As with the product, the data type <code class="highlighter-rouge">⊤</code> and the record type <code class="highlighter-rouge">⊤′</code> behave
+<p>As with the product, the data type <code class="language-plaintext highlighter-rouge">⊤</code> and the record type <code class="language-plaintext highlighter-rouge">⊤′</code> behave
 similarly, but η-equality holds <em>by definition</em> for the record type. While
-proving <code class="highlighter-rouge">η-⊤′</code>, we do not have to pattern match on <code class="highlighter-rouge">w</code>—Agda <em>knows</em> it is
-equal to <code class="highlighter-rouge">tt′</code>:</p>
+proving <code class="language-plaintext highlighter-rouge">η-⊤′</code>, we do not have to pattern match on <code class="language-plaintext highlighter-rouge">w</code>—Agda <em>knows</em> it is
+equal to <code class="language-plaintext highlighter-rouge">tt′</code>:</p>
 <pre class="Agda"><a id="η-⊤′"></a><a id="9302" href="/latest/Connectives/#9302" class="Function">η-⊤′</a> <a id="9307" class="Symbol">:</a> <a id="9309" class="Symbol">∀</a> <a id="9311" class="Symbol">(</a><a id="9312" href="/latest/Connectives/#9312" class="Bound">w</a> <a id="9314" class="Symbol">:</a> <a id="9316" href="/latest/Connectives/#8902" class="Record">⊤′</a><a id="9318" class="Symbol">)</a> <a id="9320" class="Symbol">→</a> <a id="9322" href="/latest/Connectives/#8931" class="InductiveConstructor">tt′</a> <a id="9326" href="Agda.Builtin.Equality.html#125" class="Datatype Operator">≡</a> <a id="9328" href="/latest/Connectives/#9312" class="Bound">w</a>
 <a id="9330" href="/latest/Connectives/#9302" class="Function">η-⊤′</a> <a id="9335" href="/latest/Connectives/#9335" class="Bound">w</a> <a id="9337" class="Symbol">=</a> <a id="9339" href="Agda.Builtin.Equality.html#182" class="InductiveConstructor">refl</a>
 </pre>
-<p>Agda knows that <em>any</em> value of type <code class="highlighter-rouge">⊤′</code> must be <code class="highlighter-rouge">tt′</code>, so any time we need a
-value of type <code class="highlighter-rouge">⊤′</code>, we can tell Agda to figure it out:</p>
+<p>Agda knows that <em>any</em> value of type <code class="language-plaintext highlighter-rouge">⊤′</code> must be <code class="language-plaintext highlighter-rouge">tt′</code>, so any time we need a
+value of type <code class="language-plaintext highlighter-rouge">⊤′</code>, we can tell Agda to figure it out:</p>
 <pre class="Agda"><a id="truth′"></a><a id="9485" href="/latest/Connectives/#9485" class="Function">truth′</a> <a id="9492" class="Symbol">:</a> <a id="9494" href="/latest/Connectives/#8902" class="Record">⊤′</a>
 <a id="9497" href="/latest/Connectives/#9485" class="Function">truth′</a> <a id="9504" class="Symbol">=</a> <a id="9506" class="Symbol">_</a>
 </pre>
-<p>We refer to <code class="highlighter-rouge">⊤</code> as the <em>unit</em> type. And, indeed,
-type <code class="highlighter-rouge">⊤</code> has exactly one member, <code class="highlighter-rouge">tt</code>.  For example, the following
-function enumerates all possible arguments of type <code class="highlighter-rouge">⊤</code>:</p>
+<p>We refer to <code class="language-plaintext highlighter-rouge">⊤</code> as the <em>unit</em> type. And, indeed,
+type <code class="language-plaintext highlighter-rouge">⊤</code> has exactly one member, <code class="language-plaintext highlighter-rouge">tt</code>.  For example, the following
+function enumerates all possible arguments of type <code class="language-plaintext highlighter-rouge">⊤</code>:</p>
 <pre class="Agda"><a id="⊤-count"></a><a id="9689" href="/latest/Connectives/#9689" class="Function">⊤-count</a> <a id="9697" class="Symbol">:</a> <a id="9699" href="/latest/Connectives/#8235" class="Datatype">⊤</a> <a id="9701" class="Symbol">→</a> <a id="9703" href="Agda.Builtin.Nat.html#165" class="Datatype">ℕ</a>
 <a id="9705" href="/latest/Connectives/#9689" class="Function">⊤-count</a> <a id="9713" href="/latest/Connectives/#8252" class="InductiveConstructor">tt</a> <a id="9716" class="Symbol">=</a> <a id="9718" class="Number">1</a>
 </pre>
 <p>For numbers, one is the identity of multiplication. Correspondingly,
 unit is the identity of product <em>up to isomorphism</em>.  For left
-identity, the <code class="highlighter-rouge">to</code> function takes <code class="highlighter-rouge">⟨ tt , x ⟩</code> to <code class="highlighter-rouge">x</code>, and the <code class="highlighter-rouge">from</code>
+identity, the <code class="language-plaintext highlighter-rouge">to</code> function takes <code class="language-plaintext highlighter-rouge">⟨ tt , x ⟩</code> to <code class="language-plaintext highlighter-rouge">x</code>, and the <code class="language-plaintext highlighter-rouge">from</code>
 function does the inverse.  The evidence of left inverse requires
 matching against a suitable pattern to enable simplification:</p>
 <pre class="Agda"><a id="⊤-identityˡ"></a><a id="10059" href="/latest/Connectives/#10059" class="Function">⊤-identityˡ</a> <a id="10071" class="Symbol">:</a> <a id="10073" class="Symbol">∀</a> <a id="10075" class="Symbol">{</a><a id="10076" href="/latest/Connectives/#10076" class="Bound">A</a> <a id="10078" class="Symbol">:</a> <a id="10080" class="PrimitiveType">Set</a><a id="10083" class="Symbol">}</a> <a id="10085" class="Symbol">→</a> <a id="10087" href="/latest/Connectives/#8235" class="Datatype">⊤</a> <a id="10089" href="/latest/Connectives/#1292" class="Datatype Operator">×</a> <a id="10091" href="/latest/Connectives/#10076" class="Bound">A</a> <a id="10093" href="/latest/Isomorphism/#4365" class="Record Operator">≃</a> <a id="10095" href="/latest/Connectives/#10076" class="Bound">A</a>
@@ -364,16 +364,16 @@ matching against a suitable pattern to enable simplification:</p>
 <p>Having an <em>identity</em> is different from having an identity
 <em>up to isomorphism</em>.  Compare the two statements:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1 * m ≡ m
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1 * m ≡ m
 ⊤ × A ≃ A
 </code></pre></div></div>
 
-<p>In the first case, we might have that <code class="highlighter-rouge">m</code> is <code class="highlighter-rouge">2</code>, and both
-<code class="highlighter-rouge">1 * m</code> and <code class="highlighter-rouge">m</code> are equal to <code class="highlighter-rouge">2</code>.  In the second
-case, we might have that <code class="highlighter-rouge">A</code> is <code class="highlighter-rouge">Bool</code>, and <code class="highlighter-rouge">⊤ × Bool</code> is <em>not</em> the
-same as <code class="highlighter-rouge">Bool</code>.  But there is an isomorphism between the two types.
-For instance, <code class="highlighter-rouge">⟨ tt , true ⟩</code>, which is a member of the former,
-corresponds to <code class="highlighter-rouge">true</code>, which is a member of the latter.</p>
+<p>In the first case, we might have that <code class="language-plaintext highlighter-rouge">m</code> is <code class="language-plaintext highlighter-rouge">2</code>, and both
+<code class="language-plaintext highlighter-rouge">1 * m</code> and <code class="language-plaintext highlighter-rouge">m</code> are equal to <code class="language-plaintext highlighter-rouge">2</code>.  In the second
+case, we might have that <code class="language-plaintext highlighter-rouge">A</code> is <code class="language-plaintext highlighter-rouge">Bool</code>, and <code class="language-plaintext highlighter-rouge">⊤ × Bool</code> is <em>not</em> the
+same as <code class="language-plaintext highlighter-rouge">Bool</code>.  But there is an isomorphism between the two types.
+For instance, <code class="language-plaintext highlighter-rouge">⟨ tt , true ⟩</code>, which is a member of the former,
+corresponds to <code class="language-plaintext highlighter-rouge">true</code>, which is a member of the latter.</p>
 
 <p>Right identity follows from commutativity of product and left identity:</p>
 <pre class="Agda"><a id="⊤-identityʳ"></a><a id="10851" href="/latest/Connectives/#10851" class="Function">⊤-identityʳ</a> <a id="10863" class="Symbol">:</a> <a id="10865" class="Symbol">∀</a> <a id="10867" class="Symbol">{</a><a id="10868" href="/latest/Connectives/#10868" class="Bound">A</a> <a id="10870" class="Symbol">:</a> <a id="10872" class="PrimitiveType">Set</a><a id="10875" class="Symbol">}</a> <a id="10877" class="Symbol">→</a> <a id="10879" class="Symbol">(</a><a id="10880" href="/latest/Connectives/#10868" class="Bound">A</a> <a id="10882" href="/latest/Connectives/#1292" class="Datatype Operator">×</a> <a id="10884" href="/latest/Connectives/#8235" class="Datatype">⊤</a><a id="10885" class="Symbol">)</a> <a id="10887" href="/latest/Isomorphism/#4365" class="Record Operator">≃</a> <a id="10889" href="/latest/Connectives/#10868" class="Bound">A</a>
@@ -391,8 +391,8 @@ equality.</p>
 
 <h2 id="disjunction-is-sum">Disjunction is sum</h2>
 
-<p>Given two propositions <code class="highlighter-rouge">A</code> and <code class="highlighter-rouge">B</code>, the disjunction <code class="highlighter-rouge">A ⊎ B</code> holds
-if either <code class="highlighter-rouge">A</code> holds or <code class="highlighter-rouge">B</code> holds.  We formalise this idea by
+<p>Given two propositions <code class="language-plaintext highlighter-rouge">A</code> and <code class="language-plaintext highlighter-rouge">B</code>, the disjunction <code class="language-plaintext highlighter-rouge">A ⊎ B</code> holds
+if either <code class="language-plaintext highlighter-rouge">A</code> holds or <code class="language-plaintext highlighter-rouge">B</code> holds.  We formalise this idea by
 declaring a suitable inductive type:</p>
 <pre class="Agda"><a id="11265" class="Keyword">data</a> <a id="_⊎_"></a><a id="11270" href="/latest/Connectives/#11270" class="Datatype Operator">_⊎_</a> <a id="11274" class="Symbol">(</a><a id="11275" href="/latest/Connectives/#11275" class="Bound">A</a> <a id="11277" href="/latest/Connectives/#11277" class="Bound">B</a> <a id="11279" class="Symbol">:</a> <a id="11281" class="PrimitiveType">Set</a><a id="11284" class="Symbol">)</a> <a id="11286" class="Symbol">:</a> <a id="11288" class="PrimitiveType">Set</a> <a id="11292" class="Keyword">where</a>
 
@@ -406,12 +406,12 @@ declaring a suitable inductive type:</p>
       <a id="11364" class="Comment">-----</a>
     <a id="11374" class="Symbol">→</a> <a id="11376" href="/latest/Connectives/#11275" class="Bound">A</a> <a id="11378" href="/latest/Connectives/#11270" class="Datatype Operator">⊎</a> <a id="11380" href="/latest/Connectives/#11277" class="Bound">B</a>
 </pre>
-<p>Evidence that <code class="highlighter-rouge">A ⊎ B</code> holds is either of the form <code class="highlighter-rouge">inj₁ M</code>, where <code class="highlighter-rouge">M</code>
-provides evidence that <code class="highlighter-rouge">A</code> holds, or <code class="highlighter-rouge">inj₂ N</code>, where <code class="highlighter-rouge">N</code> provides
-evidence that <code class="highlighter-rouge">B</code> holds.</p>
+<p>Evidence that <code class="language-plaintext highlighter-rouge">A ⊎ B</code> holds is either of the form <code class="language-plaintext highlighter-rouge">inj₁ M</code>, where <code class="language-plaintext highlighter-rouge">M</code>
+provides evidence that <code class="language-plaintext highlighter-rouge">A</code> holds, or <code class="language-plaintext highlighter-rouge">inj₂ N</code>, where <code class="language-plaintext highlighter-rouge">N</code> provides
+evidence that <code class="language-plaintext highlighter-rouge">B</code> holds.</p>
 
-<p>Given evidence that <code class="highlighter-rouge">A → C</code> and <code class="highlighter-rouge">B → C</code> both hold, then given
-evidence that <code class="highlighter-rouge">A ⊎ B</code> holds we can conclude that <code class="highlighter-rouge">C</code> holds:</p>
+<p>Given evidence that <code class="language-plaintext highlighter-rouge">A → C</code> and <code class="language-plaintext highlighter-rouge">B → C</code> both hold, then given
+evidence that <code class="language-plaintext highlighter-rouge">A ⊎ B</code> holds we can conclude that <code class="language-plaintext highlighter-rouge">C</code> holds:</p>
 <pre class="Agda"><a id="case-⊎"></a><a id="11674" href="/latest/Connectives/#11674" class="Function">case-⊎</a> <a id="11681" class="Symbol">:</a> <a id="11683" class="Symbol">∀</a> <a id="11685" class="Symbol">{</a><a id="11686" href="/latest/Connectives/#11686" class="Bound">A</a> <a id="11688" href="/latest/Connectives/#11688" class="Bound">B</a> <a id="11690" href="/latest/Connectives/#11690" class="Bound">C</a> <a id="11692" class="Symbol">:</a> <a id="11694" class="PrimitiveType">Set</a><a id="11697" class="Symbol">}</a>
   <a id="11701" class="Symbol">→</a> <a id="11703" class="Symbol">(</a><a id="11704" href="/latest/Connectives/#11686" class="Bound">A</a> <a id="11706" class="Symbol">→</a> <a id="11708" href="/latest/Connectives/#11690" class="Bound">C</a><a id="11709" class="Symbol">)</a>
   <a id="11713" class="Symbol">→</a> <a id="11715" class="Symbol">(</a><a id="11716" href="/latest/Connectives/#11688" class="Bound">B</a> <a id="11718" class="Symbol">→</a> <a id="11720" href="/latest/Connectives/#11690" class="Bound">C</a><a id="11721" class="Symbol">)</a>
@@ -421,17 +421,17 @@ evidence that <code class="highlighter-rouge">A ⊎ B</code> holds we can conclu
 <a id="11755" href="/latest/Connectives/#11674" class="Function">case-⊎</a> <a id="11762" href="/latest/Connectives/#11762" class="Bound">f</a> <a id="11764" href="/latest/Connectives/#11764" class="Bound">g</a> <a id="11766" class="Symbol">(</a><a id="11767" href="/latest/Connectives/#11301" class="InductiveConstructor">inj₁</a> <a id="11772" href="/latest/Connectives/#11772" class="Bound">x</a><a id="11773" class="Symbol">)</a> <a id="11775" class="Symbol">=</a> <a id="11777" href="/latest/Connectives/#11762" class="Bound">f</a> <a id="11779" href="/latest/Connectives/#11772" class="Bound">x</a>
 <a id="11781" href="/latest/Connectives/#11674" class="Function">case-⊎</a> <a id="11788" href="/latest/Connectives/#11788" class="Bound">f</a> <a id="11790" href="/latest/Connectives/#11790" class="Bound">g</a> <a id="11792" class="Symbol">(</a><a id="11793" href="/latest/Connectives/#11343" class="InductiveConstructor">inj₂</a> <a id="11798" href="/latest/Connectives/#11798" class="Bound">y</a><a id="11799" class="Symbol">)</a> <a id="11801" class="Symbol">=</a> <a id="11803" href="/latest/Connectives/#11790" class="Bound">g</a> <a id="11805" href="/latest/Connectives/#11798" class="Bound">y</a>
 </pre>
-<p>Pattern matching against <code class="highlighter-rouge">inj₁</code> and <code class="highlighter-rouge">inj₂</code> is typical of how we exploit
+<p>Pattern matching against <code class="language-plaintext highlighter-rouge">inj₁</code> and <code class="language-plaintext highlighter-rouge">inj₂</code> is typical of how we exploit
 evidence that a disjunction holds.</p>
 
-<p>When <code class="highlighter-rouge">inj₁</code> and <code class="highlighter-rouge">inj₂</code> appear on the right-hand side of an equation we
+<p>When <code class="language-plaintext highlighter-rouge">inj₁</code> and <code class="language-plaintext highlighter-rouge">inj₂</code> appear on the right-hand side of an equation we
 refer to them as <em>constructors</em>, and when they appear on the
 left-hand side we refer to them as <em>destructors</em>.  We also refer to
-<code class="highlighter-rouge">case-⊎</code> as a destructor, since it plays a similar role.  Other
-terminology refers to <code class="highlighter-rouge">inj₁</code> and <code class="highlighter-rouge">inj₂</code> as <em>introducing</em> a
-disjunction, and to <code class="highlighter-rouge">case-⊎</code> as <em>eliminating</em> a disjunction; indeed
-the former are sometimes given the names <code class="highlighter-rouge">⊎-I₁</code> and <code class="highlighter-rouge">⊎-I₂</code> and the
-latter the name <code class="highlighter-rouge">⊎-E</code>.</p>
+<code class="language-plaintext highlighter-rouge">case-⊎</code> as a destructor, since it plays a similar role.  Other
+terminology refers to <code class="language-plaintext highlighter-rouge">inj₁</code> and <code class="language-plaintext highlighter-rouge">inj₂</code> as <em>introducing</em> a
+disjunction, and to <code class="language-plaintext highlighter-rouge">case-⊎</code> as <em>eliminating</em> a disjunction; indeed
+the former are sometimes given the names <code class="language-plaintext highlighter-rouge">⊎-I₁</code> and <code class="language-plaintext highlighter-rouge">⊎-I₂</code> and the
+latter the name <code class="language-plaintext highlighter-rouge">⊎-E</code>.</p>
 
 <p>Applying the destructor to each of the constructors is the identity:</p>
 <pre class="Agda"><a id="η-⊎"></a><a id="12474" href="/latest/Connectives/#12474" class="Function">η-⊎</a> <a id="12478" class="Symbol">:</a> <a id="12480" class="Symbol">∀</a> <a id="12482" class="Symbol">{</a><a id="12483" href="/latest/Connectives/#12483" class="Bound">A</a> <a id="12485" href="/latest/Connectives/#12485" class="Bound">B</a> <a id="12487" class="Symbol">:</a> <a id="12489" class="PrimitiveType">Set</a><a id="12492" class="Symbol">}</a> <a id="12494" class="Symbol">(</a><a id="12495" href="/latest/Connectives/#12495" class="Bound">w</a> <a id="12497" class="Symbol">:</a> <a id="12499" href="/latest/Connectives/#12483" class="Bound">A</a> <a id="12501" href="/latest/Connectives/#11270" class="Datatype Operator">⊎</a> <a id="12503" href="/latest/Connectives/#12485" class="Bound">B</a><a id="12504" class="Symbol">)</a> <a id="12506" class="Symbol">→</a> <a id="12508" href="/latest/Connectives/#11674" class="Function">case-⊎</a> <a id="12515" href="/latest/Connectives/#11301" class="InductiveConstructor">inj₁</a> <a id="12520" href="/latest/Connectives/#11343" class="InductiveConstructor">inj₂</a> <a id="12525" href="/latest/Connectives/#12495" class="Bound">w</a> <a id="12527" href="Agda.Builtin.Equality.html#125" class="Datatype Operator">≡</a> <a id="12529" href="/latest/Connectives/#12495" class="Bound">w</a>
@@ -445,34 +445,34 @@ latter the name <code class="highlighter-rouge">⊎-E</code>.</p>
 <a id="12777" href="/latest/Connectives/#12658" class="Function">uniq-⊎</a> <a id="12784" href="/latest/Connectives/#12784" class="Bound">h</a> <a id="12786" class="Symbol">(</a><a id="12787" href="/latest/Connectives/#11343" class="InductiveConstructor">inj₂</a> <a id="12792" href="/latest/Connectives/#12792" class="Bound">y</a><a id="12793" class="Symbol">)</a> <a id="12795" class="Symbol">=</a> <a id="12797" href="Agda.Builtin.Equality.html#182" class="InductiveConstructor">refl</a>
 </pre>
 <p>The pattern matching on the left-hand side is essential.  Replacing
-<code class="highlighter-rouge">w</code> by <code class="highlighter-rouge">inj₁ x</code> allows both sides of the propositional equality to
-simplify to the same term, and similarly for <code class="highlighter-rouge">inj₂ y</code>.</p>
+<code class="language-plaintext highlighter-rouge">w</code> by <code class="language-plaintext highlighter-rouge">inj₁ x</code> allows both sides of the propositional equality to
+simplify to the same term, and similarly for <code class="language-plaintext highlighter-rouge">inj₂ y</code>.</p>
 
 <p>We set the precedence of disjunction so that it binds less tightly
 than any other declared operator:</p>
 <pre class="Agda"><a id="13102" class="Keyword">infixr</a> <a id="13109" class="Number">1</a> <a id="13111" href="/latest/Connectives/#11270" class="Datatype Operator">_⊎_</a>
 </pre>
-<p>Thus, <code class="highlighter-rouge">A × C ⊎ B × C</code> parses as <code class="highlighter-rouge">(A × C) ⊎ (B × C)</code>.</p>
+<p>Thus, <code class="language-plaintext highlighter-rouge">A × C ⊎ B × C</code> parses as <code class="language-plaintext highlighter-rouge">(A × C) ⊎ (B × C)</code>.</p>
 
-<p>Given two types <code class="highlighter-rouge">A</code> and <code class="highlighter-rouge">B</code>, we refer to <code class="highlighter-rouge">A ⊎ B</code> as the
-<em>sum</em> of <code class="highlighter-rouge">A</code> and <code class="highlighter-rouge">B</code>.  In set theory, it is also sometimes
+<p>Given two types <code class="language-plaintext highlighter-rouge">A</code> and <code class="language-plaintext highlighter-rouge">B</code>, we refer to <code class="language-plaintext highlighter-rouge">A ⊎ B</code> as the
+<em>sum</em> of <code class="language-plaintext highlighter-rouge">A</code> and <code class="language-plaintext highlighter-rouge">B</code>.  In set theory, it is also sometimes
 called the <em>disjoint union</em>, and in computing it corresponds
 to a <em>variant record</em> type. Among other reasons for
-calling it the sum, note that if type <code class="highlighter-rouge">A</code> has <code class="highlighter-rouge">m</code>
-distinct members, and type <code class="highlighter-rouge">B</code> has <code class="highlighter-rouge">n</code> distinct members,
-then the type <code class="highlighter-rouge">A ⊎ B</code> has <code class="highlighter-rouge">m + n</code> distinct members.
-For instance, consider a type <code class="highlighter-rouge">Bool</code> with two members, and
-a type <code class="highlighter-rouge">Tri</code> with three members, as defined earlier.
-Then the type <code class="highlighter-rouge">Bool ⊎ Tri</code> has five
+calling it the sum, note that if type <code class="language-plaintext highlighter-rouge">A</code> has <code class="language-plaintext highlighter-rouge">m</code>
+distinct members, and type <code class="language-plaintext highlighter-rouge">B</code> has <code class="language-plaintext highlighter-rouge">n</code> distinct members,
+then the type <code class="language-plaintext highlighter-rouge">A ⊎ B</code> has <code class="language-plaintext highlighter-rouge">m + n</code> distinct members.
+For instance, consider a type <code class="language-plaintext highlighter-rouge">Bool</code> with two members, and
+a type <code class="language-plaintext highlighter-rouge">Tri</code> with three members, as defined earlier.
+Then the type <code class="language-plaintext highlighter-rouge">Bool ⊎ Tri</code> has five
 members:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>inj₁ true     inj₂ aa
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>inj₁ true     inj₂ aa
 inj₁ false    inj₂ bb
               inj₂ cc
 </code></pre></div></div>
 
 <p>For example, the following function enumerates all
-possible arguments of type <code class="highlighter-rouge">Bool ⊎ Tri</code>:</p>
+possible arguments of type <code class="language-plaintext highlighter-rouge">Bool ⊎ Tri</code>:</p>
 <pre class="Agda"><a id="⊎-count"></a><a id="13893" href="/latest/Connectives/#13893" class="Function">⊎-count</a> <a id="13901" class="Symbol">:</a> <a id="13903" href="/latest/Connectives/#5019" class="Datatype">Bool</a> <a id="13908" href="/latest/Connectives/#11270" class="Datatype Operator">⊎</a> <a id="13910" href="/latest/Connectives/#5072" class="Datatype">Tri</a> <a id="13914" class="Symbol">→</a> <a id="13916" href="Agda.Builtin.Nat.html#165" class="Datatype">ℕ</a>
 <a id="13918" href="/latest/Connectives/#13893" class="Function">⊎-count</a> <a id="13926" class="Symbol">(</a><a id="13927" href="/latest/Connectives/#11301" class="InductiveConstructor">inj₁</a> <a id="13932" href="/latest/Connectives/#5038" class="InductiveConstructor">true</a><a id="13936" class="Symbol">)</a>   <a id="13940" class="Symbol">=</a>  <a id="13943" class="Number">1</a>
 <a id="13945" href="/latest/Connectives/#13893" class="Function">⊎-count</a> <a id="13953" class="Symbol">(</a><a id="13954" href="/latest/Connectives/#11301" class="InductiveConstructor">inj₁</a> <a id="13959" href="/latest/Connectives/#5053" class="InductiveConstructor">false</a><a id="13964" class="Symbol">)</a>  <a id="13967" class="Symbol">=</a>  <a id="13970" class="Number">2</a>
@@ -483,13 +483,13 @@ possible arguments of type <code class="highlighter-rouge">Bool ⊎ Tri</code>:<
 <p>Sum on types also shares a property with sum on numbers in that it is
 commutative and associative <em>up to isomorphism</em>.</p>
 
-<h4 id="exercise--comm-recommended">Exercise <code class="highlighter-rouge">⊎-comm</code> (recommended)</h4>
+<h4 id="exercise--comm-recommended">Exercise <code class="language-plaintext highlighter-rouge">⊎-comm</code> (recommended)</h4>
 
 <p>Show sum is commutative up to isomorphism.</p>
 
 <pre class="Agda"><a id="14264" class="Comment">-- Your code goes here</a>
 </pre>
-<h4 id="exercise--assoc-practice">Exercise <code class="highlighter-rouge">⊎-assoc</code> (practice)</h4>
+<h4 id="exercise--assoc-practice">Exercise <code class="language-plaintext highlighter-rouge">⊎-assoc</code> (practice)</h4>
 
 <p>Show sum is associative up to isomorphism.</p>
 
@@ -497,16 +497,16 @@ commutative and associative <em>up to isomorphism</em>.</p>
 </pre>
 <h2 id="false-is-empty">False is empty</h2>
 
-<p>False <code class="highlighter-rouge">⊥</code> never holds.  We formalise this idea by declaring
+<p>False <code class="language-plaintext highlighter-rouge">⊥</code> never holds.  We formalise this idea by declaring
 a suitable inductive type:</p>
 <pre class="Agda"><a id="14514" class="Keyword">data</a> <a id="⊥"></a><a id="14519" href="/latest/Connectives/#14519" class="Datatype">⊥</a> <a id="14521" class="Symbol">:</a> <a id="14523" class="PrimitiveType">Set</a> <a id="14527" class="Keyword">where</a>
   <a id="14535" class="Comment">-- no clauses!</a>
 </pre>
-<p>There is no possible evidence that <code class="highlighter-rouge">⊥</code> holds.</p>
+<p>There is no possible evidence that <code class="language-plaintext highlighter-rouge">⊥</code> holds.</p>
 
-<p>Dual to <code class="highlighter-rouge">⊤</code>, for <code class="highlighter-rouge">⊥</code> there is no introduction rule but an elimination rule.
+<p>Dual to <code class="language-plaintext highlighter-rouge">⊤</code>, for <code class="language-plaintext highlighter-rouge">⊥</code> there is no introduction rule but an elimination rule.
 Since false never holds, knowing that it holds tells us we are in a
-paradoxical situation.  Given evidence that <code class="highlighter-rouge">⊥</code> holds, we might
+paradoxical situation.  Given evidence that <code class="language-plaintext highlighter-rouge">⊥</code> holds, we might
 conclude anything!  This is a basic principle of logic, known in
 medieval times by the Latin phrase <em>ex falso</em>, and known to children
 through phrases such as “if pigs had wings, then I’d be the Queen of
@@ -517,42 +517,42 @@ Sheba”.  We formalise it as follows:</p>
   <a id="15089" class="Symbol">→</a> <a id="15091" href="/latest/Connectives/#15065" class="Bound">A</a>
 <a id="15093" href="/latest/Connectives/#15053" class="Function">⊥-elim</a> <a id="15100" class="Symbol">()</a>
 </pre>
-<p>This is our first use of the <em>absurd pattern</em> <code class="highlighter-rouge">()</code>.
-Here since <code class="highlighter-rouge">⊥</code> is a type with no members, we indicate that it is
+<p>This is our first use of the <em>absurd pattern</em> <code class="language-plaintext highlighter-rouge">()</code>.
+Here since <code class="language-plaintext highlighter-rouge">⊥</code> is a type with no members, we indicate that it is
 <em>never</em> possible to match against a value of this type by using
-the pattern <code class="highlighter-rouge">()</code>.</p>
+the pattern <code class="language-plaintext highlighter-rouge">()</code>.</p>
 
-<p>The nullary case of <code class="highlighter-rouge">case-⊎</code> is <code class="highlighter-rouge">⊥-elim</code>.  By analogy,
-we might have called it <code class="highlighter-rouge">case-⊥</code>, but chose to stick with the name
+<p>The nullary case of <code class="language-plaintext highlighter-rouge">case-⊎</code> is <code class="language-plaintext highlighter-rouge">⊥-elim</code>.  By analogy,
+we might have called it <code class="language-plaintext highlighter-rouge">case-⊥</code>, but chose to stick with the name
 in the standard library.</p>
 
-<p>The nullary case of <code class="highlighter-rouge">uniq-⊎</code> is <code class="highlighter-rouge">uniq-⊥</code>, which asserts that <code class="highlighter-rouge">⊥-elim</code>
-is equal to any arbitrary function from <code class="highlighter-rouge">⊥</code>:</p>
+<p>The nullary case of <code class="language-plaintext highlighter-rouge">uniq-⊎</code> is <code class="language-plaintext highlighter-rouge">uniq-⊥</code>, which asserts that <code class="language-plaintext highlighter-rouge">⊥-elim</code>
+is equal to any arbitrary function from <code class="language-plaintext highlighter-rouge">⊥</code>:</p>
 <pre class="Agda"><a id="uniq-⊥"></a><a id="15574" href="/latest/Connectives/#15574" class="Function">uniq-⊥</a> <a id="15581" class="Symbol">:</a> <a id="15583" class="Symbol">∀</a> <a id="15585" class="Symbol">{</a><a id="15586" href="/latest/Connectives/#15586" class="Bound">C</a> <a id="15588" class="Symbol">:</a> <a id="15590" class="PrimitiveType">Set</a><a id="15593" class="Symbol">}</a> <a id="15595" class="Symbol">(</a><a id="15596" href="/latest/Connectives/#15596" class="Bound">h</a> <a id="15598" class="Symbol">:</a> <a id="15600" href="/latest/Connectives/#14519" class="Datatype">⊥</a> <a id="15602" class="Symbol">→</a> <a id="15604" href="/latest/Connectives/#15586" class="Bound">C</a><a id="15605" class="Symbol">)</a> <a id="15607" class="Symbol">(</a><a id="15608" href="/latest/Connectives/#15608" class="Bound">w</a> <a id="15610" class="Symbol">:</a> <a id="15612" href="/latest/Connectives/#14519" class="Datatype">⊥</a><a id="15613" class="Symbol">)</a> <a id="15615" class="Symbol">→</a> <a id="15617" href="/latest/Connectives/#15053" class="Function">⊥-elim</a> <a id="15624" href="/latest/Connectives/#15608" class="Bound">w</a> <a id="15626" href="Agda.Builtin.Equality.html#125" class="Datatype Operator">≡</a> <a id="15628" href="/latest/Connectives/#15596" class="Bound">h</a> <a id="15630" href="/latest/Connectives/#15608" class="Bound">w</a>
 <a id="15632" href="/latest/Connectives/#15574" class="Function">uniq-⊥</a> <a id="15639" href="/latest/Connectives/#15639" class="Bound">h</a> <a id="15641" class="Symbol">()</a>
 </pre>
-<p>Using the absurd pattern asserts there are no possible values for <code class="highlighter-rouge">w</code>,
+<p>Using the absurd pattern asserts there are no possible values for <code class="language-plaintext highlighter-rouge">w</code>,
 so the equation holds trivially.</p>
 
-<p>We refer to <code class="highlighter-rouge">⊥</code> as the <em>empty</em> type. And, indeed,
-type <code class="highlighter-rouge">⊥</code> has no members. For example, the following function
-enumerates all possible arguments of type <code class="highlighter-rouge">⊥</code>:</p>
+<p>We refer to <code class="language-plaintext highlighter-rouge">⊥</code> as the <em>empty</em> type. And, indeed,
+type <code class="language-plaintext highlighter-rouge">⊥</code> has no members. For example, the following function
+enumerates all possible arguments of type <code class="language-plaintext highlighter-rouge">⊥</code>:</p>
 <pre class="Agda"><a id="⊥-count"></a><a id="15915" href="/latest/Connectives/#15915" class="Function">⊥-count</a> <a id="15923" class="Symbol">:</a> <a id="15925" href="/latest/Connectives/#14519" class="Datatype">⊥</a> <a id="15927" class="Symbol">→</a> <a id="15929" href="Agda.Builtin.Nat.html#165" class="Datatype">ℕ</a>
 <a id="15931" href="/latest/Connectives/#15915" class="Function">⊥-count</a> <a id="15939" class="Symbol">()</a>
 </pre>
-<p>Here again the absurd pattern <code class="highlighter-rouge">()</code> indicates that no value can match
-type <code class="highlighter-rouge">⊥</code>.</p>
+<p>Here again the absurd pattern <code class="language-plaintext highlighter-rouge">()</code> indicates that no value can match
+type <code class="language-plaintext highlighter-rouge">⊥</code>.</p>
 
 <p>For numbers, zero is the identity of addition. Correspondingly, empty
 is the identity of sums <em>up to isomorphism</em>.</p>
 
-<h4 id="exercise--identityˡ-recommended">Exercise <code class="highlighter-rouge">⊥-identityˡ</code> (recommended)</h4>
+<h4 id="exercise--identityˡ-recommended">Exercise <code class="language-plaintext highlighter-rouge">⊥-identityˡ</code> (recommended)</h4>
 
 <p>Show empty is the left identity of sums up to isomorphism.</p>
 
 <pre class="Agda"><a id="16249" class="Comment">-- Your code goes here</a>
 </pre>
-<h4 id="exercise--identityʳ-practice">Exercise <code class="highlighter-rouge">⊥-identityʳ</code> (practice)</h4>
+<h4 id="exercise--identityʳ-practice">Exercise <code class="language-plaintext highlighter-rouge">⊥-identityʳ</code> (practice)</h4>
 
 <p>Show empty is the right identity of sums up to isomorphism.</p>
 
@@ -560,23 +560,23 @@ is the identity of sums <em>up to isomorphism</em>.</p>
 </pre>
 <h2 id="implication">Implication is function</h2>
 
-<p>Given two propositions <code class="highlighter-rouge">A</code> and <code class="highlighter-rouge">B</code>, the implication <code class="highlighter-rouge">A → B</code> holds if
-whenever <code class="highlighter-rouge">A</code> holds then <code class="highlighter-rouge">B</code> must also hold.  We formalise implication using
+<p>Given two propositions <code class="language-plaintext highlighter-rouge">A</code> and <code class="language-plaintext highlighter-rouge">B</code>, the implication <code class="language-plaintext highlighter-rouge">A → B</code> holds if
+whenever <code class="language-plaintext highlighter-rouge">A</code> holds then <code class="language-plaintext highlighter-rouge">B</code> must also hold.  We formalise implication using
 the function type, which has appeared throughout this book.</p>
 
-<p>Evidence that <code class="highlighter-rouge">A → B</code> holds is of the form</p>
+<p>Evidence that <code class="language-plaintext highlighter-rouge">A → B</code> holds is of the form</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>λ (x : A) → N
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>λ (x : A) → N
 </code></pre></div></div>
 
-<p>where <code class="highlighter-rouge">N</code> is a term of type <code class="highlighter-rouge">B</code> containing as a free variable <code class="highlighter-rouge">x</code> of type <code class="highlighter-rouge">A</code>.
-Given a term <code class="highlighter-rouge">L</code> providing evidence that <code class="highlighter-rouge">A → B</code> holds, and a term <code class="highlighter-rouge">M</code>
-providing evidence that <code class="highlighter-rouge">A</code> holds, the term <code class="highlighter-rouge">L M</code> provides evidence that
-<code class="highlighter-rouge">B</code> holds.  In other words, evidence that <code class="highlighter-rouge">A → B</code> holds is a function that
-converts evidence that <code class="highlighter-rouge">A</code> holds into evidence that <code class="highlighter-rouge">B</code> holds.</p>
+<p>where <code class="language-plaintext highlighter-rouge">N</code> is a term of type <code class="language-plaintext highlighter-rouge">B</code> containing as a free variable <code class="language-plaintext highlighter-rouge">x</code> of type <code class="language-plaintext highlighter-rouge">A</code>.
+Given a term <code class="language-plaintext highlighter-rouge">L</code> providing evidence that <code class="language-plaintext highlighter-rouge">A → B</code> holds, and a term <code class="language-plaintext highlighter-rouge">M</code>
+providing evidence that <code class="language-plaintext highlighter-rouge">A</code> holds, the term <code class="language-plaintext highlighter-rouge">L M</code> provides evidence that
+<code class="language-plaintext highlighter-rouge">B</code> holds.  In other words, evidence that <code class="language-plaintext highlighter-rouge">A → B</code> holds is a function that
+converts evidence that <code class="language-plaintext highlighter-rouge">A</code> holds into evidence that <code class="language-plaintext highlighter-rouge">B</code> holds.</p>
 
-<p>Put another way, if we know that <code class="highlighter-rouge">A → B</code> and <code class="highlighter-rouge">A</code> both hold,
-then we may conclude that <code class="highlighter-rouge">B</code> holds:</p>
+<p>Put another way, if we know that <code class="language-plaintext highlighter-rouge">A → B</code> and <code class="language-plaintext highlighter-rouge">A</code> both hold,
+then we may conclude that <code class="language-plaintext highlighter-rouge">B</code> holds:</p>
 <pre class="Agda"><a id="→-elim"></a><a id="17185" href="/latest/Connectives/#17185" class="Function">→-elim</a> <a id="17192" class="Symbol">:</a> <a id="17194" class="Symbol">∀</a> <a id="17196" class="Symbol">{</a><a id="17197" href="/latest/Connectives/#17197" class="Bound">A</a> <a id="17199" href="/latest/Connectives/#17199" class="Bound">B</a> <a id="17201" class="Symbol">:</a> <a id="17203" class="PrimitiveType">Set</a><a id="17206" class="Symbol">}</a>
   <a id="17210" class="Symbol">→</a> <a id="17212" class="Symbol">(</a><a id="17213" href="/latest/Connectives/#17197" class="Bound">A</a> <a id="17215" class="Symbol">→</a> <a id="17217" href="/latest/Connectives/#17199" class="Bound">B</a><a id="17218" class="Symbol">)</a>
   <a id="17222" class="Symbol">→</a> <a id="17224" href="/latest/Connectives/#17197" class="Bound">A</a>
@@ -595,26 +595,26 @@ while applying a function is referred to as <em>eliminating</em> the function.</
 <pre class="Agda"><a id="η-→"></a><a id="17618" href="/latest/Connectives/#17618" class="Function">η-→</a> <a id="17622" class="Symbol">:</a> <a id="17624" class="Symbol">∀</a> <a id="17626" class="Symbol">{</a><a id="17627" href="/latest/Connectives/#17627" class="Bound">A</a> <a id="17629" href="/latest/Connectives/#17629" class="Bound">B</a> <a id="17631" class="Symbol">:</a> <a id="17633" class="PrimitiveType">Set</a><a id="17636" class="Symbol">}</a> <a id="17638" class="Symbol">(</a><a id="17639" href="/latest/Connectives/#17639" class="Bound">f</a> <a id="17641" class="Symbol">:</a> <a id="17643" href="/latest/Connectives/#17627" class="Bound">A</a> <a id="17645" class="Symbol">→</a> <a id="17647" href="/latest/Connectives/#17629" class="Bound">B</a><a id="17648" class="Symbol">)</a> <a id="17650" class="Symbol">→</a> <a id="17652" class="Symbol">(λ</a> <a id="17655" class="Symbol">(</a><a id="17656" href="/latest/Connectives/#17656" class="Bound">x</a> <a id="17658" class="Symbol">:</a> <a id="17660" href="/latest/Connectives/#17627" class="Bound">A</a><a id="17661" class="Symbol">)</a> <a id="17663" class="Symbol">→</a> <a id="17665" href="/latest/Connectives/#17639" class="Bound">f</a> <a id="17667" href="/latest/Connectives/#17656" class="Bound">x</a><a id="17668" class="Symbol">)</a> <a id="17670" href="Agda.Builtin.Equality.html#125" class="Datatype Operator">≡</a> <a id="17672" href="/latest/Connectives/#17639" class="Bound">f</a>
 <a id="17674" href="/latest/Connectives/#17618" class="Function">η-→</a> <a id="17678" href="/latest/Connectives/#17678" class="Bound">f</a> <a id="17680" class="Symbol">=</a> <a id="17682" href="Agda.Builtin.Equality.html#182" class="InductiveConstructor">refl</a>
 </pre>
-<p>Implication binds less tightly than any other operator. Thus, <code class="highlighter-rouge">A ⊎ B →
-B ⊎ A</code> parses as <code class="highlighter-rouge">(A ⊎ B) → (B ⊎ A)</code>.</p>
+<p>Implication binds less tightly than any other operator. Thus, <code class="language-plaintext highlighter-rouge">A ⊎ B →
+B ⊎ A</code> parses as <code class="language-plaintext highlighter-rouge">(A ⊎ B) → (B ⊎ A)</code>.</p>
 
-<p>Given two types <code class="highlighter-rouge">A</code> and <code class="highlighter-rouge">B</code>, we refer to <code class="highlighter-rouge">A → B</code> as the <em>function</em>
-space from <code class="highlighter-rouge">A</code> to <code class="highlighter-rouge">B</code>.  It is also sometimes called the <em>exponential</em>,
-with <code class="highlighter-rouge">B</code> raised to the <code class="highlighter-rouge">A</code> power.  Among other reasons for calling
-it the exponential, note that if type <code class="highlighter-rouge">A</code> has <code class="highlighter-rouge">m</code> distinct
-members, and type <code class="highlighter-rouge">B</code> has <code class="highlighter-rouge">n</code> distinct members, then the type
-<code class="highlighter-rouge">A → B</code> has <code class="highlighter-rouge">nᵐ</code> distinct members.  For instance, consider a
-type <code class="highlighter-rouge">Bool</code> with two members and a type <code class="highlighter-rouge">Tri</code> with three members,
-as defined earlier. Then the type <code class="highlighter-rouge">Bool → Tri</code> has nine (that is,
+<p>Given two types <code class="language-plaintext highlighter-rouge">A</code> and <code class="language-plaintext highlighter-rouge">B</code>, we refer to <code class="language-plaintext highlighter-rouge">A → B</code> as the <em>function</em>
+space from <code class="language-plaintext highlighter-rouge">A</code> to <code class="language-plaintext highlighter-rouge">B</code>.  It is also sometimes called the <em>exponential</em>,
+with <code class="language-plaintext highlighter-rouge">B</code> raised to the <code class="language-plaintext highlighter-rouge">A</code> power.  Among other reasons for calling
+it the exponential, note that if type <code class="language-plaintext highlighter-rouge">A</code> has <code class="language-plaintext highlighter-rouge">m</code> distinct
+members, and type <code class="language-plaintext highlighter-rouge">B</code> has <code class="language-plaintext highlighter-rouge">n</code> distinct members, then the type
+<code class="language-plaintext highlighter-rouge">A → B</code> has <code class="language-plaintext highlighter-rouge">nᵐ</code> distinct members.  For instance, consider a
+type <code class="language-plaintext highlighter-rouge">Bool</code> with two members and a type <code class="language-plaintext highlighter-rouge">Tri</code> with three members,
+as defined earlier. Then the type <code class="language-plaintext highlighter-rouge">Bool → Tri</code> has nine (that is,
 three squared) members:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>λ{true → aa; false → aa}  λ{true → aa; false → bb}  λ{true → aa; false → cc}
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>λ{true → aa; false → aa}  λ{true → aa; false → bb}  λ{true → aa; false → cc}
 λ{true → bb; false → aa}  λ{true → bb; false → bb}  λ{true → bb; false → cc}
 λ{true → cc; false → aa}  λ{true → cc; false → bb}  λ{true → cc; false → cc}
 </code></pre></div></div>
 
 <p>For example, the following function enumerates all possible
-arguments of the type <code class="highlighter-rouge">Bool → Tri</code>:</p>
+arguments of the type <code class="language-plaintext highlighter-rouge">Bool → Tri</code>:</p>
 <pre class="Agda"><a id="→-count"></a><a id="18690" href="/latest/Connectives/#18690" class="Function">→-count</a> <a id="18698" class="Symbol">:</a> <a id="18700" class="Symbol">(</a><a id="18701" href="/latest/Connectives/#5019" class="Datatype">Bool</a> <a id="18706" class="Symbol">→</a> <a id="18708" href="/latest/Connectives/#5072" class="Datatype">Tri</a><a id="18711" class="Symbol">)</a> <a id="18713" class="Symbol">→</a> <a id="18715" href="Agda.Builtin.Nat.html#165" class="Datatype">ℕ</a>
 <a id="18717" href="/latest/Connectives/#18690" class="Function">→-count</a> <a id="18725" href="/latest/Connectives/#18725" class="Bound">f</a> <a id="18727" class="Keyword">with</a> <a id="18732" href="/latest/Connectives/#18725" class="Bound">f</a> <a id="18734" href="/latest/Connectives/#5038" class="InductiveConstructor">true</a> <a id="18739" class="Symbol">|</a> <a id="18741" href="/latest/Connectives/#18725" class="Bound">f</a> <a id="18743" href="/latest/Connectives/#5053" class="InductiveConstructor">false</a>
 <a id="18749" class="Symbol">...</a>          <a id="18762" class="Symbol">|</a> <a id="18764" href="/latest/Connectives/#5090" class="InductiveConstructor">aa</a>     <a id="18771" class="Symbol">|</a> <a id="18773" href="/latest/Connectives/#5090" class="InductiveConstructor">aa</a>      <a id="18781" class="Symbol">=</a>   <a id="18785" class="Number">1</a>
@@ -633,16 +633,16 @@ over to the types.</p>
 
 <p>Corresponding to the law</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(p ^ n) ^ m  ≡  p ^ (n * m)
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(p ^ n) ^ m  ≡  p ^ (n * m)
 </code></pre></div></div>
 
 <p>we have the isomorphism</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>A → (B → C)  ≃  (A × B) → C
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>A → (B → C)  ≃  (A × B) → C
 </code></pre></div></div>
 
-<p>Both types can be viewed as functions that given evidence that <code class="highlighter-rouge">A</code> holds
-and evidence that <code class="highlighter-rouge">B</code> holds can return evidence that <code class="highlighter-rouge">C</code> holds.
+<p>Both types can be viewed as functions that given evidence that <code class="language-plaintext highlighter-rouge">A</code> holds
+and evidence that <code class="language-plaintext highlighter-rouge">B</code> holds can return evidence that <code class="language-plaintext highlighter-rouge">C</code> holds.
 This isomorphism sometimes goes by the name <em>currying</em>.
 The proof of the right inverse requires extensionality:</p>
 <pre class="Agda"><a id="currying"></a><a id="19615" href="/latest/Connectives/#19615" class="Function">currying</a> <a id="19624" class="Symbol">:</a> <a id="19626" class="Symbol">∀</a> <a id="19628" class="Symbol">{</a><a id="19629" href="/latest/Connectives/#19629" class="Bound">A</a> <a id="19631" href="/latest/Connectives/#19631" class="Bound">B</a> <a id="19633" href="/latest/Connectives/#19633" class="Bound">C</a> <a id="19635" class="Symbol">:</a> <a id="19637" class="PrimitiveType">Set</a><a id="19640" class="Symbol">}</a> <a id="19642" class="Symbol">→</a> <a id="19644" class="Symbol">(</a><a id="19645" href="/latest/Connectives/#19629" class="Bound">A</a> <a id="19647" class="Symbol">→</a> <a id="19649" href="/latest/Connectives/#19631" class="Bound">B</a> <a id="19651" class="Symbol">→</a> <a id="19653" href="/latest/Connectives/#19633" class="Bound">C</a><a id="19654" class="Symbol">)</a> <a id="19656" href="/latest/Isomorphism/#4365" class="Record Operator">≃</a> <a id="19658" class="Symbol">(</a><a id="19659" href="/latest/Connectives/#19629" class="Bound">A</a> <a id="19661" href="/latest/Connectives/#1292" class="Datatype Operator">×</a> <a id="19663" href="/latest/Connectives/#19631" class="Bound">B</a> <a id="19665" class="Symbol">→</a> <a id="19667" href="/latest/Connectives/#19633" class="Bound">C</a><a id="19668" class="Symbol">)</a>
@@ -658,31 +658,31 @@ The proof of the right inverse requires extensionality:</p>
 we can have a function that takes the first argument and returns a function that
 expects the second argument.  Thus, for instance, our way of writing addition</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>_+_ : ℕ → ℕ → ℕ
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>_+_ : ℕ → ℕ → ℕ
 </code></pre></div></div>
 
 <p>is isomorphic to a function that accepts a pair of arguments:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>_+′_ : (ℕ × ℕ) → ℕ
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>_+′_ : (ℕ × ℕ) → ℕ
 </code></pre></div></div>
 
-<p>Agda is optimised for currying, so <code class="highlighter-rouge">2 + 3</code> abbreviates <code class="highlighter-rouge">_+_ 2 3</code>.
-In a language optimised for pairing, we would instead take <code class="highlighter-rouge">2 +′ 3</code> as
-an abbreviation for <code class="highlighter-rouge">_+′_ ⟨ 2 , 3 ⟩</code>.</p>
+<p>Agda is optimised for currying, so <code class="language-plaintext highlighter-rouge">2 + 3</code> abbreviates <code class="language-plaintext highlighter-rouge">_+_ 2 3</code>.
+In a language optimised for pairing, we would instead take <code class="language-plaintext highlighter-rouge">2 +′ 3</code> as
+an abbreviation for <code class="language-plaintext highlighter-rouge">_+′_ ⟨ 2 , 3 ⟩</code>.</p>
 
 <p>Corresponding to the law</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>p ^ (n + m) = (p ^ n) * (p ^ m)
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>p ^ (n + m) = (p ^ n) * (p ^ m)
 </code></pre></div></div>
 
 <p>we have the isomorphism:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(A ⊎ B) → C  ≃  (A → C) × (B → C)
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(A ⊎ B) → C  ≃  (A → C) × (B → C)
 </code></pre></div></div>
 
-<p>That is, the assertion that if either <code class="highlighter-rouge">A</code> holds or <code class="highlighter-rouge">B</code> holds then <code class="highlighter-rouge">C</code> holds
-is the same as the assertion that if <code class="highlighter-rouge">A</code> holds then <code class="highlighter-rouge">C</code> holds and if
-<code class="highlighter-rouge">B</code> holds then <code class="highlighter-rouge">C</code> holds.  The proof of the left inverse requires extensionality:</p>
+<p>That is, the assertion that if either <code class="language-plaintext highlighter-rouge">A</code> holds or <code class="language-plaintext highlighter-rouge">B</code> holds then <code class="language-plaintext highlighter-rouge">C</code> holds
+is the same as the assertion that if <code class="language-plaintext highlighter-rouge">A</code> holds then <code class="language-plaintext highlighter-rouge">C</code> holds and if
+<code class="language-plaintext highlighter-rouge">B</code> holds then <code class="language-plaintext highlighter-rouge">C</code> holds.  The proof of the left inverse requires extensionality:</p>
 <pre class="Agda"><a id="→-distrib-⊎"></a><a id="20776" href="/latest/Connectives/#20776" class="Function">→-distrib-⊎</a> <a id="20788" class="Symbol">:</a> <a id="20790" class="Symbol">∀</a> <a id="20792" class="Symbol">{</a><a id="20793" href="/latest/Connectives/#20793" class="Bound">A</a> <a id="20795" href="/latest/Connectives/#20795" class="Bound">B</a> <a id="20797" href="/latest/Connectives/#20797" class="Bound">C</a> <a id="20799" class="Symbol">:</a> <a id="20801" class="PrimitiveType">Set</a><a id="20804" class="Symbol">}</a> <a id="20806" class="Symbol">→</a> <a id="20808" class="Symbol">(</a><a id="20809" href="/latest/Connectives/#20793" class="Bound">A</a> <a id="20811" href="/latest/Connectives/#11270" class="Datatype Operator">⊎</a> <a id="20813" href="/latest/Connectives/#20795" class="Bound">B</a> <a id="20815" class="Symbol">→</a> <a id="20817" href="/latest/Connectives/#20797" class="Bound">C</a><a id="20818" class="Symbol">)</a> <a id="20820" href="/latest/Isomorphism/#4365" class="Record Operator">≃</a> <a id="20822" class="Symbol">((</a><a id="20824" href="/latest/Connectives/#20793" class="Bound">A</a> <a id="20826" class="Symbol">→</a> <a id="20828" href="/latest/Connectives/#20797" class="Bound">C</a><a id="20829" class="Symbol">)</a> <a id="20831" href="/latest/Connectives/#1292" class="Datatype Operator">×</a> <a id="20833" class="Symbol">(</a><a id="20834" href="/latest/Connectives/#20795" class="Bound">B</a> <a id="20836" class="Symbol">→</a> <a id="20838" href="/latest/Connectives/#20797" class="Bound">C</a><a id="20839" class="Symbol">))</a>
 <a id="20842" href="/latest/Connectives/#20776" class="Function">→-distrib-⊎</a> <a id="20854" class="Symbol">=</a>
   <a id="20858" class="Keyword">record</a>
@@ -694,18 +694,18 @@ is the same as the assertion that if <code class="highlighter-rouge">A</code> ho
 </pre>
 <p>Corresponding to the law</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(p * n) ^ m = (p ^ m) * (n ^ m)
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(p * n) ^ m = (p ^ m) * (n ^ m)
 </code></pre></div></div>
 
 <p>we have the isomorphism:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>A → B × C  ≃  (A → B) × (A → C)
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>A → B × C  ≃  (A → B) × (A → C)
 </code></pre></div></div>
 
-<p>That is, the assertion that if <code class="highlighter-rouge">A</code> holds then <code class="highlighter-rouge">B</code> holds and <code class="highlighter-rouge">C</code> holds
-is the same as the assertion that if <code class="highlighter-rouge">A</code> holds then <code class="highlighter-rouge">B</code> holds and if
-<code class="highlighter-rouge">A</code> holds then <code class="highlighter-rouge">C</code> holds.  The proof of left inverse requires both extensionality
-and the rule <code class="highlighter-rouge">η-×</code> for products:</p>
+<p>That is, the assertion that if <code class="language-plaintext highlighter-rouge">A</code> holds then <code class="language-plaintext highlighter-rouge">B</code> holds and <code class="language-plaintext highlighter-rouge">C</code> holds
+is the same as the assertion that if <code class="language-plaintext highlighter-rouge">A</code> holds then <code class="language-plaintext highlighter-rouge">B</code> holds and if
+<code class="language-plaintext highlighter-rouge">A</code> holds then <code class="language-plaintext highlighter-rouge">C</code> holds.  The proof of left inverse requires both extensionality
+and the rule <code class="language-plaintext highlighter-rouge">η-×</code> for products:</p>
 <pre class="Agda"><a id="→-distrib-×"></a><a id="21496" href="/latest/Connectives/#21496" class="Function">→-distrib-×</a> <a id="21508" class="Symbol">:</a> <a id="21510" class="Symbol">∀</a> <a id="21512" class="Symbol">{</a><a id="21513" href="/latest/Connectives/#21513" class="Bound">A</a> <a id="21515" href="/latest/Connectives/#21515" class="Bound">B</a> <a id="21517" href="/latest/Connectives/#21517" class="Bound">C</a> <a id="21519" class="Symbol">:</a> <a id="21521" class="PrimitiveType">Set</a><a id="21524" class="Symbol">}</a> <a id="21526" class="Symbol">→</a> <a id="21528" class="Symbol">(</a><a id="21529" href="/latest/Connectives/#21513" class="Bound">A</a> <a id="21531" class="Symbol">→</a> <a id="21533" href="/latest/Connectives/#21515" class="Bound">B</a> <a id="21535" href="/latest/Connectives/#1292" class="Datatype Operator">×</a> <a id="21537" href="/latest/Connectives/#21517" class="Bound">C</a><a id="21538" class="Symbol">)</a> <a id="21540" href="/latest/Isomorphism/#4365" class="Record Operator">≃</a> <a id="21542" class="Symbol">(</a><a id="21543" href="/latest/Connectives/#21513" class="Bound">A</a> <a id="21545" class="Symbol">→</a> <a id="21547" href="/latest/Connectives/#21515" class="Bound">B</a><a id="21548" class="Symbol">)</a> <a id="21550" href="/latest/Connectives/#1292" class="Datatype Operator">×</a> <a id="21552" class="Symbol">(</a><a id="21553" href="/latest/Connectives/#21513" class="Bound">A</a> <a id="21555" class="Symbol">→</a> <a id="21557" href="/latest/Connectives/#21517" class="Bound">C</a><a id="21558" class="Symbol">)</a>
 <a id="21560" href="/latest/Connectives/#21496" class="Function">→-distrib-×</a> <a id="21572" class="Symbol">=</a>
   <a id="21576" class="Keyword">record</a>
@@ -753,16 +753,16 @@ this fact is similar in structure to our previous results:</p>
                  <a id="23087" class="Symbol">}</a>
     <a id="23093" class="Symbol">}</a>
 </pre>
-<p>Note that there is a choice in how we write the <code class="highlighter-rouge">from</code> function.
-As given, it takes <code class="highlighter-rouge">⟨ inj₂ z , inj₂ z′ ⟩</code> to <code class="highlighter-rouge">inj₂ z</code>, but it is
-easy to write a variant that instead returns <code class="highlighter-rouge">inj₂ z′</code>.  We have
+<p>Note that there is a choice in how we write the <code class="language-plaintext highlighter-rouge">from</code> function.
+As given, it takes <code class="language-plaintext highlighter-rouge">⟨ inj₂ z , inj₂ z′ ⟩</code> to <code class="language-plaintext highlighter-rouge">inj₂ z</code>, but it is
+easy to write a variant that instead returns <code class="language-plaintext highlighter-rouge">inj₂ z′</code>.  We have
 an embedding rather than an isomorphism because the
-<code class="highlighter-rouge">from</code> function must discard either <code class="highlighter-rouge">z</code> or <code class="highlighter-rouge">z′</code> in this case.</p>
+<code class="language-plaintext highlighter-rouge">from</code> function must discard either <code class="language-plaintext highlighter-rouge">z</code> or <code class="language-plaintext highlighter-rouge">z′</code> in this case.</p>
 
 <p>In the usual approach to logic, both of the distribution laws
 are given as equivalences, where each side implies the other:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>A × (B ⊎ C) ⇔ (A × B) ⊎ (A × C)
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>A × (B ⊎ C) ⇔ (A × B) ⊎ (A × C)
 A ⊎ (B × C) ⇔ (A ⊎ B) × (A ⊎ C)
 </code></pre></div></div>
 
@@ -771,7 +771,7 @@ implications, then the first corresponds to an isomorphism while the
 second only corresponds to an embedding, revealing a sense in which
 one of these laws is “more true” than the other.</p>
 
-<h4 id="exercise--weak--recommended">Exercise <code class="highlighter-rouge">⊎-weak-×</code> (recommended)</h4>
+<h4 id="exercise--weak--recommended">Exercise <code class="language-plaintext highlighter-rouge">⊎-weak-×</code> (recommended)</h4>
 
 <p>Show that the following property holds:</p>
 <pre class="Agda"><a id="23946" class="Keyword">postulate</a>
@@ -783,7 +783,7 @@ distributive law, and explain how it relates to the weak version.</p>
 <pre class="Agda"><a id="24153" class="Comment">-- Your code goes here</a>
 </pre>
 
-<h4 id="exercise--implies--practice">Exercise <code class="highlighter-rouge">⊎×-implies-×⊎</code> (practice)</h4>
+<h4 id="exercise--implies--practice">Exercise <code class="language-plaintext highlighter-rouge">⊎×-implies-×⊎</code> (practice)</h4>
 
 <p>Show that a disjunct of conjuncts implies a conjunct of disjuncts:</p>
 <pre class="Agda"><a id="24295" class="Keyword">postulate</a>
@@ -803,14 +803,14 @@ distributive law, and explain how it relates to the weak version.</p>
 <a id="24764" class="Keyword">import</a> <a id="24771" href="https://agda.github.io/agda-stdlib/v1.1/Data.Empty.html" class="Module">Data.Empty</a> <a id="24782" class="Keyword">using</a> <a id="24788" class="Symbol">(</a><a id="24789" href="https://agda.github.io/agda-stdlib/v1.1/Data.Empty.html#279" class="Datatype">⊥</a><a id="24790" class="Symbol">;</a> <a id="24792" href="https://agda.github.io/agda-stdlib/v1.1/Data.Empty.html#294" class="Function">⊥-elim</a><a id="24798" class="Symbol">)</a>
 <a id="24800" class="Keyword">import</a> <a id="24807" href="https://agda.github.io/agda-stdlib/v1.1/Function.Equivalence.html" class="Module">Function.Equivalence</a> <a id="24828" class="Keyword">using</a> <a id="24834" class="Symbol">(</a><a id="24835" href="https://agda.github.io/agda-stdlib/v1.1/Function.Equivalence.html#971" class="Function Operator">_⇔_</a><a id="24838" class="Symbol">)</a>
 </pre>
-<p>The standard library constructs pairs with <code class="highlighter-rouge">_,_</code> whereas we use <code class="highlighter-rouge">⟨_,_⟩</code>.
+<p>The standard library constructs pairs with <code class="language-plaintext highlighter-rouge">_,_</code> whereas we use <code class="language-plaintext highlighter-rouge">⟨_,_⟩</code>.
 The former makes it convenient to build triples or larger tuples from pairs,
-permitting <code class="highlighter-rouge">a , b , c</code> to stand for <code class="highlighter-rouge">(a , (b , c))</code>.  But it conflicts with
-other useful notations, such as <code class="highlighter-rouge">[_,_]</code> to construct a list of two elements in
+permitting <code class="language-plaintext highlighter-rouge">a , b , c</code> to stand for <code class="language-plaintext highlighter-rouge">(a , (b , c))</code>.  But it conflicts with
+other useful notations, such as <code class="language-plaintext highlighter-rouge">[_,_]</code> to construct a list of two elements in
 Chapter <a href="/latest/Lists/">Lists</a>
-and <code class="highlighter-rouge">Γ , A</code> to extend environments in
+and <code class="language-plaintext highlighter-rouge">Γ , A</code> to extend environments in
 Chapter <a href="/latest/DeBruijn/">DeBruijn</a>.
-The standard library <code class="highlighter-rouge">_⇔_</code> is similar to ours, but the one in the
+The standard library <code class="language-plaintext highlighter-rouge">_⇔_</code> is similar to ours, but the one in the
 standard library is less convenient, since it is parameterised with
 respect to an arbitrary notion of equivalence.</p>
 
@@ -818,7 +818,7 @@ respect to an arbitrary notion of equivalence.</p>
 
 <p>This chapter uses the following unicode:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>×  U+00D7  MULTIPLICATION SIGN (\x)
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>×  U+00D7  MULTIPLICATION SIGN (\x)
 ⊎  U+228E  MULTISET UNION (\u+)
 ⊤  U+22A4  DOWN TACK (\top)
 ⊥  U+22A5  UP TACK (\bot)
@@ -828,10 +828,10 @@ respect to an arbitrary notion of equivalence.</p>
 ⇔  U+21D4  LEFT RIGHT DOUBLE ARROW (\&lt;=&gt;)
 </code></pre></div></div>
 
-<div class="footnotes">
+<div class="footnotes" role="doc-endnotes">
   <ol>
-    <li id="fn:from-wadler-2015">
-      <p>This paragraph was adopted from “Propositions as Types”, Philip Wadler, <em>Communications of the ACM</em>, December 2015. <a href="#fnref:from-wadler-2015" class="reversefootnote">&#8617;</a></p>
+    <li id="fn:from-wadler-2015" role="doc-endnote">
+      <p>This paragraph was adopted from “Propositions as Types”, Philip Wadler, <em>Communications of the ACM</em>, December 2015. <a href="#fnref:from-wadler-2015" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
   </ol>
 </div>

@@ -1,5 +1,52 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="https://plfa.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://plfa.github.io/" rel="alternate" type="text/html" /><updated>2020-08-10T15:01:16+00:00</updated><id>https://plfa.github.io/feed.xml</id><title type="html">Programming Language Foundations in Agda</title><subtitle>Programming Language Foundations in Agda
-</subtitle><entry><title type="html">Versions and Releases</title><link href="https://plfa.github.io/2020/07/14/versions-and-releases.html" rel="alternate" type="text/html" title="Versions and Releases" /><published>2020-07-14T00:00:00+00:00</published><updated>2020-07-14T00:00:00+00:00</updated><id>https://plfa.github.io/2020/07/14/versions-and-releases</id><content type="html" xml:base="https://plfa.github.io/2020/07/14/versions-and-releases.html">&lt;p&gt;We’re adding stable releases to PLFA, which you can find &lt;a href=&quot;https://github.com/plfa/plfa.github.io/releases&quot;&gt;on GitHub&lt;/a&gt;!&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="https://plfa.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://plfa.github.io/" rel="alternate" type="text/html" /><updated>2020-08-13T09:26:30+00:00</updated><id>https://plfa.github.io/feed.xml</id><title type="html">Programming Language Foundations in Agda</title><subtitle>Programming Language Foundations in Agda
+</subtitle><entry><title type="html">Migration to Agda 2.6.1</title><link href="https://plfa.github.io/2020/07/20/migration-to-agda-2.6.1.html" rel="alternate" type="text/html" title="Migration to Agda 2.6.1" /><published>2020-07-20T00:00:00+00:00</published><updated>2020-07-20T00:00:00+00:00</updated><id>https://plfa.github.io/2020/07/20/migration-to-agda-2.6.1</id><content type="html" xml:base="https://plfa.github.io/2020/07/20/migration-to-agda-2.6.1.html">&lt;p&gt;We upgraded to &lt;a href=&quot;https://github.com/agda/agda/releases/tag/v2.6.1&quot;&gt;Agda 2.6.1&lt;/a&gt; and &lt;a href=&quot;https://github.com/agda/agda-stdlib/releases/tag/v1.3&quot;&gt;version 1.3 of the standard library&lt;/a&gt;. If you want to continue working with the latest version of the book, you’ll have to update your versions locally. Please follow the instructions in &lt;a href=&quot;/GettingStarted/&quot;&gt;Getting Started&lt;/a&gt; to reinstall Agda and the standard library.&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;h3 id=&quot;changes-to-the-termination-checker&quot;&gt;Changes to the termination checker&lt;/h3&gt;
+
+&lt;p&gt;Agda 2.6.1 made several &lt;a href=&quot;https://github.com/agda/agda/blob/master/doc/release-notes/2.6.1.md#termination-checking&quot;&gt;changes to the termination checker&lt;/a&gt;. As a result of these changes, Agda is no longer able to see that our evaluation functions, e.g., in &lt;a href=&quot;https://plfa.github.io/Properties/#31408&quot;&gt;Properties&lt;/a&gt;, are terminating. In response, we changed the definition of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Gas&lt;/code&gt; to be a record type, rather than a data type:&lt;/p&gt;
+
+&lt;div class=&quot;language-diff highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gd&quot;&gt;- data Gas : Set where
+-   gas : ℕ → Gas
+&lt;/span&gt;&lt;span class=&quot;gi&quot;&gt;+ record Gas : Set where
++   constructor gas
++   field
++     amount : ℕ
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The reason this works is that η-equality holds &lt;em&gt;by definition&lt;/em&gt; for records. Agda uses this to see that unwrapping and rewrapping numbers as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Gas&lt;/code&gt; is the identity, and hence the amount of gas is decreasing if that number is decreasing.&lt;/p&gt;
+
+&lt;h3 id=&quot;changes-to-equational-reasoning&quot;&gt;Changes to equational reasoning&lt;/h3&gt;
+
+&lt;p&gt;The function &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_≡⟨_⟩_&lt;/code&gt;, part of the equational reasoning syntax, was renamed to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;step-≡&lt;/code&gt;, for &lt;a href=&quot;https://github.com/agda/agda-stdlib/blob/master/CHANGELOG/v1.3.md#changes-to-how-equational-reasoning-is-implemented&quot;&gt;various reasons&lt;/a&gt;. The new function has the same semantics, but flips the order of the arguments. This does not mean you have to change your equational reasoning proofs, as the module also defines a syntax macro, which recovers the original argument order:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;infixr -2 step-≡
+
+step-≡ : ∀ x {y z : A} → y ≡ z → x ≡ y → x ≡ z
+step-≡ y≡z x≡y = trans x≡y y≡z
+
+syntax step-≡ x y≡z x≡y = x ≡⟨ x≡y ⟩ y≡z
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Syntax macros aren’t quite definitions in Agda, so you cannot import them by “name”. Instead, they’re imported together with the function for which they’re defined, i.e., as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;step-≡&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-diff highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gd&quot;&gt;- open Eq.≡-Reasoning using (begin_; _≡⟨⟩_; _≡⟨_⟩_; _∎)
+&lt;/span&gt;&lt;span class=&quot;gi&quot;&gt;+ open Eq.≡-Reasoning using (begin_; _≡⟨⟩_; step-≡; _∎)
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;If you’d like more details, there’s a lot of discussion of why this change was made in the &lt;a href=&quot;https://github.com/agda/agda-stdlib/blob/master/CHANGELOG/v1.3.md#changes-to-how-equational-reasoning-is-implemented&quot;&gt;CHANGELOG&lt;/a&gt;. For PLFA, we make a note of the incongruence in the chapter on &lt;a href=&quot;https://plfa.github.io/Equality/#standard-library&quot;&gt;Equality&lt;/a&gt;, but leave our definitions of equational reasoning unchanged.&lt;/p&gt;
+
+&lt;h3 id=&quot;deprecation-of-datalistallany&quot;&gt;Deprecation of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Data.List.{All,Any}&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;The modules &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Data.List.{All,Any}&lt;/code&gt; were deprecated in v1.0,
+and were moved to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Data.List.Relation.Unary.{All,Any}&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-diff highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gd&quot;&gt;- import Data.List.All using (All; []; _∷_)
+- import Data.List.Any using (Any; here; there)
+&lt;/span&gt;&lt;span class=&quot;gi&quot;&gt;+ import Data.List.Relation.Unary.All using (All; []; _∷_)
++ import Data.List.Relation.Unary.Any using (Any; here; there)
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><summary type="html">We upgraded to Agda 2.6.1 and version 1.3 of the standard library. If you want to continue working with the latest version of the book, you’ll have to update your versions locally. Please follow the instructions in Getting Started to reinstall Agda and the standard library.</summary></entry><entry><title type="html">Versions and Releases</title><link href="https://plfa.github.io/2020/07/14/versions-and-releases.html" rel="alternate" type="text/html" title="Versions and Releases" /><published>2020-07-14T00:00:00+00:00</published><updated>2020-07-14T00:00:00+00:00</updated><id>https://plfa.github.io/2020/07/14/versions-and-releases</id><content type="html" xml:base="https://plfa.github.io/2020/07/14/versions-and-releases.html">&lt;p&gt;We’re adding stable releases to PLFA, which you can find &lt;a href=&quot;https://github.com/plfa/plfa.github.io/releases&quot;&gt;on GitHub&lt;/a&gt;!&lt;/p&gt;
 
 &lt;!--more--&gt;
 

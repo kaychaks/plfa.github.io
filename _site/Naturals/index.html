@@ -967,7 +967,7 @@ rather than a unary system.  We represent a number as a bitstring:</p>
 <p>Representations are not unique due to leading zeros.
 Hence, eleven is also represented by <code class="language-plaintext highlighter-rouge">001011</code>, encoded as:</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>⟨⟩ O I O I I
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>⟨⟩ O O I O I I
 </code></pre></div></div>
 
 <p>Define a function</p>
@@ -995,7 +995,7 @@ from : Bin → ℕ
 represents a positive natural, and represent zero by <code class="language-plaintext highlighter-rouge">⟨⟩ O</code>.
 Confirm that these both give the correct answer for zero through four.</p>
 
-<pre class="Agda"><a id="31016" class="Comment">-- Your code goes here</a>
+<pre class="Agda"><a id="31018" class="Comment">-- Your code goes here</a>
 </pre>
 
 <h2 id="standard-library">Standard library</h2>
@@ -1005,7 +1005,7 @@ definitions in the standard library.  The naturals, constructors for
 them, and basic operators upon them, are defined in the standard
 library module <code class="language-plaintext highlighter-rouge">Data.Nat</code>:</p>
 
-<pre class="Agda"><a id="31296" class="Comment">-- import Data.Nat using (ℕ; zero; suc; _+_; _*_; _^_; _∸_)</a>
+<pre class="Agda"><a id="31298" class="Comment">-- import Data.Nat using (ℕ; zero; suc; _+_; _*_; _^_; _∸_)</a>
 </pre>
 <p>Normally, we will show an import as running code, so Agda will
 complain if we attempt to import a definition that is not available.

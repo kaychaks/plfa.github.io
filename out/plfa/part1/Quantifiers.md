@@ -429,7 +429,7 @@ binary number `b`, there is only one proof of `One b` and similarly
 for `Can b`.
 
     ≡One : ∀{b : Bin} (o o' : One b) → o ≡ o'
-    
+
     ≡Can : ∀{b : Bin} (cb : Can b) (cb' : Can b) → cb ≡ cb'
 
 Many of the alternatives for proving `to∘from` turn out to be tricky.
@@ -438,13 +438,13 @@ which is a corollary of `≡Can`.
 
     proj₁≡→Can≡ : {cb cb′ : ∃[ b ](Can b)} → proj₁ cb ≡ proj₁ cb′ → cb ≡ cb′
 
-{% raw %}<pre class="Agda"><a id="16076" class="Comment">-- Your code goes here</a>
+{% raw %}<pre class="Agda"><a id="16072" class="Comment">-- Your code goes here</a>
 </pre>{% endraw %}
 
 ## Standard library
 
 Definitions similar to those in this chapter can be found in the standard library:
-{% raw %}<pre class="Agda"><a id="16213" class="Keyword">import</a> <a id="16220" href="https://agda.github.io/agda-stdlib/v1.3/Data.Product.html" class="Module">Data.Product</a> <a id="16233" class="Keyword">using</a> <a id="16239" class="Symbol">(</a><a id="16240" href="Agda.Builtin.Sigma.html#166" class="Record">Σ</a><a id="16241" class="Symbol">;</a> <a id="16243" href="Agda.Builtin.Sigma.html#236" class="InductiveConstructor Operator">_,_</a><a id="16246" class="Symbol">;</a> <a id="16248" href="https://agda.github.io/agda-stdlib/v1.3/Data.Product.html#1369" class="Function">∃</a><a id="16249" class="Symbol">;</a> <a id="16251" href="https://agda.github.io/agda-stdlib/v1.3/Data.Product.html#916" class="Function">Σ-syntax</a><a id="16259" class="Symbol">;</a> <a id="16261" href="https://agda.github.io/agda-stdlib/v1.3/Data.Product.html#1788" class="Function">∃-syntax</a><a id="16269" class="Symbol">)</a>
+{% raw %}<pre class="Agda"><a id="16209" class="Keyword">import</a> <a id="16216" href="https://agda.github.io/agda-stdlib/v1.3/Data.Product.html" class="Module">Data.Product</a> <a id="16229" class="Keyword">using</a> <a id="16235" class="Symbol">(</a><a id="16236" href="Agda.Builtin.Sigma.html#166" class="Record">Σ</a><a id="16237" class="Symbol">;</a> <a id="16239" href="Agda.Builtin.Sigma.html#236" class="InductiveConstructor Operator">_,_</a><a id="16242" class="Symbol">;</a> <a id="16244" href="https://agda.github.io/agda-stdlib/v1.3/Data.Product.html#1369" class="Function">∃</a><a id="16245" class="Symbol">;</a> <a id="16247" href="https://agda.github.io/agda-stdlib/v1.3/Data.Product.html#916" class="Function">Σ-syntax</a><a id="16255" class="Symbol">;</a> <a id="16257" href="https://agda.github.io/agda-stdlib/v1.3/Data.Product.html#1788" class="Function">∃-syntax</a><a id="16265" class="Symbol">)</a>
 </pre>{% endraw %}
 
 ## Unicode

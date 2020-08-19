@@ -108,6 +108,8 @@ contributors:
   name: caryoscelus
 - github_username: lzmartinico
   name: Lorenzo Martinico
+- github_username: matthew-healy
+  name: Matthew Healy
 - github_username: whxvd
   name: Sebastian Miele
 - github_username: odanoburu
@@ -134,8 +136,6 @@ contributors:
   name: Matthias Gabriel
 - github_username: AD1024
   name: Mike He
-- github_username: matthew-healy
-  name: Matthew Healy
 - github_username: trajafri
   name: Syed Turab Ali Jafri
 - github_username: Teggy

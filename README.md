@@ -143,6 +143,25 @@ You'll see the key sequence of the character in mini buffer.
 PLFA is available as both a website and an EPUB e-book, both of which can be built on Linux and macOS.
 PLFA is written in literate Agda with [Kramdown Markdown][kramdown].
 
+
+### Git hooks
+
+The repository comes with several Git hooks:
+
+ 1. The [fix-whitespace][fix-whitespace] program is run to check for whitespace violations.
+
+ 2. The test suite is run to check if everything type checks.
+
+You can install these Git hooks by calling `make init`.
+You can install [fix-whitespace][fix-whitespace] by running:
+```bash
+git clone https://github.com/agda/fix-whitespace
+cd fix-whitespace/
+stack install --stack-yaml stack-8.8.3.yaml
+```
+If you want Stack to use your system installation of GHC, you can pass the `--system-ghc` flag and select the appropriate `stack-*.yaml` file, like when installing [Agda](#installing-agda-using-stack).
+
+
 ### Building the website
 
 The website version of the book is built in three stages:
@@ -188,6 +207,7 @@ bundle install
 bundle exec jekyll serve
 ```
 
+
 ### Building the EPUB
 
 The [EPUB version][epub] of the book is built using Pandoc.
@@ -222,6 +242,8 @@ The EPUB is written to `out/epub/plfa.epub`.
 
 [haskell-stack]:  https://docs.haskellstack.org/en/stable/README/
 [haskell-ghc]: https://www.haskell.org/ghc/
+
+[fix-whitespace]: https://github.com/agda/fix-whitespace
 
 [mononoki]: https://madmalik.github.io/mononoki/
 

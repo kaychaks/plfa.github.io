@@ -194,6 +194,27 @@ In order to have <code class="language-plaintext highlighter-rouge">agda-mode</c
 <p>PLFA is available as both a website and an EPUB e-book, both of which can be built on Linux and macOS.
 PLFA is written in literate Agda with <a href="https://kramdown.gettalong.org/syntax.html">Kramdown Markdown</a>.</p>
 
+<h3 id="git-hooks">Git hooks</h3>
+
+<p>The repository comes with several Git hooks:</p>
+
+<ol>
+  <li>
+    <p>The <a href="https://github.com/agda/fix-whitespace">fix-whitespace</a> program is run to check for whitespace violations.</p>
+  </li>
+  <li>
+    <p>The test suite is run to check if everything type checks.</p>
+  </li>
+</ol>
+
+<p>You can install these Git hooks by calling <code class="language-plaintext highlighter-rouge">make init</code>.
+You can install <a href="https://github.com/agda/fix-whitespace">fix-whitespace</a> by running:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/agda/fix-whitespace
+<span class="nb">cd </span>fix-whitespace/
+stack <span class="nb">install</span> <span class="nt">--stack-yaml</span> stack-8.8.3.yaml
+</code></pre></div></div>
+<p>If you want Stack to use your system installation of GHC, you can pass the <code class="language-plaintext highlighter-rouge">--system-ghc</code> flag and select the appropriate <code class="language-plaintext highlighter-rouge">stack-*.yaml</code> file, like when installing <a href="#installing-agda-using-stack">Agda</a>.</p>
+
 <h3 id="building-the-website">Building the website</h3>
 
 <p>The website version of the book is built in three stages:</p>
